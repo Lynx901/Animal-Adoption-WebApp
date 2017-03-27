@@ -1,0 +1,5 @@
+<%-- Pie comun para el registro y el login--%>
+<footer class="footer">
+    <div> Autores: Juan Francisco Abán Fontecha y Daniel Moya Leiva </div>
+    <div> Animal Adoption es una marca registrada &copy; 2017 </div>
+</footer>

@@ -1,0 +1,9 @@
+<%-- Cabecera para el registro y el login --%>
+<header class="panel-heading">
+    <div class="panel-title text-center">
+        <a href="<c:url value='/animales'/>" class="title_min">
+            <h1 class="title">Animal Adoption</h1>
+            <img src="<c:url value='/img/logo.png'/>" class="logo img-circle center-block" alt="Logo">
+        </a>
+    </div>
+</header> 

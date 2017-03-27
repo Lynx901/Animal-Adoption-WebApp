@@ -1,0 +1,18 @@
+<%-- Enlaces para Bootstrap --%>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Bootstrap css -->
+<link rel="stylesheet" href="<c:url value='/css/bootstrap.min.css'/>">
+<link rel="stylesheet" href="<c:url value='/css/bootstrap-theme.min.css'/>">
+
+<!--Favicon-->
+<link rel="shortcut icon" href="img/logo.png">
+
+<!-- Website Font style -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+<!-- Bootrap & jQuery scripts -->
+<script src="js/vendor/jquery-1.11.2.min.js"></script>
+<script src="js/vendor/bootstrap.min.js"></script>
+<script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>

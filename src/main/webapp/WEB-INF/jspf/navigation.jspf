@@ -1,0 +1,22 @@
+<%-- Barra Lateral Comun --%>
+<aside class="col-md-2 col-sm-2 hidden-xs sidebar">
+    <img src="<c:url value='/img/logo.png'/>" class="logo img-circle center-block" alt="Logo">
+    <br>
+    <ul class="raza">
+        <li><strong>GATOS</strong></li>
+        <li><a href="<c:url value='/#'/>">Siamés</a></li>
+        <li><a href="<c:url value='/#'/>">Persa</a></li>
+        <li><a href="<c:url value='/#'/>">Bengala</a></li>
+        <li><a href="<c:url value='/#'/>">Mestizo</a></li>
+    </ul>
+
+    <br>
+
+    <ul class="raza">
+        <li><strong>PERROS</strong></li>
+        <li><a href="<c:url value='/#'/>">Husky</a></li>
+        <li><a href="<c:url value='/#'/>">Labrador</a></li>
+        <li><a href="<c:url value='/#'/>">Pastor Alemán</a></li>
+        <li><a href="<c:url value='/#'/>">Mestizo</a></li>
+    </ul>
+</aside>

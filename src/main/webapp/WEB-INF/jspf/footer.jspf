@@ -1,0 +1,47 @@
+<%-- Pie general --%>
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <br>
+            <div class="col-md-4">
+                <center>
+                    <img src="<c:url value='/img/art.jpg'/>" class="img-circle" alt="...">
+                    <br>
+                    <h4>Autores</h4>
+                    <p>
+                        Daniel Moya Leiva
+                        <br>
+                        Juan Francisco Abán Fontecha
+                    </p>
+                </center>
+            </div>
+            <div class="col-md-4">
+                <center>
+                    <img src="<c:url value='/img/dev.jpg'/>" class="img-circle" alt="...">
+                    <br>
+                    <h4>Asignatura</h4>
+                    <p>
+                        Desarrollo de Aplicaciones Web
+                        <br>
+                        Ingeniería Informática - Ingeniería del Software
+                    </p>
+                </center>
+            </div>
+            <div class="col-md-4">
+                <center>
+                    <img src="<c:url value='/img/design.jpg'/>" class="img-circle" alt="...">
+                    <br>
+                    <h4>Proyecto</h4>
+                    <p>
+                        Sistema de adopción de animales
+                        <br>
+                        Desarrollado con NetBeans 8.2 y Bootstrap
+                    </p>
+                </center>
+            </div>
+        </div>
+        <div class="row">
+            <p><center><a href="<c:url value='/contact.jsp'/>">Contacto</a> <p>Copyright &copy; 2017</p></center>
+        </div>
+    </div>
+</footer>

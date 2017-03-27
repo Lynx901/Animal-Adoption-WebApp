@@ -1,54 +1,52 @@
 package com.mycompany.practicas;
 
-/**
- *
- * @author juanf
- */
 public class Animales {
 
+    private int id;
+    private String nombre;
+    private int edad;
     private String especie;
     private String raza;
-    private String nombre;
     private String estado;
-    private int edad;
     private boolean chip;
     private boolean vacunas;
-    private int dnidueno;
-    
-    public Animales(){
-        especie  = "";
-        raza     = "";
-        nombre   = "";
-        estado   = "";
-        edad     = 0;
-        chip     = false;
-        vacunas  = false;
-        dnidueno = 0;
+    private String description;
+
+    public Animales() {
+        id = 0;
+        nombre = "";
+        edad = 0;
+        raza = "";
+        estado = "";
+        chip = false;
+        vacunas = false;
+        description = "";
     }
-    
-    public Animales (String _especie, String _raza, String _nombre, String _estado, int _edad, boolean _chip, boolean _vacunas, int _dnidueno){
-        especie  = _especie;
-        raza     = _raza;
-        nombre   = _nombre;
-        estado   = _estado;
-        edad     = _edad;
-        chip     = _chip;
-        vacunas  = _vacunas;
-        dnidueno = _dnidueno;
-    }
-    
-    /**
-     * @return the especie
-     */
-    public String getEspecie() {
-        return especie;
+
+    public Animales(int _id, String _nombre, int _edad, String _especie, String _raza, String _estado, boolean _chip, boolean _vacunas, String _description) {
+        id = _id;
+        nombre = _nombre;
+        edad = _edad;
+        especie = _especie;
+        raza = _raza;
+        estado = _estado;
+        chip = _chip;
+        vacunas = _vacunas;
+        description = _description;
     }
 
     /**
-     * @param especie the especie to set
+     * @return the id
      */
-    public void setEspecie(String especie) {
-        this.especie = especie;
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
@@ -66,20 +64,6 @@ public class Animales {
     }
 
     /**
-     * @return the estado
-     */
-    public String getEstado() {
-        return estado;
-    }
-
-    /**
-     * @param estado the estado to set
-     */
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    /**
      * @return the edad
      */
     public int getEdad() {
@@ -91,6 +75,48 @@ public class Animales {
      */
     public void setEdad(int edad) {
         this.edad = edad;
+    }
+
+    /**
+     * @return the especie
+     */
+    public String getEspecie() {
+        return especie;
+    }
+
+    /**
+     * @param especie the especie to set
+     */
+    public void setEspecie(String especie) {
+        this.especie = especie;
+    }
+
+    /**
+     * @return the raza
+     */
+    public String getRaza() {
+        return raza;
+    }
+
+    /**
+     * @param raza the raza to set
+     */
+    public void setRaza(String raza) {
+        this.raza = raza;
+    }
+
+    /**
+     * @return the estado
+     */
+    public String getEstado() {
+        return estado;
+    }
+
+    /**
+     * @param estado the estado to set
+     */
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     /**
@@ -122,31 +148,17 @@ public class Animales {
     }
 
     /**
-     * @return the dnidueno
+     * @return the description
      */
-    public int getDnidueno() {
-        return dnidueno;
+    public String getDescription() {
+        return description;
     }
 
     /**
-     * @param dnidueno the dnidueno to set
+     * @param description the description to set
      */
-    public void setDnidueno(int dnidueno) {
-        this.dnidueno = dnidueno;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    /**
-     * @return the raza
-     */
-    public String getRaza() {
-        return raza;
-    }
-
-    /**
-     * @param raza the raza to set
-     */
-    public void setRaza(String raza) {
-        this.raza = raza;
-    }
-    
 }

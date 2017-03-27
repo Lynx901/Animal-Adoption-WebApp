@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.practicas.controller;
 
 import com.mycompany.practicas.Animales;
@@ -19,17 +14,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
-/**
- *
- * @author juanf
- */
 @WebServlet("/animales/*")
-public class DAWControllerAnimals extends HttpServlet {
+public class AnimalesController extends HttpServlet {
     private final String srvViewPath="/WEB-INF/animales";
     private AnimalesDAO animales;
     private String srvUrl;
     private String imgUrl;
-    private static final Logger LOG = Logger.getLogger(DAWControllerAnimals.class.getName());
+    private static final Logger LOG = Logger.getLogger(AnimalesController.class.getName());
    
    
     @Override
@@ -47,7 +38,7 @@ public class DAWControllerAnimals extends HttpServlet {
         srvUrl = request.getContextPath() + request.getServletPath();
 
 //        request.setAttribute("srvUrl", srvUrl);    
-//        request.setAttribute("animales", animales.buscatodos().toArray());
+//        request.setAttribute("animales", animales.listar().toArray());
 //     
      }
 
@@ -61,14 +52,14 @@ public class DAWControllerAnimals extends HttpServlet {
         String action = ((request.getPathInfo() != null) ? request.getPathInfo() : "");
         LOG.log(Level.INFO, "Petición GET (0)", action);
         switch (action){
-            case "/crear":  {        //FORMULARIO ALTA DE  CLIENTE
+            case "/crear":  {        //FORMULARIO ALTA
                 Animales an = new Animales();
                 request.setAttribute("animales", an);
                 rd = request.getRequestDispatcher(srvViewPath + "/crear.jsp");
                 break;
             }
             default: { 
-                request.setAttribute("animales", animales.buscatodos());
+                request.setAttribute("animales", animales.listar());
                 rd = request.getRequestDispatcher(srvViewPath + "/listado.jsp");        
                 break;
             }
@@ -85,24 +76,27 @@ public class DAWControllerAnimals extends HttpServlet {
         LOG.log(Level.INFO, "Petición POST (0)", action);
         
         switch (action) {
-            case "/crear": {     //ALTA DE UN CLIENTE
-                String especie = request.getParameter("especie");
-                String raza = request.getParameter("raza");
-                String nombre = request.getParameter("nombre");
-                String estado = request.getParameter("estado");
+            case "/crear": {     //ALTA
+                String nombre   = request.getParameter("nombre");
+                int edad        = Integer.parseInt(request.getParameter("edad"));
+                String especie  = request.getParameter("especie");
+                String raza     = request.getParameter("raza");
+                String estado   = request.getParameter("estado");
+                boolean chip    = Boolean.valueOf("chip");
+                boolean vacuna  = Boolean.valueOf("vacuna");
+                String description = request.getParameter("description");
                 
-                //
-                Animales an = new Animales(especie, raza, nombre, estado, 0, false, false, 0);
-               
-                if (validarAnimal(request, an)) { //Hay que arreglaro
-                    animales.nuevoAnimal(an); //Create new client
+                Animales a = new Animales(0, nombre, edad, especie, raza, estado, chip, vacuna, description);
+
+//                if (validarAnimal(a)) { //Hay que arreglaro
+                    animales.nuevoAnimal(a);
                     //Post-sent-redirect
-                    response.sendRedirect("animales");
-                } else { //Show form with validation errores
-                    request.setAttribute("animales", an);
-                    RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/crear.jsp");
-                    rd.forward(request, response);
-                }
+                    response.sendRedirect(srvViewPath + "/listado.jsp");
+//                } else { //Show form with validation errores
+//                    request.setAttribute("animales", a);
+//                    RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/crear.jsp");
+//                    rd.forward(request, response);
+//                }
                 break;
             }
             default:{ // Default POST
@@ -117,15 +111,16 @@ public class DAWControllerAnimals extends HttpServlet {
         return "Registro de animales";
     }
     
-    private boolean validarAnimal(HttpServletRequest request, Animales an){
-        boolean valido = true;
-        if (an.getEdad()<0 || an.getEdad() > 100){
-            valido = false;
-        }
-        if(an.getEspecie().equals("perro") || an.getEspecie().equals("gato") || an.getEspecie().equals("mono")){
-            valido = false;
-        }
-       return valido; 
+    private boolean validarAnimal(Animales a){
+//        if(a.getNombre().length() < 2) {
+//            return false;
+//        } else if(a.getEdad() < 0 || a.getEdad() > 100){
+//            return false;
+//        } else if(a.getEstado().length() < 4) {
+//            return false;
+//        }
+
+       return true; 
     } 
      
 }

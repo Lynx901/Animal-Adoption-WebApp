@@ -13,27 +13,29 @@ import java.util.List;
  *
  * @author  */
 public class AnimalesDAOList implements AnimalesDAO{
-    private static ArrayList<Animales> animales=null;
+    private static ArrayList<Animales> animales = null;
+    private int lastID;
     
     public AnimalesDAOList(){
-        if(animales==null){
+        if(animales == null){
             animales = new ArrayList<>();
-            Animales a = new Animales("perro", "mestizo", "Bolita de nieve", "PERFECTO", 5, true, true, 230000579);
+            Animales a = new Animales(0, "Bolita de nieve", 5, "perro", "Mestizo", "Perfecto", true, true, "Es muy divertido");
             animales.add(a);
-            a = new Animales("gato", "mestizo", "Esperanza", "PERFECTO", 5, true, true, 230000579);
+            a = new Animales(0, "Esperanza", 3, "gato", "Mestizo", "Perfecto", true, true, "Independiente y elegante");
             animales.add(a);
-            a = new Animales("perro", "mestizo", "Colgantitos", "PERFECTO", 5, true, true, 230000579);
+            a = new Animales(0, "Colgantitos", 8,"perro", "Pastor Alemán", "Enfermo", true, true, "Algo viejo pero muy leal");
             animales.add(a);
         }
     }
 
     @Override
-    public List<Animales> buscatodos() {
+    public List<Animales> listar() {
         return animales;
     }
 
     @Override
     public boolean nuevoAnimal(Animales a) {
+        a.setId(lastID++);
         animales.add(a);
         return true;
     }

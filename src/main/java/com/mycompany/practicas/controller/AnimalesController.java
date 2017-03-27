@@ -16,51 +16,49 @@ import java.util.logging.Level;
 
 @WebServlet("/animales/*")
 public class AnimalesController extends HttpServlet {
-    private final String srvViewPath="/WEB-INF/animales";
+
+    private final String srvViewPath = "/WEB-INF/animales";
     private AnimalesDAO animales;
     private String srvUrl;
     private String imgUrl;
-    private static final Logger LOG = Logger.getLogger(AnimalesController.class.getName());
-   
-   
+
     @Override
-    public void init(ServletConfig servletConfig) throws ServletException{
+    public void init(ServletConfig servletConfig) throws ServletException {
         super.init(servletConfig);
-        
+
         animales = new AnimalesDAOList();
     }
-    
-     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8"); //Aceptar caracteres acentuados y ñ
-        response.setHeader("Expires","0"); //Avoid browser caching response
+        response.setHeader("Expires", "0"); //Avoid browser caching response
 
         srvUrl = request.getContextPath() + request.getServletPath();
 
 //        request.setAttribute("srvUrl", srvUrl);    
 //        request.setAttribute("animales", animales.listar().toArray());
 //     
-     }
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
+
         RequestDispatcher rd;
 
         String action = ((request.getPathInfo() != null) ? request.getPathInfo() : "");
-        LOG.log(Level.INFO, "Petición GET (0)", action);
-        switch (action){
-            case "/crear":  {        //FORMULARIO ALTA
+        switch (action) {
+            case "/crear": {        //FORMULARIO ALTA
                 Animales an = new Animales();
                 request.setAttribute("animales", an);
                 rd = request.getRequestDispatcher(srvViewPath + "/crear.jsp");
                 break;
             }
-            default: { 
+            default: {
                 request.setAttribute("animales", animales.listar());
-                rd = request.getRequestDispatcher(srvViewPath + "/listado.jsp");        
+                rd = request.getRequestDispatcher(srvViewPath + "/listado.jsp");
                 break;
             }
         }
@@ -73,34 +71,33 @@ public class AnimalesController extends HttpServlet {
         processRequest(request, response);
 
         String action = (request.getPathInfo() != null ? request.getPathInfo() : "");
-        LOG.log(Level.INFO, "Petición POST (0)", action);
-        
+
         switch (action) {
             case "/crear": {     //ALTA
-                String nombre   = request.getParameter("nombre");
-                int edad        = Integer.parseInt(request.getParameter("edad"));
-                String especie  = request.getParameter("especie");
-                String raza     = request.getParameter("raza");
-                String estado   = request.getParameter("estado");
-                boolean chip    = Boolean.valueOf("chip");
-                boolean vacuna  = Boolean.valueOf("vacuna");
+                String nombre = request.getParameter("nombre");
+                int edad = Integer.parseInt(request.getParameter("edad"));
+                String especie = request.getParameter("especie");
+                String raza = request.getParameter("raza");
+                String estado = request.getParameter("estado");
+                boolean chip = Boolean.valueOf(request.getParameter("chip"));
+                boolean vacuna = Boolean.valueOf(request.getParameter("vacuna"));
                 String description = request.getParameter("description");
-                
-                Animales a = new Animales(0, nombre, edad, especie, raza, estado, chip, vacuna, description);
 
-//                if (validarAnimal(a)) { //Hay que arreglaro
+                Animales a = new Animales(0, nombre, edad, especie, raza, estado, chip, vacuna, description);
+                
+                if (validarAnimal(a)) { //Hay que arreglaro
                     animales.nuevoAnimal(a);
                     //Post-sent-redirect
-                    response.sendRedirect(srvViewPath + "/listado.jsp");
-//                } else { //Show form with validation errores
-//                    request.setAttribute("animales", a);
-//                    RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/crear.jsp");
-//                    rd.forward(request, response);
-//                }
+                    response.sendRedirect("animales");
+                } else { //Show form with validation errores
+                    request.setAttribute("animales", a);
+                    RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/crear.jsp");
+                    rd.forward(request, response);
+                }
                 break;
             }
-            default:{ // Default POST
-                response.sendRedirect("animales");        
+            default: { // Default POST
+                response.sendRedirect("animales");
                 break;
             }
         }
@@ -110,8 +107,8 @@ public class AnimalesController extends HttpServlet {
     public String getServletInfo() {
         return "Registro de animales";
     }
-    
-    private boolean validarAnimal(Animales a){
+
+    private boolean validarAnimal(Animales a) {
 //        if(a.getNombre().length() < 2) {
 //            return false;
 //        } else if(a.getEdad() < 0 || a.getEdad() > 100){
@@ -120,7 +117,7 @@ public class AnimalesController extends HttpServlet {
 //            return false;
 //        }
 
-       return true; 
-    } 
-     
+        return true;
+    }
+
 }

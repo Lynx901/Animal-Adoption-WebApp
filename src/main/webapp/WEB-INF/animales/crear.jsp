@@ -17,24 +17,112 @@
         <main class="row">                 
             <!-- Panel de navegación lateral -->
             <%@include file="/WEB-INF/jspf/navigation.jspf" %>
-            <section class="col-md-offset-1 col-md-5">
+            <section class="col-md-offset-1 col-sm-offset-1 col-md-7 col-sm-7">
                 <h2>Dar de alta a un animal</h2>
-                <form method="POST">
-                    <label >Especie: <input name="especie" value="${animales.especie}" class='form-control'></label>
-                    <span class='label label-warning'>${errEspecie}</span><br/>
-                    <label >Nombre: <input name="nombre" value="${animales.nombre}" class='form-control'></label><br/>
-                    <label>Estado:<input name="estado" value="${animales.estado}" class='form-control'></label>
-                    <span class='label label-warning'>${errEstado}</span><br/>
-                    <label>Edad:<input name="edad" value="${animales.edad}" class='form-control'></label>
-                    <span class='label label-warning'>${errEdad}</span><br/>
-                    <label>Sexo:<input name="sexo" value="${animales.sexo}" class='form-control'></label>
-                    <span class='label label-warning'>${errSexo}</span><br/>
-                    <label >Chip:<input name="socio" type="checkbox" value="1" ${animales.chip?"checked":""} class='form-control'></label><br>
-                    <label >Vacuna:<input name="socio" type="checkbox" value="1" ${animales.vacunas?"checked":""} class='form-control'></label><br>
-                    <label >DNI del Dueño: <input name="dnidueno" value="${animales.dnidueno}" class='form-control'></label><br/>
-                    <input name="enviar" type="submit" value='Enviar' class='btn btn-primary'>
-                    <input name="enviar" type="reset" value='Restaurar' class='btn btn-default'>
-                </form> 
+
+                <form class="form-horizontal">
+                    <fieldset>
+
+                        <!-- Form Name -->
+                        <legend>Dar de alta a un animal</legend>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="nombre">Nombre</label>  
+                            <div class="col-md-6">
+                                <input id="nombre" name="nombre" type="text" placeholder="Toby, Garfield, etc." class="form-control input-md" required="">
+                                <span class="help-block">Debe ser el nombre real del animal</span>  
+                            </div>
+                        </div>
+
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="edad">Edad</label>  
+                            <div class="col-md-6">
+                                <input id="edad" name="edad" type="text" placeholder="3, 4, 5..." class="form-control input-md" required="">
+                                <span class="help-block">Debe ser un número mayor que 0</span>  
+                            </div>
+                        </div>
+
+                        <!-- Select Basic -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="especie">Especie</label>
+                            <div class="col-md-6">
+                                <select id="especie" name="especie" class="form-control">
+                                    <option value="perro">perro</option>
+                                    <option value="gato">gato</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Select Basic -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="raza">Raza</label>
+                            <div class="col-md-6">
+                                <select id="raza" name="raza" class="form-control">
+                                    <option value="Siamés">Siamés</option>
+                                    <option value="Persa">Persa</option>
+                                    <option value="Bengala">Bengala</option>
+                                    <option value="Mestizo">Mestizo</option>
+                                    <option value="Husky">Husky</option>
+                                    <option value="Labrador">Labrador</option>
+                                    <option value="Pastor Alemán">Pastor Alemán</option>
+                                    <option value="Mestizo">Mestizo</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Text input-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="estado">Estado de salud</label>  
+                            <div class="col-md-6">
+                                <input id="estado" name="estado" type="text" placeholder="Perfecto" class="form-control input-md" required="">
+                            </div>
+                        </div>
+
+                        <!-- Multiple Radios (inline) -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="chip">¿Tiene chip?</label>
+                            <div class="col-md-4"> 
+                                <label class="radio-inline" for="chip-0">
+                                    <input type="radio" name="chip" id="chip-0" value="true" checked="checked">
+                                    Sí
+                                </label> 
+                                <label class="radio-inline" for="chip-1">
+                                    <input type="radio" name="chip" id="chip-1" value="false">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Multiple Radios (inline) -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="vacuna">¿Está vacunado?</label>
+                            <div class="col-md-4"> 
+                                <label class="radio-inline" for="vacuna-0">
+                                    <input type="radio" name="vacuna" id="vacuna-0" value="true" checked="checked">
+                                    Sí
+                                </label> 
+                                <label class="radio-inline" for="vacuna-1">
+                                    <input type="radio" name="vacuna" id="vacuna-1" value="false">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Textarea -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="description">¡Cuéntanos algo de él!</label>
+                            <div class="col-md-4">                     
+                                <textarea class="form-control col-md-6" id="description" name="description">Es muy activo, le gusta...</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block login-button" name="enviar" value="Enviar" >Enviar datos</button>
+                        </div>
+                    </fieldset>
+                </form>
+
             </section>
         </main>
         <!-- Pie de página general -->

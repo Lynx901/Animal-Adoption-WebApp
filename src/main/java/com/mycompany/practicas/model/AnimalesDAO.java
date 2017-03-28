@@ -13,6 +13,6 @@ import java.util.List;
  * @author juanf
  */
 public interface AnimalesDAO {
-    List<Animales> buscatodos();
+    List<Animales> listar();
     boolean nuevoAnimal(Animales a);
 }

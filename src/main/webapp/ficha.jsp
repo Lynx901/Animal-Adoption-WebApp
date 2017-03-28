@@ -39,7 +39,7 @@
                             <p>Raza: </p>
                         </div>
                         <div class="col-sm-6 col-md-offset-1 col-md-3">
-                            <p>Siamés </p>
+                            <p>${param.raza} </p>
                         </div>
                     </div>
                     
@@ -48,7 +48,7 @@
                             <p>Edad: </p>
                         </div>
                         <div class="col-sm-6 col-md-offset-1 col-md-3">
-                            <p>4 años </p>
+                            <p>${param.edad} </p>
                         </div>
                     </div>
                     
@@ -57,16 +57,17 @@
                             <p>Sexo: </p>
                         </div>
                         <div class="col-sm-6 col-md-offset-1 col-md-3">
-                            <p>Hembra </p>
+                            <p>${param.sexo} </p>
                         </div>
                     </div>
                     
                     <div class="row">
                         <div class="col-sm-6 col-md-offset-3 col-md-3">
-                            <p>Vacunas: </p>
+                            <p>Vacunas y Chip: </p>
                         </div>
                         <div class="col-sm-6 col-md-offset-1 col-md-3">
-                            <p>Chip y vacuna </p>
+                            <p><c:if test="${param.chip}">Chip</c:if> </p>
+                            <p><c:if test="${param.vacunas}">Vacunas</c:if> </p>
                         </div>
                     </div>
                 </aside>

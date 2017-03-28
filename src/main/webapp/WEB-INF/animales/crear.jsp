@@ -27,6 +27,8 @@
                     <span class='label label-warning'>${errEstado}</span><br/>
                     <label>Edad:<input name="edad" value="${animales.edad}" class='form-control'></label>
                     <span class='label label-warning'>${errEdad}</span><br/>
+                    <label>Sexo:<input name="sexo" value="${animales.sexo}" class='form-control'></label>
+                    <span class='label label-warning'>${errSexo}</span><br/>
                     <label >Chip:<input name="socio" type="checkbox" value="1" ${animales.chip?"checked":""} class='form-control'></label><br>
                     <label >Vacuna:<input name="socio" type="checkbox" value="1" ${animales.vacunas?"checked":""} class='form-control'></label><br>
                     <label >DNI del Dueño: <input name="dnidueno" value="${animales.dnidueno}" class='form-control'></label><br/>

@@ -11,6 +11,7 @@ public class Animales {
     private String nombre;
     private String estado;
     private int edad;
+    private String sexo;
     private boolean chip;
     private boolean vacunas;
     private int dnidueno;
@@ -21,17 +22,19 @@ public class Animales {
         nombre   = "";
         estado   = "";
         edad     = 0;
+        sexo     = "";
         chip     = false;
         vacunas  = false;
         dnidueno = 0;
     }
     
-    public Animales (String _especie, String _raza, String _nombre, String _estado, int _edad, boolean _chip, boolean _vacunas, int _dnidueno){
+    public Animales (String _especie, String _raza, String _nombre, String _estado, int _edad, String _sexo, boolean _chip, boolean _vacunas, int _dnidueno){
         especie  = _especie;
         raza     = _raza;
         nombre   = _nombre;
         estado   = _estado;
         edad     = _edad;
+        sexo     = _sexo;
         chip     = _chip;
         vacunas  = _vacunas;
         dnidueno = _dnidueno;
@@ -147,6 +150,14 @@ public class Animales {
      */
     public void setRaza(String raza) {
         this.raza = raza;
+    }
+    
+     public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
     
 }

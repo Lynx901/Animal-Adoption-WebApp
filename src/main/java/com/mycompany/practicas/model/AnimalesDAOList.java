@@ -18,11 +18,11 @@ public class AnimalesDAOList implements AnimalesDAO{
     public AnimalesDAOList(){
         if(animales==null){
             animales = new ArrayList<>();
-            Animales a = new Animales("perro", "mestizo", "Bolita de nieve", "PERFECTO", 5, true, true, 230000579);
+            Animales a = new Animales("perro", "mestizo", "Bolita de nieve", "PERFECTO", 5, "macho" , true, true, 230000579);
             animales.add(a);
-            a = new Animales("gato", "mestizo", "Esperanza", "PERFECTO", 5, true, true, 230000579);
+            a = new Animales("gato", "mestizo", "Esperanza", "PERFECTO", 5, "hembra", true, true, 230000579);
             animales.add(a);
-            a = new Animales("perro", "mestizo", "Colgantitos", "PERFECTO", 5, true, true, 230000579);
+            a = new Animales("perro", "mestizo", "Colgantitos", "PERFECTO", 5, "macho" , true, true, 230000579);
             animales.add(a);
         }
     }

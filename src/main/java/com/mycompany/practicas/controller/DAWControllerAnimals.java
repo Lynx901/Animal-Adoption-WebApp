@@ -90,19 +90,20 @@ public class DAWControllerAnimals extends HttpServlet {
                 String raza = request.getParameter("raza");
                 String nombre = request.getParameter("nombre");
                 String estado = request.getParameter("estado");
+                String sexo = request.getParameter("sexo");
                 
                 //
-                Animales an = new Animales(especie, raza, nombre, estado, 0, false, false, 0);
+                Animales an = new Animales(especie, raza, nombre, estado, 0, sexo, false, false, 0);
                
-                if (validarAnimal(request, an)) { //Hay que arreglaro
+               // if (validarAnimal(request, an)) { //Hay que arreglaro
                     animales.nuevoAnimal(an); //Create new client
                     //Post-sent-redirect
-                    response.sendRedirect("animales");
-                } else { //Show form with validation errores
-                    request.setAttribute("animales", an);
-                    RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/crear.jsp");
-                    rd.forward(request, response);
-                }
+                    response.sendRedirect("/Practicas/animales");
+               // } else { //Show form with validation errores
+               //     request.setAttribute("animales", an);
+               //    RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/crear.jsp");
+               //     rd.forward(request, response);
+               // }
                 break;
             }
             default:{ // Default POST
@@ -122,7 +123,10 @@ public class DAWControllerAnimals extends HttpServlet {
         if (an.getEdad()<0 || an.getEdad() > 100){
             valido = false;
         }
-        if(an.getEspecie().equals("perro") || an.getEspecie().equals("gato") || an.getEspecie().equals("mono")){
+        if(!an.getEspecie().equals("perro") || !an.getEspecie().equals("gato") || !an.getEspecie().equals("mono")){
+            valido = false;
+        }
+        if (an.getSexo() != "hembra" && an.getSexo() != "macho"){
             valido = false;
         }
        return valido; 

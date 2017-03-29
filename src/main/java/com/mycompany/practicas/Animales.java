@@ -2,50 +2,72 @@ package com.mycompany.practicas;
 
 
 public class Animales {
-    public int _id=0;
+    private Usuario duenio;
+
+    public int _id = 0;
     private int id;
-    private String nombre;
-    private int edad;
-    private String especie;
-    private String raza;
-    private String estado;
-    private String sexo;
+    private String  nombre;
+    private int     edad;
+    private boolean sexo;  // True si es macho, false si es hembra
+
+    private String  especie;
+    private String  raza;
+    private String  estado;
+    
     private boolean chip;
     private boolean vacunas;
-    private int dnidueno;
+    
     private String descripcion;
         
     public Animales(){
-        id=_id;
+        duenio = new Usuario();
+        
+        id       = _id;
+        nombre   = "";
+        edad     = 0;
+        sexo     = true;
+        
         especie  = "";
         raza     = "";
-        nombre   = "";
         estado   = "";
-        edad     = 0;
-        sexo     = "";
+        
         chip     = false;
         vacunas  = false;
-        dnidueno = 0;
+        
         descripcion = "";
         _id++;
     }
-    
-    
-    
 
-    public Animales( String _nombre, int _edad, String _sexo , String _especie, String _raza, String _estado, boolean _chip, boolean _vacunas, int _dnidueno, String _descripcion) {
-        id = _id;
-        nombre = _nombre;
-        edad = _edad;
-        sexo = _sexo;
+    public Animales(String _nombre, int _edad, boolean _sexo , String _especie, String _raza, String _estado, boolean _chip, boolean _vacunas, int _dni, String _descripcion) {
+        duenio  = new Usuario(); // A "duenio" habría que pasarle el dni del dueño para que lo añada
+        id      = _id;
+        nombre  = _nombre;
+        edad    = _edad;
+        sexo    = _sexo;
+        
         especie = _especie;
-        raza = _raza;
-        estado = _estado;
-        chip = _chip;
+        raza    = _raza;
+        estado  = _estado;
+        
+        chip    = _chip;
         vacunas = _vacunas;
-        dnidueno = _dnidueno;
+
         descripcion = _descripcion;
         _id++;
+    }
+
+    /**
+     * @return the duenio
+     */
+    public Usuario getDuenio() {
+        return duenio;
+    }
+
+    /**
+     * @param duenio the duenio to set
+     */
+    public void setDuenio(Usuario duenio) {
+        this.duenio = duenio;
     }
 
     /**
@@ -54,6 +76,14 @@ public class Animales {
     public int getId() {
         return id;
     }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
     /**
      * @return the nombre
      */
@@ -80,6 +110,20 @@ public class Animales {
      */
     public void setEdad(int edad) {
         this.edad = edad;
+    }
+
+    /**
+     * @return the sexo
+     */
+    public boolean isSexo() {
+        return sexo;
+    }
+
+    /**
+     * @param sexo the sexo to set
+     */
+    public void setSexo(boolean sexo) {
+        this.sexo = sexo;
     }
 
     /**
@@ -153,25 +197,19 @@ public class Animales {
     }
 
     /**
-     * @return the description
+     * @return the descripcion
      */
-    public String getDescription() {
+    public String getDescripcion() {
         return descripcion;
     }
 
     /**
-     * @param description the description to set
+     * @param descripcion the descripcion to set
      */
-    public void setDescription(String _descripcion) {
-        this.descripcion = _descripcion;
-    }
-    
-     public String getSexo() {
-        return sexo;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
-    }
+    
     
 }

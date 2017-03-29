@@ -18,7 +18,6 @@
             <!-- Panel de navegación lateral -->
             <%@include file="/WEB-INF/jspf/navigation.jspf" %>
             <section class="col-md-offset-1 col-sm-offset-1 col-md-7 col-sm-7">
-                <h2>Dar de alta a un animal</h2>
 
                 <form class="form-horizontal">
                     <fieldset>

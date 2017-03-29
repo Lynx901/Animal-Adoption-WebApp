@@ -42,6 +42,21 @@
                                 <span class="help-block">Debe ser un número mayor que 0</span>  
                             </div>
                         </div>
+                        
+                         <!-- Multiple Radios (inline) -->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="sexo">Sexo</label>
+                            <div class="col-md-4"> 
+                                <label class="radio-inline" for="sexo-0">
+                                    <input type="radio" name="sexo" id="sexo-0" value="true" checked="checked">
+                                    Macho
+                                </label> 
+                                <label class="radio-inline" for="sexo-1">
+                                    <input type="radio" name="sexo" id="sexo-1" value="false">
+                                    Hembra
+                                </label>
+                            </div>
+                        </div>
 
                         <!-- Select Basic -->
                         <div class="form-group">
@@ -96,14 +111,14 @@
 
                         <!-- Multiple Radios (inline) -->
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="vacuna">¿Está vacunado?</label>
+                            <label class="col-md-4 control-label" for="vacunas">¿Está vacunado?</label>
                             <div class="col-md-4"> 
-                                <label class="radio-inline" for="vacuna-0">
-                                    <input type="radio" name="vacuna" id="vacuna-0" value="true" checked="checked">
+                                <label class="radio-inline" for="vacunas-0">
+                                    <input type="radio" name="vacunas" id="vacunas-0" value="true" checked="checked">
                                     Sí
                                 </label> 
-                                <label class="radio-inline" for="vacuna-1">
-                                    <input type="radio" name="vacuna" id="vacuna-1" value="false">
+                                <label class="radio-inline" for="vacunas-1">
+                                    <input type="radio" name="vacunas" id="vacunas-1" value="false">
                                     No
                                 </label>
                             </div>

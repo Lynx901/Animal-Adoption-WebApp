@@ -23,6 +23,6 @@
     
     <!-- Página de error de TomCat -->
     <error-page>
-        <location>/ErrorController</location>
+        <location>/error.jsp</location>
     </error-page>
 </web-app>

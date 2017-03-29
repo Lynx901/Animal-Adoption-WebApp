@@ -8,8 +8,6 @@ CREATE TABLE Usuarios (
     pass        VARCHAR(10)
 );
 
-drop table Animales;
-
 CREATE TABLE Animales (
     id          INTEGER PRIMARY KEY,
     nombre      VARCHAR(25) NOT NULL,

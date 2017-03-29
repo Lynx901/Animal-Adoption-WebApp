@@ -32,7 +32,7 @@ public class AnimalesController extends HttpServlet {
         request.setCharacterEncoding("UTF-8"); //Aceptar caracteres acentuados y ñ
         response.setHeader("Expires", "0"); //Avoid browser caching response
 
-        srvUrl = request.getContextPath() + request.getServletPath();
+        //srvUrl = request.getContextPath() + request.getServletPath();
 
 //        request.setAttribute("srvUrl", srvUrl);    
 //        request.setAttribute("animales", animales.listar().toArray());
@@ -49,8 +49,8 @@ public class AnimalesController extends HttpServlet {
         String action = ((request.getPathInfo() != null) ? request.getPathInfo() : "");
         switch (action) {
             case "/crear": {        //FORMULARIO ALTA
-                Animales an = new Animales();
-                request.setAttribute("animales", an);
+                Animales a = new Animales();
+                request.setAttribute("animales", a);
                 rd = request.getRequestDispatcher(srvViewPath + "/crear.jsp");
                 break;
             }
@@ -72,28 +72,37 @@ public class AnimalesController extends HttpServlet {
 
         switch (action) {
             case "/crear": {     //ALTA
-                String nombre = request.getParameter("nombre");
-                int edad = Integer.parseInt(request.getParameter("edad"));
-                String sexo = request.getParameter("sexo");
-                String especie = request.getParameter("especie");
-                String raza = request.getParameter("raza");
-                String estado = request.getParameter("estado");
-                boolean chip = Boolean.valueOf(request.getParameter("chip"));
-                boolean vacuna = Boolean.valueOf(request.getParameter("vacuna"));
-                int dniDueno = Integer.parseInt(request.getParameter("dnidueno"));
-                String description = request.getParameter("description");
-
-                Animales a = new Animales( nombre, edad, sexo, especie, raza, estado, chip, vacuna, dniDueno , description);
                 
-                //if (validarAnimal(a)) { //Hay que arreglaro
+                /* ------- Recogemos todos los datos necesarios para dar el alta --------- */
+                String  nombre  = request.getParameter("nombre");
+                int     edad    = Integer.parseInt(request.getParameter("edad"));
+                boolean sexo    = Boolean.valueOf(request.getParameter("sexo"));
+                
+                String especie  = request.getParameter("especie");
+                String raza     = request.getParameter("raza");
+                String estado   = request.getParameter("estado");
+                
+                boolean chip    = Boolean.valueOf(request.getParameter("chip"));
+                boolean vacunas = Boolean.valueOf(request.getParameter("vacunas"));
+                
+                String description = request.getParameter("description");
+                
+                int dni = (int) request.getSession().getAttribute("dni"); // Esto coge el dni que está usando el usuario en la sesión actual
+                /* ---------------- Fin de recoger datos para el alta ------------------- */ 
+
+                Animales a = new Animales(nombre, edad, sexo, especie, raza, estado, chip, vacunas, dni , description);
+                animales.nuevoAnimal(a);
+                //Post-sent-redirect
+                response.sendRedirect("animales");
+                if (validar(a)) {
                     animales.nuevoAnimal(a);
                     //Post-sent-redirect
                     response.sendRedirect("animales");
-               /* } else { //Show form with validation errores
+                } else { //Show form with validation errors
                     request.setAttribute("animales", a);
                     RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/crear.jsp");
                     rd.forward(request, response);
-                }*/
+                }
                 break;
             }
             default: { // Default POST
@@ -108,11 +117,12 @@ public class AnimalesController extends HttpServlet {
         return "Registro de animales";
     }
 
-    private boolean validarAnimal(Animales a) {
-       if(a.getNombre().length() < 2 || a.getEdad() < 0 || a.getEdad() > 100 || a.getEstado().length() < 4 || a.getSexo() != "macho" && a.getSexo() != "hembra") {
-            return false;
-        }
-        return true;
+    private boolean validar(Animales a) {
+        boolean nombreOK = a.getNombre().length() > 2;
+        boolean edadOK   = a.getEdad() > 0 && a.getEdad() < 100;
+        boolean estadoOK = a.getEstado().length() > 4; 
+        
+        return (nombreOK && edadOK && estadoOK); // Devuelve true si todo está OK, false si no
     }
 
 }

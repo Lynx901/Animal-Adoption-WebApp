@@ -19,7 +19,7 @@
             <%@include file="/WEB-INF/jspf/navigation.jspf" %>
             <section class="col-md-offset-1 col-sm-offset-1 col-md-7 col-sm-7">
 
-                <form class="form-horizontal">
+                <form method="POST" class="form-horizontal">
                     <fieldset>
 
                         <!-- Form Name -->

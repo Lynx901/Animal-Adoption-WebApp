@@ -2,7 +2,7 @@ package com.mycompany.practicas.controller;
 
 import com.mycompany.practicas.Animales;
 import com.mycompany.practicas.model.AnimalesDAO;
-import com.mycompany.practicas.model.AnimalesDAOList;
+import com.mycompany.practicas.model.AnimalesDAOJDBC;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AnimalesController extends HttpServlet {
 
     private final String srvViewPath = "/WEB-INF/animales";
-    private AnimalesDAO animales;
+    private AnimalesDAOJDBC animales;
     private String srvUrl;
     private String imgUrl;
 
@@ -24,7 +24,7 @@ public class AnimalesController extends HttpServlet {
     public void init(ServletConfig servletConfig) throws ServletException {
         super.init(servletConfig);
 
-        animales = new AnimalesDAOList();
+        animales = new AnimalesDAOJDBC();
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

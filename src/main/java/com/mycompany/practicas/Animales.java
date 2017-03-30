@@ -4,7 +4,6 @@ package com.mycompany.practicas;
 public class Animales {
     private Usuario duenio;
 
-    public int _id = 0;
     private int id;
     private String  nombre;
     private int     edad;
@@ -22,7 +21,7 @@ public class Animales {
     public Animales(){
         duenio = new Usuario();
         
-        id       = _id;
+        id       = 0;
         nombre   = "";
         edad     = 0;
         sexo     = true;
@@ -35,12 +34,10 @@ public class Animales {
         vacunas  = false;
         
         descripcion = "";
-        _id++;
     }
 
     public Animales(String _nombre, int _edad, boolean _sexo , String _especie, String _raza, String _estado, boolean _chip, boolean _vacunas, int _dni, String _descripcion) {
         duenio  = new Usuario(); // A "duenio" habría que pasarle el dni del dueño para que lo añada
-        id      = _id;
         nombre  = _nombre;
         edad    = _edad;
         sexo    = _sexo;
@@ -53,7 +50,6 @@ public class Animales {
         vacunas = _vacunas;
 
         descripcion = _descripcion;
-        _id++;
     }
 
     /**

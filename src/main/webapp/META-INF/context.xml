@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context antiJARLocking="true" path="/Practicas">
-    <!--<Resource name="jdbc/Practicas"
-        driverClassName="org.apache.derby.jdbc.ClientDriver"
-        url="jdbc:derby://localhost:1527/Practicas"
-        type="javax.sql.DataSource"
-        username="dawuser1"
-        password="dawuser1"
-        auth="Container"
-        maxActive="100"/>-->
+<Context path="/Practicas">
+    <Resource   auth="Container"
+                driverClassName="org.apache.derby.jdbc.ClientDriver"
+                url="jdbc:derby://localhost:1527/daw"
+                type="javax.sql.DataSource"
+                name="jdbc/Practicas"
+                username="dawuser1"
+                password="dawuser1"
+                maxActive="100"/>
 </Context>

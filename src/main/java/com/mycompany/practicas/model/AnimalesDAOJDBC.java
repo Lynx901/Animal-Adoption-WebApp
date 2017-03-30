@@ -48,8 +48,8 @@ public class AnimalesDAOJDBC implements AnimalesDAO {
                              rs.getString("raza"),
                              rs.getString("estado"),
                              rs.getBoolean("chip"),
-                             rs.getBoolean("vacuna"),
-                             rs.getInt("dni"),
+                             rs.getBoolean("vacunas"),
+                             rs.getInt("dnidueno"),
                              rs.getString("descripcion"));
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
@@ -77,8 +77,8 @@ public class AnimalesDAOJDBC implements AnimalesDAO {
     @Override
     public boolean nuevoAnimal(Animales a) {
         a.setId(lastId++);
-        String SQL_INSERT = "insert into Animales (nombre, edad, sexo, especie, raza, estado, chip, vacuna, descripcion)"
-                + " values(?,?,?,?,?,?,?,?,?)";
+        String SQL_INSERT = "insert into Animales (nombre, edad, sexo, especie, raza, estado, chip, vacunas, dnidueno, descripcion)"
+                + " values(?,?,?,?,?,?,?,?,?,?)";
         Integer insertados = 0;
         try (Connection conn = ds.getConnection();
              PreparedStatement stmn = conn.prepareStatement(SQL_INSERT)) {
@@ -89,9 +89,10 @@ public class AnimalesDAOJDBC implements AnimalesDAO {
             stmn.setString(4, a.getEspecie());
             stmn.setString(5, a.getRaza());
             stmn.setString(6, a.getEstado());
-            stmn.setBoolean(3, a.isChip());
-            stmn.setBoolean(3, a.isVacunas());
-            stmn.setString(5, a.getDescripcion());
+            stmn.setBoolean(7, a.isChip());
+            stmn.setBoolean(8, a.isVacunas());
+            stmn.setInt(9, a.getDuenio().getDNI());
+            stmn.setString(10, a.getDescripcion());
             insertados = stmn.executeUpdate();
 
         } catch (SQLException ex) {

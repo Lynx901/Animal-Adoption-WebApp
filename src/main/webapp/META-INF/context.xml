@@ -5,7 +5,7 @@
                 url="jdbc:derby://localhost:1527/daw"
                 type="javax.sql.DataSource"
                 name="jdbc/Practicas"
-                username="dawuser1"
-                password="dawuser1"
+                username="daw"
+                password="daw"
                 maxActive="100"/>
 </Context>

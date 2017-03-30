@@ -37,7 +37,8 @@ public class Animales {
     }
 
     public Animales(String _nombre, int _edad, boolean _sexo , String _especie, String _raza, String _estado, boolean _chip, boolean _vacunas, int _dni, String _descripcion) {
-        duenio  = new Usuario(); // A "duenio" habría que pasarle el dni del dueño para que lo añada
+        duenio = new Usuario();
+        duenio.setDNI(_dni); // A "duenio" habría que pasarle el dni del dueño para que lo añada
         nombre  = _nombre;
         edad    = _edad;
         sexo    = _sexo;
@@ -205,7 +206,5 @@ public class Animales {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
-    
     
 }

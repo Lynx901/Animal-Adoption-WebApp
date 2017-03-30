@@ -2,7 +2,7 @@ package com.mycompany.practicas;
 
 
 public class Animales {
-    private Usuario duenio;
+    private int duenio;
 
     private int id;
     private String  nombre;
@@ -19,7 +19,7 @@ public class Animales {
     private String descripcion;
         
     public Animales(){
-        duenio = new Usuario();
+        duenio = 0;
         
         id       = 0;
         nombre   = "";
@@ -37,8 +37,7 @@ public class Animales {
     }
 
     public Animales(String _nombre, int _edad, boolean _sexo , String _especie, String _raza, String _estado, boolean _chip, boolean _vacunas, int _dni, String _descripcion) {
-        duenio = new Usuario();
-        duenio.setDNI(_dni); // A "duenio" habría que pasarle el dni del dueño para que lo añada
+        duenio = _dni;
         nombre  = _nombre;
         edad    = _edad;
         sexo    = _sexo;
@@ -56,14 +55,14 @@ public class Animales {
     /**
      * @return the duenio
      */
-    public Usuario getDuenio() {
+    public int getDuenio() {
         return duenio;
     }
 
     /**
      * @param duenio the duenio to set
      */
-    public void setDuenio(Usuario duenio) {
+    public void setDuenio(int duenio) {
         this.duenio = duenio;
     }
 

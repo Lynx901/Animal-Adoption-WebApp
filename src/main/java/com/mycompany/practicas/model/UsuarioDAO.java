@@ -8,7 +8,8 @@ import java.util.List;
 /** Generic Interfaz for Usuario DAOs implementations*/
 public interface UsuarioDAO {
     
-    List<Usuario> buscaTodos();
+    List<Usuario> listar();
     boolean nuevoUsuario(Usuario u);
+    Usuario encuentra(String encontrar);
  
 }

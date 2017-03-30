@@ -18,13 +18,13 @@
                     <li><a href="<c:url value='/faqs.jsp'/>">Preguntas Frecuentes</a></li> 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <c:if test="${not empty param.usuario}">
-                        <li><a href="<c:url value='/#'/>"><span class="glyphicon glyphicon-cog"></span>Ajustes de ${param.usuario} </a></li>
+                    <c:if test="${sessionScope.usuario.nombre ne ''}">
+                        <li><a href="<c:url value='/#'/>"><span class="glyphicon glyphicon-cog"></span>Ajustes de ${usuario.dni} </a></li>
                     </c:if>
-                    <c:if test="${empty param.usuario}">
-                        <li><a href="<c:url value='/register.jsp'/>"><span class="glyphicon glyphicon-user"></span>Registro</a></li>
-                        <li><a href="<c:url value='/login.jsp'/>"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
-                    </c:if>
+                    <!--ANGULOc:if test="DOLAR{sessionScope.usuario.nombre eq ''}">-->
+                        <li><a href="<c:url value='user'/>"><span class="glyphicon glyphicon-user"></span>Registro</a></li>
+                        <li><a href="<c:url value='user'/>"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+                    <!--ANGULO/c:if>-->
                 </ul>
             </div>
         </div>

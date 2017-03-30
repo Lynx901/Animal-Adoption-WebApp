@@ -7,7 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>¿Quiénes Somos? - Animal Adoption</title>
         <!-- Enlaces a Bootstrap -->
-        <%@include file="WEB-INF/jspf/bootstrap.jspf" %>
+        <%@include file="/WEB-INF/jspf/boostrap.jspf" %>
         <!-- Website CSS style -->
         <link rel="stylesheet" href="<c:url value='/css/main.css'/>">
     </head>
@@ -19,34 +19,11 @@
             <section class="col-md-12 col-sm-12 col-xs-12">
                 <article class="col-md-offset-2 col-md-4 col-sm-6 col-xs-12">
                     <div class="thumbnail zoom">
-                        <img class="img-responsive photo-animal" src="<c:url value='img/dani.jpg'/>" alt="Foto de Daniel Moya Leiva"/>
+                        <img class="img-responsive photo-animal" src="<c:url value='img/${applicationScope.usuario.nombre}.jpg'/>" alt="Foto de ${applicationScope.usuario.nombre}"/>
                         <footer class="color">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h4 class="centered">Daniel Moya Leiva</h4>
-                                    <p class="centered">
-                                        <a href="<c:url value='#'/>">
-                                            <i class="rrss fa fa-facebook fa-3x" aria-hidden="true"></i>
-                                        </a>
-                                        <a href="<c:url value='#'/>">
-                                            <i class="rrss fa fa-twitter fa-3x" aria-hidden="true"></i>
-                                        </a>
-                                        <a href="<c:url value='#'/>">
-                                            <i class="rrss fa fa-linkedin fa-3x" aria-hidden="true"></i>
-                                        </a>
-                                    </p>
-                                </div>
-                            </div>
-                        </footer>
-                    </div>
-                </article>
-                <article class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="thumbnail zoom">
-                        <img class="img-responsive photo-animal" src="<c:url value='img/juanfra.jpg'/>" alt="Foto de Juan Francisco Abán Fontecha"/>
-                        <footer class="color">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h4 class="centered">Juan Francisco Abán Fontecha</h4>
+                                    <h4 class="centered">${applicationScope.usuario.nombre} ${applicationScope.usuario.apellidos}</h4>
                                     <p class="centered">
                                         <a href="<c:url value='#'/>">
                                             <i class="rrss fa fa-facebook fa-3x" aria-hidden="true"></i>

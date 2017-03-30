@@ -19,8 +19,8 @@ import javax.sql.DataSource;
  * JDBC DAO implementation
  */
 public class UsuarioDAOJDBC implements UsuarioDAO {
-    private static String connPoolName="java:/comp/env/jdbc/gestClub"; //Tomcat connection pool
-    private DataSource ds=null;
+    private static String connPoolName  = "java:/comp/env/jdbc/gestClub"; //Tomcat connection pool
+    private DataSource ds               = null;
 
     public UsuarioDAOJDBC() {
     
@@ -45,16 +45,17 @@ public class UsuarioDAOJDBC implements UsuarioDAO {
                         rs.getString("nombre"),
                         rs.getString("apellidos"),
                         rs.getString("email"),
+                        rs.getString("direccion"),
                         rs.getString("usuario"),
                         rs.getString("pass"));
-        }catch (Exception ex) {
+        }catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
         }
         return u;
     }
 
     @Override
-    public List<Usuario> buscaTodos() {
+    public List<Usuario> listar() {
         String SQL_BUSCATODOS = "Select * from usuarios";
         List<Usuario> usuarios = new ArrayList<>();
         try (
@@ -72,23 +73,33 @@ public class UsuarioDAOJDBC implements UsuarioDAO {
 
     @Override
     public boolean nuevoUsuario(Usuario u) {
-        String SQL_INSERT = "insert into Usuarios (dni, nombre, apellidos, email, usuario, pass) values(?,?,?,?,?,?)";
+        String SQL_INSERT = "insert into Usuarios (dni, nombre, apellidos, email, direccion, usuario, pass) values(?,?,?,?,?,?,?)";
         Integer insertados = 0;
         try (Connection conn = ds.getConnection();
              PreparedStatement stmn = conn.prepareStatement(SQL_INSERT)) {
 
-            stmn.setInt(1, u.getDNI());
+            stmn.setInt(1, u.getDni());
             stmn.setString(2, u.getNombre());
             stmn.setString(3, u.getApellidos());
             stmn.setString(4, u.getEmail());
-            stmn.setString(5, u.getUsuario());
-            stmn.setString(6, u.getPass());
+            stmn.setString(5, u.getDireccion());
+            stmn.setString(6, u.getUsuario());
+            stmn.setString(7, u.getPass());
             insertados = stmn.executeUpdate();
 
         } catch (SQLException ex) {
             Logger.getLogger("UsuarioDAOJDBC").log(Level.SEVERE, ex.getMessage(), ex);
         }  //Autoclose resources (jdk>7)
         return insertados == 1;
+    }
+
+    @Override
+    public Usuario encuentra(String email) {
+        for(Usuario u : listar()) {
+            if(u.getEmail().equals(email))
+                return u;
+        }
+        return null;
     }
 
 }

@@ -21,24 +21,44 @@
                 </div>
             </c:if>
             <c:if test="${empty param.Enviar}">
-                <form class="form-horizontal" method="post">
+                <form class="form-horizontal" method="POST">
 
                     <div class="form-group">
                         <label for="dni" class="col-sm-4 control-label">DNI</label>
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                <input type="text" class="form-control" name="name" id="name"  placeholder="Ingrese su DNI" required/>
+                                <input type="text" class="form-control" name="dni" id="dni"  placeholder="Ingrese su DNI" required/>
                             </div>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="name" class="col-sm-4 control-label">Nombre</label>
+                        <label for="nombre" class="col-sm-4 control-label">Nombre</label>
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                <input type="text" class="form-control" name="name" id="name"  placeholder="Ingrese su nombre" required/>
+                                <input type="text" class="form-control" name="nombre" id="nombre"  placeholder="Ingrese su nombre" required/>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="apellidos" class="col-sm-4 control-label">Apellidos</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="apellidos" id="apellidos"  placeholder="Ingrese sus apellidos" required/>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="direccion" class="col-sm-4 control-label">Dirección</label>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="direccion" id="direccion"  placeholder="Ingrese dónde vive" required/>
                             </div>
                         </div>
                     </div>
@@ -54,21 +74,21 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="username" class="col-sm-4 control-label">Usuario</label>
+                        <label for="usuario" class="col-sm-4 control-label">Usuario</label>
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                                <input type="text" class="form-control" name="username" id="username"  placeholder="Ingrese su nombre de Usuario" required/>
+                                <input type="text" class="form-control" name="usuario" id="usuario"  placeholder="Ingrese su nombre de Usuario" required/>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="password" class="col-sm-4 control-label">Contraseña</label>
+                        <label for="pass" class="col-sm-4 control-label">Contraseña</label>
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                <input type="password" class="form-control" name="password" id="password"  placeholder="Ingrese su contraseña" required/>
+                                <input type="password" class="form-control" name="pass" id="pass"  placeholder="Ingrese su contraseña" required/>
                             </div>
                         </div>
                     </div>

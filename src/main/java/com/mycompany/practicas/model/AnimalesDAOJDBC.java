@@ -91,7 +91,7 @@ public class AnimalesDAOJDBC implements AnimalesDAO {
             stmn.setString(6, a.getEstado());
             stmn.setBoolean(7, a.isChip());
             stmn.setBoolean(8, a.isVacunas());
-            stmn.setInt(9, a.getDuenio().getDNI());
+            stmn.setInt(9, a.getDuenio());
             stmn.setString(10, a.getDescripcion());
             insertados = stmn.executeUpdate();
 

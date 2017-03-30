@@ -1,26 +1,13 @@
-/**
- * Usuario.java
- *
- * Created on 14-mar-2017, 12:37:50
- * This file is inside the Practicas project.
- *
- * Copyright(c) 2017 Daniel Moya. All Rights Reserved.
- *
- */
-
 package com.mycompany.practicas;
 
 import java.io.Serializable;
 
-/**
- * @author dani
- * @brief
- */
 public class Usuario implements Serializable{
     private int    dni;
     private String nombre;
     private String apellidos;
     private String email;
+    private String direccion;
     private String usuario;
     private String pass;
 
@@ -29,31 +16,33 @@ public class Usuario implements Serializable{
         nombre      = "";
         apellidos   = "";
         email       = "";
+        direccion   = "";
         usuario     = "";
         pass        = "";
     }
     
-    public Usuario (int dni_, String nombre_, String apellidos_,
-                    String email_, String usuario_, String pass_) {
-        dni         = dni_;
-        nombre      = nombre_;
-        apellidos   = apellidos_;
-        email       = email_;
-        usuario     = usuario_;
-        pass        = pass_;
+    public Usuario (int _dni, String _nombre, String _apellidos,
+                    String _email, String _direccion, String _usuario, String _pass) {
+        dni         = _dni;
+        nombre      = _nombre;
+        apellidos   = _apellidos;
+        email       = _email;
+        direccion   = _direccion;
+        usuario     = _usuario;
+        pass        = _pass;
     }
 
     /**
      * @return the dni
      */
-    public int getDNI() {
+    public int getDni() {
         return dni;
     }
 
     /**
      * @param dni the dni to set
      */
-    public void setDNI(int dni) {
+    public void setDni(int dni) {
         this.dni = dni;
     }
 
@@ -97,6 +86,20 @@ public class Usuario implements Serializable{
      */
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    /**
+     * @return the direccion
+     */
+    public String getDireccion() {
+        return direccion;
+    }
+
+    /**
+     * @param direccion the direccion to set
+     */
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
     /**

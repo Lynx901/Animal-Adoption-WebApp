@@ -33,7 +33,7 @@
                                         <img class="img-responsive photo-animal" src="<c:url value='/img/${a.especie}-placeholder.jpg'/>" alt="Foto del animal"/>
                                         <footer class="color">
                                             <div class="row">
-                                                <img class="col-md-2 col-sm-1 col-xs-1 usr-ph img-circle" src="<c:url value='/img/usr-placeholder.png'/>" alt="Foto del usuario"/>
+                                                <img class="col-md-2 col-sm-1 col-xs-1 usr-ph img-circle" src="<c:url value='/img/${a.duenio}.png'/>" alt="Foto de ${a.duenio}"/>
                                                 <div class="col-md-9">
                                                     <h4>${a.nombre}</h4>
                                                     <p>XX Km</p>

@@ -87,8 +87,8 @@ public class AnimalesController extends HttpServlet {
                 
                 String description = request.getParameter("description");
                 
-                //int dni = (int) request.getSession().getAttribute("dni"); // Esto coge el dni que está usando el usuario en la sesión actual
-                int dni = 77360609; //Eso hay que cambiarlo por lo de arriba cuando se incluya lo del usuario
+                int dni = (int) request.getSession().getAttribute("dni"); // Esto coge el dni que está usando el usuario en la sesión actual
+                //int dni = 77360609; //Eso hay que cambiarlo por lo de arriba cuando se incluya lo del usuario
                 
                 /* ---------------- Fin de recoger datos para el alta ------------------- */ 
 

@@ -81,7 +81,6 @@
                                     <option value="Husky">Husky</option>
                                     <option value="Labrador">Labrador</option>
                                     <option value="Pastor Alemán">Pastor Alemán</option>
-                                    <option value="Mestizo">Mestizo</option>
                                 </select>
                             </div>
                         </div>

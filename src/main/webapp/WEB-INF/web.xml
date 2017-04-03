@@ -25,4 +25,13 @@
     <error-page>
         <location>/error.jsp</location>
     </error-page>
+    
+    <security-role>
+        <description/>
+        <role-name>USUARIOS</role-name>
+    </security-role>
+    <security-role>
+        <description/>
+        <role-name>ADMINISTRADORES</role-name>
+    </security-role>
 </web-app>

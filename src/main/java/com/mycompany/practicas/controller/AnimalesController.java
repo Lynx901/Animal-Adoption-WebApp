@@ -1,7 +1,6 @@
 package com.mycompany.practicas.controller;
 
 import com.mycompany.practicas.Animales;
-import com.mycompany.practicas.model.AnimalesDAO;
 import com.mycompany.practicas.model.AnimalesDAOJDBC;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -67,7 +66,7 @@ public class AnimalesController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-
+        RequestDispatcher rd;
         String action = (request.getPathInfo() != null ? request.getPathInfo() : "");
 
         switch (action) {
@@ -87,8 +86,10 @@ public class AnimalesController extends HttpServlet {
                 
                 String description = request.getParameter("description");
                 
-                int dni = (int) request.getSession().getAttribute("dni"); // Esto coge el dni que está usando el usuario en la sesión actual
-                //int dni = 77360609; //Eso hay que cambiarlo por lo de arriba cuando se incluya lo del usuario
+                int dni = 77360609;
+                if(request.getSession().getAttribute("dni") != null) {
+                    dni = (int) request.getSession().getAttribute("dni"); // Esto coge el dni que está usando el usuario en la sesión actual
+                }
                 
                 /* ---------------- Fin de recoger datos para el alta ------------------- */ 
 
@@ -99,7 +100,7 @@ public class AnimalesController extends HttpServlet {
                     response.sendRedirect("animales");
                 } else { //Show form with validation errors
                     request.setAttribute("animales", a);
-                    RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/crear.jsp");
+                    rd = request.getRequestDispatcher(srvViewPath + "/crear.jsp");
                     rd.forward(request, response);
                 }
                 break;

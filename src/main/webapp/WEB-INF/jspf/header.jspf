@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span> 
                 </button>
-                <a class="navbar-brand" href="animales">Animal Adoption</a>
+                <a class="navbar-brand" href="<c:url value='/animales'/>">Animal Adoption</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
@@ -18,7 +18,7 @@
                     <li><a href="<c:url value='/faqs.jsp'/>">Preguntas Frecuentes</a></li> 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <c:if test="${sessionScope.usuario.nombre ne ''}">
+                    <c:if test="${sessionScope.usuario.nombre eq null}">
                         <li><a href="<c:url value='/#'/>"><span class="glyphicon glyphicon-cog"></span>Ajustes de ${usuario.dni} </a></li>
                     </c:if>
                     <!--ANGULOc:if test="DOLAR{sessionScope.usuario.nombre eq ''}">-->

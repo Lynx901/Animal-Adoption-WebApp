@@ -6,12 +6,16 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.HttpConstraint;
+import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/usuarios/*")
+@WebServlet(name = "UsuarioController", urlPatterns = {"/usuarios/*"})
+//Authorization rule using annotation (only in Servlets!)
+@ServletSecurity(@HttpConstraint(rolesAllowed={"USUARIOS"}))
 public class UsuarioController extends HttpServlet {
 
     private final String srvViewPath = "/WEB-INF/usuarios";
@@ -41,15 +45,15 @@ public class UsuarioController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-
+        
         RequestDispatcher rd;
-
+            
         String action = ((request.getPathInfo() != null) ? request.getPathInfo() : "");
         switch (action) {
             case "/registro": {        // Formulario de alta
                 Usuario u = new Usuario();
                 request.setAttribute("usuario", u);
-                rd = request.getRequestDispatcher(srvViewPath + "/register.jsp");
+                rd = request.getRequestDispatcher("register.jsp");
                 break;
             }
             case "/login": {        // Formulario de login

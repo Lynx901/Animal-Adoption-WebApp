@@ -22,8 +22,8 @@
                         <li><a href="<c:url value='/#'/>"><span class="glyphicon glyphicon-cog"></span>Ajustes de ${usuario.dni} </a></li>
                     </c:if>
                     <!--ANGULOc:if test="DOLAR{sessionScope.usuario.nombre eq ''}">-->
-                        <li><a href="<c:url value='user'/>"><span class="glyphicon glyphicon-user"></span>Registro</a></li>
-                        <li><a href="<c:url value='user'/>"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+                        <li><a href="<c:url value='/usuarios/registro'/>"><span class="glyphicon glyphicon-user"></span>Registro</a></li>
+                        <li><a href="<c:url value='/usuarios/login'/>"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
                     <!--ANGULO/c:if>-->
                 </ul>
             </div>

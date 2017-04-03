@@ -18,8 +18,7 @@
         <main class="row">
             <!-- Panel de navegación lateral -->
             <%@include file="/WEB-INF/jspf/navigation.jspf" %>
-            <section class="col-md-10 col-sm-10 col-xs-12">
-                               
+            <section class="col-md-10 col-sm-10 col-xs-12">          
                 <div class="row">
                     <a href="<c:url value='/animales'/>">Ver Animales</a>
                 </div>

@@ -1,7 +1,6 @@
 package com.mycompany.practicas.controller;
 
 import com.mycompany.practicas.Usuario;
-import com.mycompany.practicas.model.UsuarioDAO;
 import com.mycompany.practicas.model.UsuarioDAOJDBC;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -12,10 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/user/*")
+@WebServlet("/usuarios/*")
 public class UsuarioController extends HttpServlet {
 
-    private final String srvViewPath = "/WEB-INF/user";
+    private final String srvViewPath = "/WEB-INF/usuarios";
     private UsuarioDAOJDBC usuarios;
     private String srvUrl;
     private String imgUrl;
@@ -49,13 +48,13 @@ public class UsuarioController extends HttpServlet {
         switch (action) {
             case "/registro": {        // Formulario de alta
                 Usuario u = new Usuario();
-                request.setAttribute("user", u);
+                request.setAttribute("usuario", u);
                 rd = request.getRequestDispatcher(srvViewPath + "/register.jsp");
                 break;
             }
             case "/login": {        // Formulario de login
                 Usuario u = new Usuario();
-                request.setAttribute("user", u);
+                request.setAttribute("usuario", u);
                 rd = request.getRequestDispatcher(srvViewPath + "/login.jsp");
                 break;
             }

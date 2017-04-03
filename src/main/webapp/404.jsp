@@ -15,7 +15,7 @@
         <!-- Barra de navegación superior -->
         <%@include file="/WEB-INF/jspf/header.jspf" %>
         <main>
-            <img src="<c:url value='/img/404.png'/>"> alt="Error 404. Página no encontrada." class="img-responsive center-block" />
+            <img src="<c:url value='/img/404.png'/>" alt="Error 404. Página no encontrada." class="img-responsive center-block" />
         </main>
         <!-- Pie de página general -->
         <%@include file="/WEB-INF/jspf/footer.jspf" %>

@@ -19,7 +19,7 @@ import javax.sql.DataSource;
  * JDBC DAO implementation
  */
 public class UsuarioDAOJDBC implements UsuarioDAO {
-    private static String connPoolName  = "java:/comp/env/jdbc/gestClub"; //Tomcat connection pool
+    private static String connPoolName  = "java:/comp/env/jdbc/Practicas"; //Tomcat connection pool
     private DataSource ds               = null;
 
     public UsuarioDAOJDBC() {
@@ -84,9 +84,10 @@ public class UsuarioDAOJDBC implements UsuarioDAO {
             stmn.setString(4, u.getEmail());
             stmn.setString(5, u.getDireccion());
             stmn.setString(6, u.getUsuario());
-            stmn.setString(7, u.getPass());
             insertados = stmn.executeUpdate();
-
+            
+            this.iniciarSesion(u);
+            
         } catch (SQLException ex) {
             Logger.getLogger("UsuarioDAOJDBC").log(Level.SEVERE, ex.getMessage(), ex);
         }  //Autoclose resources (jdk>7)
@@ -100,6 +101,35 @@ public class UsuarioDAOJDBC implements UsuarioDAO {
                 return u;
         }
         return null;
+    }
+    
+    public boolean iniciarSesion(Usuario u) {
+        String SQL_INSERT = "insert into Users (usuario, clave) values(?,?)";
+        Integer insertados = 0;
+        
+        try (Connection conn = ds.getConnection();
+             PreparedStatement stmn = conn.prepareStatement(SQL_INSERT)) {
+            stmn.setString(1, u.getUsuario());
+            stmn.setString(2, u.getPass());
+            insertados = stmn.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger("UsuarioDAOJDBC").log(Level.SEVERE, ex.getMessage(), ex);
+        }  //Autoclose resources (jdk>7)
+        
+         SQL_INSERT = "insert into Roles (usuario, rol) values(?,?)";
+
+        try (Connection conn = ds.getConnection();
+             PreparedStatement stmn = conn.prepareStatement(SQL_INSERT)) {
+            stmn.setString(1, u.getUsuario());
+            stmn.setString(2, "USUARIO");
+            insertados = stmn.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger("UsuarioDAOJDBC").log(Level.SEVERE, ex.getMessage(), ex);
+        }  //Autoclose resources (jdk>7)
+        
+        return insertados == 1;
     }
 
 }

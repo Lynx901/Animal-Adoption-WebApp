@@ -6,13 +6,13 @@
     <head>
         <title>Registro - Animal Adoption</title>
         <!-- Enlaces a Bootstrap -->
-        <%@include file="WEB-INF/jspf/bootstrap.jspf" %>
+        <%@include file="/WEB-INF/jspf/bootstrap.jspf" %>
         <!-- Website CSS style -->
         <link rel="stylesheet" href="<c:url value='/css/register.css'/>">
     </head>
     <body>
         <!-- Cabecera minimizada -->
-        <%@include file="WEB-INF/jspf/header_min.jspf" %>
+        <%@include file="/WEB-INF/jspf/header_min.jspf" %>
         <section class="main-login main-center">
             <c:if test="${not empty param.Enviar}">
                 <p> Gracias ${param.name} en breves recibira un correo electronico a ${param.email} para confirmar su registro </p>
@@ -107,7 +107,7 @@
                         <button type="submit" class="btn btn-primary btn-lg btn-block login-button" name="Enviar" value="Enviar" >Registrarse</button>
                     </div>
                     <div class="login-register">
-                        <a href="login.jsp">Iniciar sesión</a>
+                        <a href="<c:url value='/usuarios/login'/>">Iniciar sesión</a>
                     </div>
                 </form>
             </c:if>

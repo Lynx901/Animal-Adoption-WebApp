@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "UsuarioController", urlPatterns = {"/usuarios/*"})
 //Authorization rule using annotation (only in Servlets!)
-@ServletSecurity(@HttpConstraint(rolesAllowed={"USUARIOS"}))
+@ServletSecurity(@HttpConstraint(rolesAllowed={"USUARIOS", "ADMINISTRADORES"}))
 public class UsuarioController extends HttpServlet {
 
     private final String srvViewPath = "/WEB-INF/usuarios";
@@ -35,10 +35,14 @@ public class UsuarioController extends HttpServlet {
         request.setCharacterEncoding("UTF-8"); //Aceptar caracteres acentuados y ñ
         response.setHeader("Expires", "0"); //Avoid browser caching response
 
-        //srvUrl = request.getContextPath() + request.getServletPath();
-//        request.setAttribute("srvUrl", srvUrl);    
-//        request.setAttribute("animales", animales.listar().toArray());
-//     
+        //Programmatic authentication redirect
+        if (request.authenticate(response) != true) 
+            return;  //force login   
+        
+        //Programmatic authorization
+        if (request.isUserInRole("ADMINISTRADORES") == false) 
+            response.sendRedirect("error.jsp"); 
+
     }
 
     @Override
@@ -52,14 +56,8 @@ public class UsuarioController extends HttpServlet {
         switch (action) {
             case "/registro": {        // Formulario de alta
                 Usuario u = new Usuario();
-                request.setAttribute("usuario", u);
-                rd = request.getRequestDispatcher("register.jsp");
-                break;
-            }
-            case "/login": {        // Formulario de login
-                Usuario u = new Usuario();
-                request.setAttribute("usuario", u);
-                rd = request.getRequestDispatcher(srvViewPath + "/login.jsp");
+                request.setAttribute("usuarios", u);
+                rd = request.getRequestDispatcher(srvViewPath + "/register.jsp");
                 break;
             }
             default: {
@@ -85,7 +83,7 @@ public class UsuarioController extends HttpServlet {
                 String nombre = request.getParameter("nombre");
                 String apellidos = request.getParameter("apellidos");
                 String email = request.getParameter("email");
-                String direccion = request.getParameter("direccio");
+                String direccion = request.getParameter("direccion");
                 String usuario = request.getParameter("usuario");
                 String pass = request.getParameter("pass");
                 String confirm = request.getParameter("confirm");
@@ -95,34 +93,17 @@ public class UsuarioController extends HttpServlet {
                 if (validar(u, confirm)) {
                     usuarios.nuevoUsuario(u);
                     //Post-sent-redirect
-                    response.sendRedirect("user");
+                    response.sendRedirect("usuarios");
                 } else { //Show form with validation errors
-                    request.setAttribute("user", u);
+                    request.setAttribute("usuarios", u);
                     RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/registro.jsp");
                     rd.forward(request, response);
                 }
                 break;
             }
-            case "/login": {     // login
-
-                /* ------- Recogemos todos los datos necesarios para hacer login --------- */
-                String email = request.getParameter("email");
-                String usuario = request.getParameter("usuario");
-                String pass = request.getParameter("pass");
-                /* ---------------- Fin de recoger datos para el login ------------------- */
-                
-                if (login(email, usuario, pass)) {
-                    request.setAttribute("user", usuarios.encuentra(email));
-                    //Post-sent-redirect
-                    response.sendRedirect("user");
-                } else { //Show form with validation errors
-                    RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/login.jsp");
-                    rd.forward(request, response);
-                }
-                break;
-            }
+            
             default: { // Default POST
-                response.sendRedirect("user");
+                response.sendRedirect("usuarios");
                 break;
             }
         }
@@ -139,14 +120,6 @@ public class UsuarioController extends HttpServlet {
         boolean passOK = u.getPass().equals(confirm);
 
         return (nombreOK && usuarioOK && passOK); // Devuelve true si todo está OK, false si no
-    }
-
-    private boolean login(String email, String usuario, String pass) {
-        for(Usuario u : usuarios.listar()) {
-            if((u.getUsuario().equals(usuario) || u.getEmail().equals(email)) && u.getPass().equals(pass))
-                return true;
-        }
-        return false;
     }
 
 }

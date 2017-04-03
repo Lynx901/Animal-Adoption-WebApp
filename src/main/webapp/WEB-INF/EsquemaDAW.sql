@@ -1,5 +1,7 @@
 DROP TABLE Animales;
 DROP TABLE Usuarios;
+DROP TABLE Users;
+DROP TABLE Roles;
 
 CREATE TABLE Usuarios (
     dni         INTEGER NOT NULL PRIMARY KEY,
@@ -7,8 +9,17 @@ CREATE TABLE Usuarios (
     apellidos   VARCHAR(100),
     email       VARCHAR(50),
     direccion   VARCHAR(50),
-    usuario     VARCHAR(25),
-    pass        VARCHAR(10)
+    usuario     VARCHAR(25)
+);
+
+create table Users (
+    usuario     VARCHAR(50) NOT NULL PRIMARY KEY,
+    clave       VARCHAR(50) NOT NULL 
+);
+
+create table Roles (
+    usuario     VARCHAR(50) NOT NULL,
+    rol         VARCHAR(50) NOT NULL 
 );
 
 CREATE TABLE Animales (
@@ -27,9 +38,17 @@ CREATE TABLE Animales (
 CONSTRAINT FK_dnidueno FOREIGN KEY(dnidueno) REFERENCES Usuarios ON DELETE CASCADE
 );
 
-insert into Usuarios values (77360609, 'Daniel',   'Moya',     'dani@uja.es',      'C/ Anonima' ,          'dml',  '123');
-insert into Usuarios values (23000579, 'Juanfra',  'Abán',     'juanfra@uja.es',   'Plaza de España, 5',   'jfaf', '555');
-insert into Usuarios values (57923023, 'Ana',      'Frank',    'ana@uja.es',       'C/ Germania',          'af',   '666');
+insert into Usuarios values (77360609, 'Daniel',   'Moya',     'dani@uja.es',      'C/ Anonima' ,          'dml');
+insert into Usuarios values (23000579, 'Juanfra',  'Abán',     'juanfra@uja.es',   'Plaza de España, 5',   'jfaf');
+insert into Usuarios values (57923023, 'Ana',      'Frank',    'ana@uja.es',       'C/ Germania',          'af');
+
+insert into Users values ('dml',     '123');
+insert into Users values ('jfaf',    '555');
+insert into Users values ('af',      '666');
+
+insert into Roles values ('dml',        'ADMINISTRADORES');
+insert into Roles values ('jfaf',       'ADMINISTRADORES');
+insert into Roles values ('af',      'USUARIOS');
 
 insert into Animales (nombre, edad, sexo, especie, raza, estado, chip, vacunas, descripcion, dnidueno)
 values ('Bolita de nieve',   5, true,    'perro',    'mestizo',          'Perfecto', true,   true,   'Gracioso y divertido', 77360609);

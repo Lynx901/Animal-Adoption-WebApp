@@ -1,6 +1,7 @@
 package com.mycompany.practicas.controller;
 
 import com.mycompany.practicas.Animales;
+//import com.mycompany.practicas.model.AnimalesDAO;
 import com.mycompany.practicas.model.AnimalesDAOJDBC;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -66,7 +67,7 @@ public class AnimalesController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        RequestDispatcher rd;
+
         String action = (request.getPathInfo() != null ? request.getPathInfo() : "");
 
         switch (action) {
@@ -86,21 +87,19 @@ public class AnimalesController extends HttpServlet {
                 
                 String description = request.getParameter("description");
                 
-                int dni = 77360609;
-                if(request.getSession().getAttribute("dni") != null) {
-                    dni = (int) request.getSession().getAttribute("dni"); // Esto coge el dni que está usando el usuario en la sesión actual
-                }
-                
+                int dni = 0;
+                if(request.getSession().getAttribute("dni") != null)
+                    dni = (int) request.getSession().getAttribute("dni"); 
                 /* ---------------- Fin de recoger datos para el alta ------------------- */ 
 
                 Animales a = new Animales(nombre, edad, sexo, especie, raza, estado, chip, vacunas, dni, description);
-                if (validar(a)) {
+                if (validar(a) && dni != 0) {
                     animales.nuevoAnimal(a);
                     //Post-sent-redirect
                     response.sendRedirect("animales");
                 } else { //Show form with validation errors
                     request.setAttribute("animales", a);
-                    rd = request.getRequestDispatcher(srvViewPath + "/crear.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/crear.jsp");
                     rd.forward(request, response);
                 }
                 break;

@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="3.1" 
-         xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
-                             http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee                               http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    
     <!-- Página de bienvenida (primera página en mostrarse) -->
     <welcome-file-list>
         <welcome-file>animales</welcome-file>
     </welcome-file-list>
-    
     <!-- Página de error 404 personalizada -->
     <error-page>
         <error-code>404</error-code>
         <location>/404.jsp</location>
     </error-page>
-    
     <!-- Página de error de TomCat -->
     <error-page>
         <location>/error.jsp</location>
     </error-page>
-    
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/WEB-INF/usuarios/login.jsp</form-login-page>
+            <form-error-page>/WEB-INF/usuarios/login.jsp</form-error-page>
+        </form-login-config>
+    </login-config>
     <security-role>
         <description/>
         <role-name>USUARIOS</role-name>

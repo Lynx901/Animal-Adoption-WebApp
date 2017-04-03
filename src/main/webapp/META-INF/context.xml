@@ -7,6 +7,14 @@
                 name="jdbc/Practicas"
                 username="daw"
                 password="daw"
-                maxActive="100"/>
-    <Realm className="org.apache.catalina.realm.DataSourceRealm" dataSourceName="jdbc/muro" localDataSource="true" roleNameCol="rol" userCredCol="clave" userNameCol="usuario" userRoleTable="roles" userTable="usuarios"/>
+                maxActive="8"/>
+    
+    <Realm className="org.apache.catalina.realm.DataSourceRealm" 
+           dataSourceName="jdbc/Practicas" 
+           localDataSource="true" 
+           roleNameCol="rol" 
+           userCredCol="clave" 
+           userNameCol="usuario" 
+           userRoleTable="roles" 
+           userTable="users"/>
 </Context>

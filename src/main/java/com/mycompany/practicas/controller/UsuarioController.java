@@ -54,10 +54,14 @@ public class UsuarioController extends HttpServlet {
             
         String action = ((request.getPathInfo() != null) ? request.getPathInfo() : "");
         switch (action) {
-            case "/registro": {        // Formulario de alta
+            case "/registro": {
+                 rd = request.getRequestDispatcher(srvViewPath + "/register.jsp");
+            break;
+            }
+            case "/login": {        // Formulario de alta
                 Usuario u = new Usuario();
                 request.setAttribute("usuarios", u);
-                rd = request.getRequestDispatcher(srvViewPath + "/register.jsp");
+                rd = request.getRequestDispatcher(srvViewPath + "/login.jsp");
                 break;
             }
             default: {
@@ -101,7 +105,17 @@ public class UsuarioController extends HttpServlet {
                 }
                 break;
             }
-            
+            case "/login":{
+                 String email = request.getParameter("email");
+                 String pass = request.getParameter("pass");
+                 Usuario u = usuarios.encuentra(email);
+                 if (u == null){
+                     RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/login.jsp");
+                     rd.forward(request, response);
+                 }
+                 RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/perfil.jsp");
+                break;
+            }
             default: { // Default POST
                 response.sendRedirect("usuarios");
                 break;

@@ -19,7 +19,7 @@
             <section class="col-md-10 col-sm-10 col-xs-12 faq-section">
                 <h1>Preguntas Frecuentes - FAQS </h1>
                 
-                <button class="accordion">¿Cuantos animales puedo adoptar? </button>
+                <button class="accordion">¿Cuantos animales puedo adoptar? <span class="glyphicon glyphicon-chevron-down"></span></button>
                 <div class="panel">
                     <p>Dado que necesitamos garantizar el bienestar de los animales,
                         existe un máximo de 4 animales por usuario, aunque se comprobará
@@ -27,13 +27,13 @@
                         demasiados animales por una misma familia</p>
                 </div>
 
-                <button class="accordion">¿Necesito estar registrado para adoptar?</button>
+                <button class="accordion">¿Necesito estar registrado para adoptar?<span class="glyphicon glyphicon-chevron-down"></span></button>
                 <div class="panel">
                     <p>Sin duda es un requisito imprescindible ya que hacemos un 
                         seguimiento de los animales para que estén bien cuidados</p>
                 </div>
 
-                <button class="accordion">¿Puedo dar en adopción a mis animales?</button>
+                <button class="accordion">¿Puedo dar en adopción a mis animales?<span class="glyphicon glyphicon-chevron-down"></span></button>
                 <div class="panel">
                     <p>Si los animales pueden ser donados por usuarios particulares 
                         a los centros de adopción, siempre que tengan espacio para ello</p>

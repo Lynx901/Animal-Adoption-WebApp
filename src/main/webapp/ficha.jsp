@@ -57,7 +57,9 @@
                             <p>Sexo: </p>
                         </div>
                         <div class="col-sm-6 col-md-offset-1 col-md-3">
-                            <p>${param.sexo} </p>
+                            <p><c:if test="${param.sexo}"> Macho </c:if> 
+                                <c:if test="${not param.sexo}"> Hembra </c:if> 
+                            </p>
                         </div>
                     </div>
                     

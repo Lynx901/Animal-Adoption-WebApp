@@ -29,7 +29,7 @@
                             <c:if test="${a.raza eq param.raza}">
                                 <article class="col-md-4 col-sm-6 col-xs-12">
                                     <div class="thumbnail zoom">
-                                        <a href="<c:url value='/animales/ficha?id=${a.id}'/>">
+                                        <a href="<c:url value='/animales/ficha?id=${a.nombre}'/>">
                                             <img class="img-responsive photo-animal" src="<c:url value='/img/${a.especie}-placeholder.jpg'/>" alt="Foto del animal"/>
                                             <footer class="color">
                                                 <div class="row">
@@ -49,7 +49,7 @@
                             <c:forEach var="a" items="${animales}">
                                 <article class="col-md-4 col-sm-6 col-xs-12">
                                     <div class="thumbnail zoom">
-                                        <a href="<c:url value='/animales/ficha?id=${a.id}'/>">
+                                        <a href="<c:url value='/animales/ficha?id=${a.nombre}'/>">
                                             <img class="img-responsive photo-animal" src="<c:url value='/img/${a.especie}-placeholder.jpg'/>" alt="Foto del animal"/>
                                             <footer class="color">
                                                 <div class="row">

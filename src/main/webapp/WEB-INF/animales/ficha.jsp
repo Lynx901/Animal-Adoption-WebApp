@@ -26,7 +26,7 @@
                     <div class="row">
                         <img class="col-md-2 usr-ph img-circle" src="<c:url value='../img/usuarios/${animales.duenio}.png'/>" alt="Foto del usuario"/>
                         <div class="col-md-9">
-                            <h4>Nombre del usuario</h4>
+                            <h4>${animales.nombre}</h4>
                             <p>XX Km</p>
                         </div>
                     </div>

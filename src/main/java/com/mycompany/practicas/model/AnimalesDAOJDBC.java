@@ -1,6 +1,6 @@
 package com.mycompany.practicas.model;
 
-import com.mycompany.practicas.Animales;
+import com.mycompany.practicas.Animal;
 import com.mycompany.practicas.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -38,10 +38,10 @@ public class AnimalesDAOJDBC implements AnimalesDAO {
 
     }
 
-    private static Animales animalesMapper(ResultSet rs) throws SQLException {
-        Animales a = null;
+    private static Animal animalesMapper(ResultSet rs) throws SQLException {
+        Animal a = null;
         try {
-            a = new Animales(rs.getString("nombre"),
+            a = new Animal(rs.getString("nombre"),
                              rs.getInt("edad"),
                              rs.getBoolean("sexo"),
                              rs.getString("especie"),
@@ -58,9 +58,9 @@ public class AnimalesDAOJDBC implements AnimalesDAO {
     }
 
     @Override
-    public List<Animales> listar() {
+    public List<Animal> listar() {
         String SQL_BUSCATODOS = "select * from animales";
-        List<Animales> animales = new ArrayList<>();
+        List<Animal> animales = new ArrayList<>();
         try (
                 Connection conn=ds.getConnection(); //Obtenemos conexión del pool de conexiones
                 Statement st=conn.createStatement();
@@ -75,7 +75,7 @@ public class AnimalesDAOJDBC implements AnimalesDAO {
     }
 
     @Override
-    public boolean nuevoAnimal(Animales a) {
+    public boolean nuevoAnimal(Animal a) {
         a.setId(lastId++);
         String SQL_INSERT = "insert into Animales (nombre, edad, sexo, especie, raza, estado, chip, vacunas, dnidueno, descripcion)"
                 + " values(?,?,?,?,?,?,?,?,?,?)";
@@ -99,6 +99,15 @@ public class AnimalesDAOJDBC implements AnimalesDAO {
             Logger.getLogger("AnimalesDAOJDBC").log(Level.SEVERE, ex.getMessage(), ex);
         }  //Autoclose resources (jdk>7)
         return insertados == 1;
+    }
+    
+    @Override
+    public Animal encontrar(int id) {
+        for(Animal a : listar()) {
+            if(a.getId() == id)
+                return a;
+        }
+        return null;
     }
 
 

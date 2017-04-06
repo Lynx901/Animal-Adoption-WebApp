@@ -1,7 +1,7 @@
 package com.mycompany.practicas;
 
 
-public class Animales {
+public class Animal {
     private int duenio;
 
     private int id;
@@ -18,7 +18,7 @@ public class Animales {
     
     private String descripcion;
         
-    public Animales(){
+    public Animal(){
         duenio = 0;
         
         id       = 0;
@@ -36,7 +36,7 @@ public class Animales {
         descripcion = "";
     }
 
-    public Animales(String _nombre, int _edad, boolean _sexo , String _especie, String _raza, String _estado, boolean _chip, boolean _vacunas, int _dni, String _descripcion) {
+    public Animal(String _nombre, int _edad, boolean _sexo , String _especie, String _raza, String _estado, boolean _chip, boolean _vacunas, int _dni, String _descripcion) {
         duenio = _dni;
         nombre  = _nombre;
         edad    = _edad;

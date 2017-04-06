@@ -20,30 +20,52 @@
             <!-- Panel de navegación lateral -->
             <%@include file="/WEB-INF/jspf/navigation.jspf" %>
             <c:if test="${empty animales}">
-                NO HAY ANIMALES DISPONIBLES
+                <p class="centered">NO HAY ANIMALES DISPONIBLES</p>
             </c:if>
             <c:if test="${not empty animales}">
                 <section class="col-md-10 col-sm-10 col-xs-12">
 
                     <div class="row">
                         <c:forEach var="a" items="${animales}">
-                            <article class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="thumbnail zoom">
-                                    <a href="<c:url value='/ficha.jsp?nombre=${a.nombre}&especie=${a.especie}&raza=${a.raza}&edad=${a.edad}&sexo=${a.sexo}'/>">
-                                        <img class="img-responsive photo-animal" src="<c:url value='/img/${a.especie}-placeholder.jpg'/>" alt="Foto del animal"/>
-                                        <footer class="color">
-                                            <div class="row">
-                                                <img class="col-md-2 col-sm-1 col-xs-1 usr-ph img-circle" src="<c:url value='/img/usuarios/${a.duenio}.png'/>" alt="Foto de ${a.duenio}"/>
-                                                <div class="col-md-9">
-                                                    <h4>${a.nombre}</h4>
-                                                    <p>XX Km</p>
+                            <c:if test="${a.raza eq param.raza}">
+                                <article class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="thumbnail zoom">
+                                        <a href="<c:url value='/ficha.jsp?id=${a.id}'/>">
+                                            <img class="img-responsive photo-animal" src="<c:url value='/img/${a.especie}-placeholder.jpg'/>" alt="Foto del animal"/>
+                                            <footer class="color">
+                                                <div class="row">
+                                                    <img class="col-md-2 col-sm-1 col-xs-1 usr-ph img-circle" src="<c:url value='/img/usuarios/${a.duenio}.png'/>" alt="Foto de ${a.duenio}"/>
+                                                    <div class="col-md-9">
+                                                        <h4>${a.nombre}</h4>
+                                                        <p>XX Km</p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </footer>
-                                    </a>
-                                </div>
-                            </article>
+                                            </footer>
+                                        </a>
+                                    </div>
+                                </article>
+                            </c:if>
                         </c:forEach>
+                        <c:if test="${param.raza eq null}">
+                            <c:forEach var="a" items="${animales}">
+                                <article class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="thumbnail zoom">
+                                        <a href="<c:url value='/ficha.jsp?id=${a.id}'/>">
+                                            <img class="img-responsive photo-animal" src="<c:url value='/img/${a.especie}-placeholder.jpg'/>" alt="Foto del animal"/>
+                                            <footer class="color">
+                                                <div class="row">
+                                                    <img class="col-md-2 col-sm-1 col-xs-1 usr-ph img-circle" src="<c:url value='/img/usuarios/${a.duenio}.png'/>" alt="Foto de ${a.duenio}"/>
+                                                    <div class="col-md-9">
+                                                        <h4>${a.nombre}</h4>
+                                                        <p>XX Km</p>
+                                                    </div>
+                                                </div>
+                                            </footer>
+                                        </a>
+                                    </div>
+                                </article>
+                            </c:forEach>
+                        </c:if>
                     </div>
                 </section>
             </c:if>

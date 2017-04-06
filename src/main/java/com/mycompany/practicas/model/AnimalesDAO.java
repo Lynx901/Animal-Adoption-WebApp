@@ -1,9 +1,10 @@
 package com.mycompany.practicas.model;
 
-import com.mycompany.practicas.Animales;
+import com.mycompany.practicas.Animal;
 import java.util.List;
 
 public interface AnimalesDAO {
-    List<Animales> listar();
-    boolean nuevoAnimal(Animales a);
+    List<Animal> listar();
+    boolean nuevoAnimal(Animal a);
+    Animal encontrar(int id);
 }

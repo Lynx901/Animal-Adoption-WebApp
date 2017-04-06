@@ -1,6 +1,6 @@
 package com.mycompany.practicas.controller;
 
-import com.mycompany.practicas.Animales;
+import com.mycompany.practicas.Animal;
 //import com.mycompany.practicas.model.AnimalesDAO;
 import com.mycompany.practicas.model.AnimalesDAOJDBC;
 import java.io.IOException;
@@ -49,9 +49,16 @@ public class AnimalesController extends HttpServlet {
         String action = ((request.getPathInfo() != null) ? request.getPathInfo() : "");
         switch (action) {
             case "/crear": {        //FORMULARIO ALTA
-                Animales a = new Animales();
+                Animal a = new Animal();
                 request.setAttribute("animales", a);
                 rd = request.getRequestDispatcher(srvViewPath + "/crear.jsp");
+                break;
+            }
+            case "/ficha": {
+                int id = Integer.parseInt(request.getParameter("id"));
+                Animal a = animales.encontrar(id);
+                request.setAttribute("animales", a);
+                rd = request.getRequestDispatcher(srvViewPath + "/ficha.jsp");
                 break;
             }
             default: {
@@ -92,7 +99,7 @@ public class AnimalesController extends HttpServlet {
                     dni = (int) request.getSession().getAttribute("dni"); 
                 /* ---------------- Fin de recoger datos para el alta ------------------- */ 
 
-                Animales a = new Animales(nombre, edad, sexo, especie, raza, estado, chip, vacunas, dni, description);
+                Animal a = new Animal(nombre, edad, sexo, especie, raza, estado, chip, vacunas, dni, description);
                 if (validar(a) && dni != 0) {
                     animales.nuevoAnimal(a);
                     //Post-sent-redirect
@@ -116,7 +123,7 @@ public class AnimalesController extends HttpServlet {
         return "Registro de animales";
     }
 
-    private boolean validar(Animales a) {
+    private boolean validar(Animal a) {
         boolean nombreOK = a.getNombre().length() > 2;
         boolean edadOK   = a.getEdad() > 0 && a.getEdad() < 100;
         boolean estadoOK = a.getEstado().length() > 4; 

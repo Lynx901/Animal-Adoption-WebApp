@@ -4,19 +4,19 @@
     <br>
     <ul class="raza">
         <li><strong>GATOS</strong></li>
-        <li><a href="<c:url value='/#'/>">Siamés</a></li>
-        <li><a href="<c:url value='/#'/>">Persa</a></li>
-        <li><a href="<c:url value='/#'/>">Bengala</a></li>
-        <li><a href="<c:url value='/#'/>">Mestizo</a></li>
+        <li><a href="<c:url value='/animales?raza=siamés'/>">Siamés</a></li>
+        <li><a href="<c:uhttp://localhost:8080/Practicas/animales?raza=mestizorl value='/animales?raza=persa'/>">Persa</a></li>
+        <li><a href="<c:url value='/animales?raza=bengala'/>">Bengala</a></li>
+        <li><a href="<c:url value='/animales?raza=mestizo'/>">Mestizo</a></li>
     </ul>
 
     <br>
 
     <ul class="raza">
         <li><strong>PERROS</strong></li>
-        <li><a href="<c:url value='/#'/>">Husky</a></li>
-        <li><a href="<c:url value='/#'/>">Labrador</a></li>
-        <li><a href="<c:url value='/#'/>">Pastor Alemán</a></li>
-        <li><a href="<c:url value='/#'/>">Mestizo</a></li>
+        <li><a href="<c:url value='/animales?raza=husky'/>">Husky</a></li>
+        <li><a href="<c:url value='/animales?raza=labrador'/>">Labrador</a></li>
+        <li><a href="<c:url value='/animales?raza=pastorAlemán'/>">Pastor Alemán</a></li>
+        <li><a href="<c:url value='/animales?raza=mestizo'/>">Mestizo</a></li>
     </ul>
 </aside>

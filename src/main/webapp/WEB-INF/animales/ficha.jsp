@@ -6,7 +6,7 @@
     <head>
         <title>Ficha - Animal adoption</title>
         <!-- Enlaces a Bootstrap -->
-        <%@include file="WEB-INF/jspf/bootstrap.jspf" %>
+        <%@include file="/WEB-INF/jspf/bootstrap.jspf" %>
         <!-- Website CSS style -->
         <link rel="stylesheet" href="<c:url value='/css/main.css'/>">
 
@@ -19,12 +19,12 @@
             <%@include file="/WEB-INF/jspf/navigation.jspf" %>
             <section class="col-md-10">
                 <div class="col-md-5 thumbnail">
-                    <img class="img-responsive photo-animal" src="<c:url value='img/${param.especie}-placeholder.jpg'/>" alt="Foto del animal"/>
+                    <img class="img-responsive photo-animal" src="<c:url value='img/${animales.especie}-placeholder.jpg'/>" alt="Foto del animal"/>
                 </div>
                 <aside class="col-md-offset-1 col-md-6 color">
                     <h2>${param.nombre}</h2>
                     <div class="row">
-                        <img class="col-md-2 usr-ph img-circle" src="<c:url value='img/usr-placeholder.png'/>" alt="Foto del usuario"/>
+                        <img class="col-md-2 usr-ph img-circle" src="<c:url value='img/${animales.duenio}.png'/>" alt="Foto del usuario"/>
                         <div class="col-md-9">
                             <h4>Nombre del usuario</h4>
                             <p>XX Km</p>
@@ -39,7 +39,7 @@
                             <p>Raza: </p>
                         </div>
                         <div class="col-sm-6 col-md-offset-1 col-md-3">
-                            <p>${param.raza} </p>
+                            <p>${animales.raza} </p>
                         </div>
                     </div>
                     
@@ -48,7 +48,7 @@
                             <p>Edad: </p>
                         </div>
                         <div class="col-sm-6 col-md-offset-1 col-md-3">
-                            <p>${param.edad} </p>
+                            <p>${animales.edad} </p>
                         </div>
                     </div>
                     
@@ -57,8 +57,8 @@
                             <p>Sexo: </p>
                         </div>
                         <div class="col-sm-6 col-md-offset-1 col-md-3">
-                            <p><c:if test="${param.sexo}"> Macho </c:if> 
-                                <c:if test="${not param.sexo}"> Hembra </c:if> 
+                            <p><c:if test="${animales.sexo}"> Macho </c:if> 
+                                <c:if test="${not animales.sexo}"> Hembra </c:if> 
                             </p>
                         </div>
                     </div>

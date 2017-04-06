@@ -32,7 +32,7 @@ public class AnimalesController extends HttpServlet {
         request.setCharacterEncoding("UTF-8"); //Aceptar caracteres acentuados y ñ
         response.setHeader("Expires", "0"); //Avoid browser caching response
 
-        //srvUrl = request.getContextPath() + request.getServletPath();
+//        srvUrl = request.getContextPath() + request.getServletPath();
 
 //        request.setAttribute("srvUrl", srvUrl);    
 //        request.setAttribute("animales", animales.listar().toArray());
@@ -48,15 +48,15 @@ public class AnimalesController extends HttpServlet {
 
         String action = ((request.getPathInfo() != null) ? request.getPathInfo() : "");
         switch (action) {
-            case "/crear": {        //FORMULARIO ALTA
+            case "/crear": { 
                 Animal a = new Animal();
                 request.setAttribute("animales", a);
                 rd = request.getRequestDispatcher(srvViewPath + "/crear.jsp");
                 break;
             }
             case "/ficha": {
-                int id = Integer.parseInt(request.getParameter("id"));
-                Animal a = animales.encontrar(id);
+                int id = Integer.parseInt(request.getParameter("dni"));
+                Animal a = animales.encontrarID(id);
                 request.setAttribute("animales", a);
                 rd = request.getRequestDispatcher(srvViewPath + "/ficha.jsp");
                 break;
@@ -78,7 +78,7 @@ public class AnimalesController extends HttpServlet {
         String action = (request.getPathInfo() != null ? request.getPathInfo() : "");
 
         switch (action) {
-            case "/crear": {     //ALTA
+            case "/crear": {
                 
                 /* ------- Recogemos todos los datos necesarios para dar el alta --------- */
                 String  nombre  = request.getParameter("nombre");
@@ -94,7 +94,7 @@ public class AnimalesController extends HttpServlet {
                 
                 String description = request.getParameter("description");
                 
-                int dni = 0;
+                int dni = 77360609;
                 if(request.getSession().getAttribute("dni") != null)
                     dni = (int) request.getSession().getAttribute("dni"); 
                 /* ---------------- Fin de recoger datos para el alta ------------------- */ 
@@ -106,7 +106,7 @@ public class AnimalesController extends HttpServlet {
                     response.sendRedirect("animales");
                 } else { //Show form with validation errors
                     request.setAttribute("animales", a);
-                    RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/crear.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("contact.jsp");
                     rd.forward(request, response);
                 }
                 break;

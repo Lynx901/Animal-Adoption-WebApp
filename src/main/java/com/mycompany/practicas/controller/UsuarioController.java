@@ -112,17 +112,17 @@ public class UsuarioController extends HttpServlet {
                 }
                 break;
             }
-            case "/login":{
-                 String email = request.getParameter("email");
-                 String pass = request.getParameter("pass");
-                 Usuario u = usuarios.encuentra(email);
-                 if (u == null){
-                     RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/login.jsp");
-                     rd.forward(request, response);
-                 }
-                 RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/perfil.jsp");
-                break;
-            }
+//            case "/login":{
+//                 String email = request.getParameter("email");
+//                 String pass = request.getParameter("pass");
+//                 Usuario u = usuarios.encontrarEmail(email);
+//                 if (u == null){
+//                     RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/login.jsp");
+//                     rd.forward(request, response);
+//                 }
+//                 RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/perfil.jsp");
+//                break;
+//            }
             default: { // Default POST
                 response.sendRedirect("usuarios");
                 break;

@@ -95,9 +95,18 @@ public class UsuarioDAOJDBC implements UsuarioDAO {
     }
 
     @Override
-    public Usuario encuentra(String email) {
+    public Usuario encontrarEmail(String email) {
         for(Usuario u : listar()) {
             if(u.getEmail().equals(email))
+                return u;
+        }
+        return null;
+    }
+    
+    @Override
+    public Usuario encontrarDNI(int dni) {
+        for(Usuario u : listar()) {
+            if(u.getDni() == dni)
                 return u;
         }
         return null;

@@ -29,14 +29,14 @@
                             <c:if test="${a.raza eq param.raza}">
                                 <article class="col-md-4 col-sm-6 col-xs-12">
                                     <div class="thumbnail zoom">
-                                        <a href="<c:url value='/ficha.jsp?id=${a.id}'/>">
+                                        <a href="<c:url value='/animales/ficha'/>">
                                             <img class="img-responsive photo-animal" src="<c:url value='/img/${a.especie}-placeholder.jpg'/>" alt="Foto del animal"/>
                                             <footer class="color">
                                                 <div class="row">
                                                     <img class="col-md-2 col-sm-1 col-xs-1 usr-ph img-circle" src="<c:url value='/img/usuarios/${a.duenio}.png'/>" alt="Foto de ${a.duenio}"/>
                                                     <div class="col-md-9">
                                                         <h4>${a.nombre}</h4>
-                                                        <p>XX Km</p>
+                                                        <p>${a.id}</p>
                                                     </div>
                                                 </div>
                                             </footer>
@@ -49,14 +49,14 @@
                             <c:forEach var="a" items="${animales}">
                                 <article class="col-md-4 col-sm-6 col-xs-12">
                                     <div class="thumbnail zoom">
-                                        <a href="<c:url value='/ficha.jsp?id=${a.id}'/>">
+                                        <a href="<c:url value='/animales/ficha'/>">
                                             <img class="img-responsive photo-animal" src="<c:url value='/img/${a.especie}-placeholder.jpg'/>" alt="Foto del animal"/>
                                             <footer class="color">
                                                 <div class="row">
                                                     <img class="col-md-2 col-sm-1 col-xs-1 usr-ph img-circle" src="<c:url value='/img/usuarios/${a.duenio}.png'/>" alt="Foto de ${a.duenio}"/>
                                                     <div class="col-md-9">
                                                         <h4>${a.nombre}</h4>
-                                                        <p>XX Km</p>
+                                                        <p>${a.id}</p>
                                                     </div>
                                                 </div>
                                             </footer>

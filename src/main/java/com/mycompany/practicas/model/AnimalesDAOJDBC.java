@@ -76,7 +76,11 @@ public class AnimalesDAOJDBC implements AnimalesDAO {
 
     @Override
     public boolean nuevoAnimal(Animal a) {
-        a.setId(lastId++);
+        lastId++;
+        System.out.println("El último ID asignado fue: " + lastId);
+        a.setId(lastId);
+        
+        
         String SQL_INSERT = "insert into Animales (nombre, edad, sexo, especie, raza, estado, chip, vacunas, dnidueno, descripcion)"
                 + " values(?,?,?,?,?,?,?,?,?,?)";
         Integer insertados = 0;
@@ -102,7 +106,7 @@ public class AnimalesDAOJDBC implements AnimalesDAO {
     }
     
     @Override
-    public Animal encontrar(int id) {
+    public Animal encontrarID(int id) {
         for(Animal a : listar()) {
             if(a.getId() == id)
                 return a;

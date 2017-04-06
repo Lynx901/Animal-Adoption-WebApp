@@ -6,5 +6,5 @@ import java.util.List;
 public interface AnimalesDAO {
     List<Animal> listar();
     boolean nuevoAnimal(Animal a);
-    Animal encontrar(int id);
+    Animal encontrarID(int id);
 }

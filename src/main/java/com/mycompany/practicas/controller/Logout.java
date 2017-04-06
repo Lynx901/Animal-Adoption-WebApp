@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * 
  */
-@WebServlet(name = "Logout", urlPatterns = {"/Logout"})
+@WebServlet(name = "Logout", urlPatterns = {"/logout"})
 public class Logout extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -24,7 +24,7 @@ public class Logout extends HttpServlet {
         //Erase session data
         request.getSession().invalidate();
         //Redirect user to index page
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("animales");
         
     }
 

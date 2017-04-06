@@ -55,17 +55,24 @@ public class UsuarioController extends HttpServlet {
         String action = ((request.getPathInfo() != null) ? request.getPathInfo() : "");
         switch (action) {
             case "/registro": {
-                 rd = request.getRequestDispatcher(srvViewPath + "/register.jsp");
-            break;
+                rd = request.getRequestDispatcher(srvViewPath + "/register.jsp");
+                break;
             }
-            case "/login": {        // Formulario de alta
-                Usuario u = new Usuario();
-                request.setAttribute("usuarios", u);
+            case "/login": {
                 rd = request.getRequestDispatcher(srvViewPath + "/login.jsp");
                 break;
             }
-            default: {
+            case "/perfil": {
                 rd = request.getRequestDispatcher(srvViewPath + "/perfil.jsp");
+                break;
+            }
+            case "/logout": {
+                request.setAttribute("usuarios", null);
+                rd = request.getRequestDispatcher("logout");
+                break;
+            }
+            default: {
+                rd = request.getRequestDispatcher("animales");
                 break;
             }
         }

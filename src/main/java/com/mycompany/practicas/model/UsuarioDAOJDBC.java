@@ -86,7 +86,7 @@ public class UsuarioDAOJDBC implements UsuarioDAO {
             stmn.setString(6, u.getUsuario());
             insertados = stmn.executeUpdate();
             
-            this.iniciarSesion(u);
+            registrar(u);
             
         } catch (SQLException ex) {
             Logger.getLogger("UsuarioDAOJDBC").log(Level.SEVERE, ex.getMessage(), ex);
@@ -103,7 +103,7 @@ public class UsuarioDAOJDBC implements UsuarioDAO {
         return null;
     }
     
-    public boolean iniciarSesion(Usuario u) {
+    public boolean registrar(Usuario u) {
         String SQL_INSERT = "insert into Users (usuario, clave) values(?,?)";
         Integer insertados = 0;
         

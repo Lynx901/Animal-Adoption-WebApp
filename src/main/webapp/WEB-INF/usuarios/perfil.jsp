@@ -7,7 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>¿Quiénes Somos? - Animal Adoption</title>
         <!-- Enlaces a Bootstrap -->
-        <%@include file="/WEB-INF/jspf/boostrap.jspf" %>
+        <%@include file="/WEB-INF/jspf/bootstrap.jspf" %>
         <!-- Website CSS style -->
         <link rel="stylesheet" href="<c:url value='/css/main.css'/>">
     </head>
@@ -19,7 +19,7 @@
             <section class="col-md-12 col-sm-12 col-xs-12">
                 <article class="col-md-offset-2 col-md-4 col-sm-6 col-xs-12">
                     <div class="thumbnail zoom">
-                        <img class="img-responsive photo-animal" src="<c:url value='img/${applicationScope.usuario.nombre}.jpg'/>" alt="Foto de ${applicationScope.usuario.nombre}"/>
+                        <img class="img-responsive photo-animal" src="<c:url value='img/${applicationScope.usuario.dni}.png'/>" alt="Foto de ${applicationScope.usuario.nombre}"/>
                         <footer class="color">
                             <div class="row">
                                 <div class="col-md-12">

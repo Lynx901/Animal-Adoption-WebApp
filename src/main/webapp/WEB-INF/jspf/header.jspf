@@ -18,8 +18,9 @@
                     <li><a href="<c:url value='/faqs.jsp'/>">Preguntas Frecuentes</a></li> 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
+                    <li><a href="<c:url value='/faqs.jsp'/>">Hola ${usuario.nombre}</a></li> 
                     <c:if test="${sessionScope.usuario.nombre ne null}">
-                        <li><a href="<c:url value='/#'/>"><span class="glyphicon glyphicon-cog"></span>Ajustes de ${usuario.dni} </a></li>
+                        <li><a href="<c:url value='/usuarios/perfil'/>"><span class="glyphicon glyphicon-cog"></span>Ajustes de ${usuario.dni} </a></li>
                         <li><a href="<c:url value='/logout'/>"><span class="glyphicon glyphicon-log-out"></span>Cerrar sesión </a></li>
                     </c:if>
                     <c:if test="${sessionScope.usuario.nombre eq null}">

@@ -16,7 +16,7 @@
         <%@include file="/WEB-INF/jspf/header_min.jspf" %>
         <section class="main-login main-center">
 
-            <form class="form-horizontal" action="j_security_check" method="post">
+            <form class="form-horizontal" action="<c:url value='/usuarios/perfil.jsp'/>" method="post">
 
                 <div class="form-group">
                     <label for="j_username" class="col-sm-4 control-label">Usuario</label>
@@ -43,7 +43,7 @@
                     <button type="submit" class="btn btn-primary btn-lg btn-block login-button" name="Enviar" value="Enviar">Iniciar sesión</button>
                 </div>
                 <div class="login-register">
-                    <a href="<c:url value='/usuarios/registro'/>">Registrarse</a>
+                    <a href="<c:url value='/registro'/>">Registrarse</a>
                 </div>
             </form>
 

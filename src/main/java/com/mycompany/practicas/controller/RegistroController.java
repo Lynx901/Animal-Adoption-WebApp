@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.mycompany.practicas.controller;
 
 import com.mycompany.practicas.Usuario;
@@ -6,90 +11,49 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.HttpConstraint;
-import javax.servlet.annotation.ServletSecurity;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/usuarios/*")
-//Authorization rule using annotation (only in Servlets!)
-@ServletSecurity(@HttpConstraint(rolesAllowed={"USUARIOS", "ADMINISTRADORES"}))
-public class UsuarioController extends HttpServlet {
-
-    private final String srvViewPath = "/WEB-INF/usuarios";
+/**
+ *
+ * @author juanf
+ */
+@WebServlet("/registro")
+public class RegistroController extends HttpServlet {
     private UsuarioDAOJDBC usuarios;
     private String srvUrl;
     private String imgUrl;
-
+    
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
         super.init(servletConfig);
 
         usuarios = new UsuarioDAOJDBC();
     }
-
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8"); //Aceptar caracteres acentuados y ñ
         response.setHeader("Expires", "0"); //Avoid browser caching response
-
-        //Programmatic authentication redirect
-        if (request.authenticate(response) != true) 
-            return;  //force login   
-        
-        //Programmatic authorization
-        if (request.isUserInRole("ADMINISTRADORES") == false) 
-            response.sendRedirect("error.jsp"); 
-
     }
-
-    @Override
+    
+      @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
         
         RequestDispatcher rd;
-            
-        String action = ((request.getPathInfo() != null) ? request.getPathInfo() : "");
-        switch (action) {
-            case "/registro": {
-                rd = request.getRequestDispatcher(srvViewPath + "/register.jsp");
-                break;
-            }
-            case "/login": {
-                rd = request.getRequestDispatcher(srvViewPath + "/login.jsp");
-                break;
-            }
-            case "/perfil": {
-                rd = request.getRequestDispatcher(srvViewPath + "/perfil.jsp");
-                break;
-            }
-            case "/logout": {
-                request.setAttribute("usuarios", null);
-                rd = request.getRequestDispatcher("logout");
-                break;
-            }
-            default: {
-                rd = request.getRequestDispatcher("animales");
-                break;
-            }
-        }
+        rd = request.getRequestDispatcher("/register.jsp");
         rd.forward(request, response);
     }
-
-    @Override
+    
+     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-
-        String action = (request.getPathInfo() != null ? request.getPathInfo() : "");
-
-        switch (action) {
-            case "/registro": {     // Alta
-
-                /* ------- Recogemos todos los datos necesarios para dar el alta --------- */
+        /* ------- Recogemos todos los datos necesarios para dar el alta --------- */
                 int dni = Integer.parseInt(request.getParameter("dni"));
                 String nombre = request.getParameter("nombre");
                 String apellidos = request.getParameter("apellidos");
@@ -103,33 +67,13 @@ public class UsuarioController extends HttpServlet {
                 Usuario u = new Usuario(dni, nombre, apellidos, email, direccion, usuario, pass);
                 if (validar(u, confirm)) {
                     usuarios.nuevoUsuario(u);
-                    //Post-sent-redirect
-                    response.sendRedirect("usuarios");
                 } else { //Show form with validation errors
                     request.setAttribute("usuarios", u);
-                    RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/register.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher("/register.jsp");
                     rd.forward(request, response);
                 }
-                break;
-            }
-//            case "/login":{
-//                 String email = request.getParameter("email");
-//                 String pass = request.getParameter("pass");
-//                 Usuario u = usuarios.encontrarEmail(email);
-//                 if (u == null){
-//                     RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/login.jsp");
-//                     rd.forward(request, response);
-//                 }
-//                 RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/perfil.jsp");
-//                break;
-//            }
-            default: { // Default POST
-                response.sendRedirect("usuarios");
-                break;
-            }
-        }
     }
-
+    
     @Override
     public String getServletInfo() {
         return "Registro de usuarios";
@@ -142,5 +86,4 @@ public class UsuarioController extends HttpServlet {
 
         return (nombreOK && usuarioOK && passOK); // Devuelve true si todo está OK, false si no
     }
-
 }

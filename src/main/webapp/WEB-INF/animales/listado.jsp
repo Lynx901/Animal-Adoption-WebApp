@@ -36,7 +36,7 @@
                                                     <img class="col-md-2 col-sm-1 col-xs-1 usr-ph img-circle" src="<c:url value='/img/usuarios/${a.duenio}.png'/>" alt="Foto de ${a.duenio}"/>
                                                     <div class="col-md-9">
                                                         <h4>${a.nombre}</h4>
-                                                        <p>${a.id}</p>
+                                                        <p>${a.duenio}</p>
                                                     </div>
                                                 </div>
                                             </footer>
@@ -56,7 +56,7 @@
                                                     <img class="col-md-2 col-sm-1 col-xs-1 usr-ph img-circle" src="<c:url value='/img/usuarios/${a.duenio}.png'/>" alt="Foto de ${a.duenio}"/>
                                                     <div class="col-md-9">
                                                         <h4>${a.nombre}</h4>
-                                                        <p>${a.id}</p>
+                                                        <p>${a.duenio}</p>
                                                     </div>
                                                 </div>
                                             </footer>

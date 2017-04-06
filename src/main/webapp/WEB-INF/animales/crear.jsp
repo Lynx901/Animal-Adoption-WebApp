@@ -73,13 +73,13 @@
                             <label class="col-md-4 control-label" for="raza">Raza</label>
                             <div class="col-md-6">
                                 <select id="raza" name="raza" class="form-control">
-                                    <option value="Siamés">Siamés</option>
-                                    <option value="Persa">Persa</option>
-                                    <option value="Bengala">Bengala</option>
-                                    <option value="Mestizo">Mestizo</option>
-                                    <option value="Husky">Husky</option>
-                                    <option value="Labrador">Labrador</option>
-                                    <option value="Pastor Alemán">Pastor Alemán</option>
+                                    <option value="siamés">Siamés</option>
+                                    <option value="persa">Persa</option>
+                                    <option value="bengala">Bengala</option>
+                                    <option value="mestizo">Mestizo</option>
+                                    <option value="husky">Husky</option>
+                                    <option value="labrador">Labrador</option>
+                                    <option value="pastorAlemán">Pastor Alemán</option>
                                 </select>
                             </div>
                         </div>

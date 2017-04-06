@@ -68,8 +68,8 @@
                             <p>Vacunas y Chip: </p>
                         </div>
                         <div class="col-sm-6 col-md-offset-1 col-md-3">
-                            <p><c:if test="${param.chip}">Chip</c:if> </p>
-                            <p><c:if test="${param.vacunas}">Vacunas</c:if> </p>
+                            <p><c:if test="${animales.chip}">Chip</c:if> </p>
+                            <p><c:if test="${animales.vacunas}">Vacunas</c:if> </p>
                         </div>
                     </div>
                 </aside>

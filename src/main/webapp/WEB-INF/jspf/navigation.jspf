@@ -5,7 +5,7 @@
     <ul class="raza">
         <li><strong>GATOS</strong></li>
         <li><a href="<c:url value='/animales?raza=siamés'/>">Siamés</a></li>
-        <li><a href="<c:uhttp://localhost:8080/Practicas/animales?raza=mestizorl value='/animales?raza=persa'/>">Persa</a></li>
+        <li><a href="<c:url value='/animales?raza=persa'/>">Persa</a></li>
         <li><a href="<c:url value='/animales?raza=bengala'/>">Bengala</a></li>
         <li><a href="<c:url value='/animales?raza=mestizo'/>">Mestizo</a></li>
     </ul>

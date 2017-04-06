@@ -55,10 +55,10 @@ public class AnimalesController extends HttpServlet {
                 break;
             }
             case "/ficha": {
-                int id = Integer.parseInt(request.getParameter("dni"));
+                int id = Integer.parseInt(request.getParameter("id"));
                 Animal a = animales.encontrarID(id);
                 request.setAttribute("animales", a);
-                rd = request.getRequestDispatcher(srvViewPath + "/ficha.jsp");
+                rd = request.getRequestDispatcher(srvViewPath + "/ficha.jsp?id="+id);
                 break;
             }
             default: {

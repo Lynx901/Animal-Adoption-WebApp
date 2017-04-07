@@ -19,11 +19,11 @@
             <section class="col-md-12 col-sm-12 col-xs-12">
                 <article class="col-md-offset-2 col-md-4 col-sm-6 col-xs-12">
                     <div class="thumbnail zoom">
-                        <img class="img-responsive photo-animal" src="<c:url value='img/${applicationScope.usuario.dni}.png'/>" alt="Foto de ${applicationScope.usuario.nombre}"/>
+                        <img class="img-responsive photo-animal" src="<c:url value='img/${usuarios.dni}.pngusuario'/>" alt="Foto de ${usuarios.nombre}"/>
                         <footer class="color">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <h4 class="centered">${applicationScope.usuario.nombre} ${applicationScope.usuario.apellidos}</h4>
+                                    <h4 class="centered">${usuarios.nombre} ${usuarios.apellidos}</h4>
                                     <p class="centered">
                                         <a href="<c:url value='#'/>">
                                             <i class="rrss fa fa-facebook fa-3x" aria-hidden="true"></i>
@@ -38,6 +38,11 @@
                                 </div>
                             </div>
                         </footer>
+                        <nav aria-label="...">
+                            <ul class="pager">
+                                <li><a href='<c:url value='/animales/editar'/>'>Editar información del animal</a></li>
+                            </ul>
+                        </nav>
                     </div>
                 </article>
             </section>

@@ -22,7 +22,7 @@
         <auth-method>FORM</auth-method>
         <form-login-config>
             <form-login-page>/WEB-INF/usuarios/login.jsp</form-login-page>
-            <form-error-page>/WEB-INF/usuarios/login.jsp</form-error-page>
+            <form-error-page>/WEB-INF/usuarios/perfil.jsp</form-error-page>
         </form-login-config>
     </login-config>
     <security-role>

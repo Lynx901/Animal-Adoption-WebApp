@@ -42,7 +42,7 @@
                             <p>${animales.raza} </p>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-sm-6 col-md-offset-3 col-md-3">
                             <p>Edad: </p>
@@ -51,7 +51,7 @@
                             <p>${animales.edad} </p>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <div class="col-sm-6 col-md-offset-3 col-md-3">
                             <p>Sexo: </p>
@@ -59,21 +59,28 @@
                         <div class="col-sm-6 col-md-offset-1 col-md-3">
                             <p><c:if test="${animales.sexo}"> Macho </c:if> 
                                 <c:if test="${not animales.sexo}"> Hembra </c:if> 
-                            </p>
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-sm-6 col-md-offset-3 col-md-3">
-                            <p>Vacunas y Chip: </p>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-md-offset-3 col-md-3">
+                                <p>Vacunas y Chip: </p>
+                            </div>
+                            <div class="col-sm-6 col-md-offset-1 col-md-4">
+                                <p><c:if test="${animales.chip}">Tiene chip</c:if> </p>
+                            <p><c:if test="${animales.vacunas}">Tiene las vacunas</c:if> </p>
+                            </div>
                         </div>
-                        <div class="col-sm-6 col-md-offset-1 col-md-3">
-                            <p><c:if test="${param.chip}">Chip</c:if> </p>
-                            <p><c:if test="${param.vacunas}">Vacunas</c:if> </p>
-                        </div>
-                    </div>
-                </aside>
-            </section>
+                    </aside>
+                </section>
+            <c:if test="${usuario.dni eq animales.duenio}">
+                <nav aria-label="...">
+                    <ul class="pager">
+                        <li><a href='<c:url value='/animales/editar'/>'>Editar información del animal</a></li>
+                    </ul>
+                </nav>
+            </c:if>
         </main>
         <!-- Pie de página general -->
         <%@include file="/WEB-INF/jspf/footer.jspf" %>

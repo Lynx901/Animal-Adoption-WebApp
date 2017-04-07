@@ -22,58 +22,60 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/registro")
 public class RegistroController extends HttpServlet {
+
     private UsuarioDAOJDBC usuarios;
     private String srvUrl;
     private String imgUrl;
-    
+
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
         super.init(servletConfig);
 
         usuarios = new UsuarioDAOJDBC();
     }
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8"); //Aceptar caracteres acentuados y ñ
         response.setHeader("Expires", "0"); //Avoid browser caching response
     }
-    
-      @Override
+
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
+
         RequestDispatcher rd;
         rd = request.getRequestDispatcher("/register.jsp");
         rd.forward(request, response);
     }
-    
-     @Override
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
         /* ------- Recogemos todos los datos necesarios para dar el alta --------- */
-                int dni = Integer.parseInt(request.getParameter("dni"));
-                String nombre = request.getParameter("nombre");
-                String apellidos = request.getParameter("apellidos");
-                String email = request.getParameter("email");
-                String direccion = request.getParameter("direccion");
-                String usuario = request.getParameter("usuario");
-                String pass = request.getParameter("pass");
-                String confirm = request.getParameter("confirm");
-                /* ---------------- Fin de recoger datos para el alta ------------------- */
-                
-                Usuario u = new Usuario(dni, nombre, apellidos, email, direccion, usuario, pass);
-                if (validar(u, confirm)) {
-                    usuarios.nuevoUsuario(u);
-                } else { //Show form with validation errors
-                    request.setAttribute("usuarios", u);
-                    RequestDispatcher rd = request.getRequestDispatcher("/register.jsp");
-                    rd.forward(request, response);
-                }
+        int dni = Integer.parseInt(request.getParameter("dni"));
+        String nombre = request.getParameter("nombre");
+        String apellidos = request.getParameter("apellidos");
+        String email = request.getParameter("email");
+        String direccion = request.getParameter("direccion");
+        String usuario = request.getParameter("usuario");
+        String pass = request.getParameter("pass");
+        String confirm = request.getParameter("confirm");
+        /* ---------------- Fin de recoger datos para el alta ------------------- */
+
+        Usuario u = new Usuario(dni, nombre, apellidos, email, direccion, usuario, pass);
+        if (validar(u, confirm)) {
+            usuarios.nuevoUsuario(u);
+            request.setAttribute("usuarios", u);
+            RequestDispatcher rd = request.getRequestDispatcher("usuarios/perfil");
+        } else { //Show form with validation errors
+            RequestDispatcher rd = request.getRequestDispatcher("/register.jsp");
+            rd.forward(request, response);
+        }
     }
-    
+
     @Override
     public String getServletInfo() {
         return "Registro de usuarios";

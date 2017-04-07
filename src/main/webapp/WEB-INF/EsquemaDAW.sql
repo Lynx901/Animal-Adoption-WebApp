@@ -51,8 +51,8 @@ insert into Roles values ('jfaf',       'ADMINISTRADORES');
 insert into Roles values ('af',      'USUARIOS');
 
 insert into Animales (nombre, edad, sexo, especie, raza, estado, chip, vacunas, descripcion, dnidueno)
-values ('Bolita de nieve',   5, true,    'perro',    'mestizo',          'Perfecto', true,   true,   'Gracioso y divertido', 77360609);
+values ('Bolita de nieve',   5, true,    'perro',    'Mestizo',          'Perfecto', true,   true,   'Gracioso y divertido', 77360609);
 insert into Animales (nombre, edad, sexo, especie, raza, estado, chip, vacunas, descripcion, dnidueno)
-values ('Esperanza',         3, false,   'gato',     'siamés',           'Enfermo',  true,   false,  'Muy elegante',         23000579);
+values ('Esperanza',         3, false,   'gato',     'Siamés',           'Enfermo',  true,   false,  'Muy elegante',         23000579);
 insert into Animales (nombre, edad, sexo, especie, raza, estado, chip, vacunas, descripcion, dnidueno)
-values ('Colgantitos',       1, true,    'perro',    'pastor alemán',    'Atlético', false,  true,   'Mucha energía',        57923023);
+values ('Colgantitos',       1, true,    'perro',    'Pastor Alemán',    'Atlético', false,  true,   'Mucha energía',        57923023);

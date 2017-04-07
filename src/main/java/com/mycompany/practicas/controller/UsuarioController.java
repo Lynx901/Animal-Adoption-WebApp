@@ -54,10 +54,10 @@ public class UsuarioController extends HttpServlet {
             
         String action = ((request.getPathInfo() != null) ? request.getPathInfo() : "");
         switch (action) {
-            case "/registro": {
-                rd = request.getRequestDispatcher(srvViewPath + "/register.jsp");
-                break;
-            }
+//            case "/registro": {
+//                rd = request.getRequestDispatcher(srvViewPath + "/register.jsp");
+//                break;
+//            }
             case "/login": {
                 rd = request.getRequestDispatcher(srvViewPath + "/login.jsp");
                 break;
@@ -66,13 +66,17 @@ public class UsuarioController extends HttpServlet {
                 rd = request.getRequestDispatcher(srvViewPath + "/perfil.jsp");
                 break;
             }
+            case "/editar": {
+                rd = request.getRequestDispatcher(srvViewPath + "/editar.jsp");
+                break;
+            }
             case "/logout": {
                 request.setAttribute("usuarios", null);
                 rd = request.getRequestDispatcher("logout");
                 break;
             }
             default: {
-                rd = request.getRequestDispatcher("animales");
+                rd = request.getRequestDispatcher("usuario/perfil");
                 break;
             }
         }
@@ -123,8 +127,33 @@ public class UsuarioController extends HttpServlet {
 //                 RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/perfil.jsp");
 //                break;
 //            }
+            case "/editar": {
+
+                /* ------- Recogemos todos los datos necesarios para editar --------- */
+                int dni = Integer.parseInt(request.getParameter("dni"));
+                String nombre = request.getParameter("nombre");
+                String apellidos = request.getParameter("apellidos");
+                String email = request.getParameter("email");
+                String direccion = request.getParameter("direccion");
+                String usuario = request.getParameter("usuario");
+                String pass = request.getParameter("pass");
+                String confirm = request.getParameter("confirm");
+                /* ---------------- Fin de recoger datos para editar ------------------- */
+                
+                Usuario u = new Usuario(dni, nombre, apellidos, email, direccion, usuario, pass);
+                if (validar(u, confirm)) {
+                    usuarios.editar(u);
+                    //Post-sent-redirect
+                    response.sendRedirect("usuarios");
+                } else { //Show form with validation errors
+                    request.setAttribute("usuarios", u);
+                    RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/editar.jsp");
+                    rd.forward(request, response);
+                }
+                break;
+            }
             default: { // Default POST
-                response.sendRedirect("usuarios");
+                response.sendRedirect("usuarios/perfil");
                 break;
             }
         }

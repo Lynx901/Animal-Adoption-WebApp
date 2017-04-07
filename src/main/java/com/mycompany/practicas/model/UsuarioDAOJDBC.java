@@ -19,18 +19,20 @@ import javax.sql.DataSource;
  * JDBC DAO implementation
  */
 public class UsuarioDAOJDBC implements UsuarioDAO {
-    private static String connPoolName  = "java:/comp/env/jdbc/Practicas"; //Tomcat connection pool
-    private DataSource ds               = null;
+
+    private static String connPoolName = "java:/comp/env/jdbc/Practicas"; //Tomcat connection pool
+    private DataSource ds = null;
 
     public UsuarioDAOJDBC() {
-    
-        if (ds==null)
-        try {
-            Context context;
-            context = new InitialContext(); //Accedemos al contenedor de Servlets
-            ds = (DataSource) context.lookup(connPoolName); //Localizamos el pool
-        } catch (NamingException ex) {
-            Logger.getLogger(UsuarioDAOJDBC.class.getName()).log(Level.SEVERE, null, ex);
+
+        if (ds == null) {
+            try {
+                Context context;
+                context = new InitialContext(); //Accedemos al contenedor de Servlets
+                ds = (DataSource) context.lookup(connPoolName); //Localizamos el pool
+            } catch (NamingException ex) {
+                Logger.getLogger(UsuarioDAOJDBC.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
     }
@@ -39,16 +41,16 @@ public class UsuarioDAOJDBC implements UsuarioDAO {
      * Recupera un Usuario a partir del registro actual del RS (MAPPING)
      */
     private static Usuario usuarioMapper(ResultSet rs) throws SQLException {
-        Usuario u=null;
-        try{
-        u = new Usuario(rs.getInt("dni"),
-                        rs.getString("nombre"),
-                        rs.getString("apellidos"),
-                        rs.getString("email"),
-                        rs.getString("direccion"),
-                        rs.getString("usuario"),
-                        rs.getString("pass"));
-        }catch (SQLException ex) {
+        Usuario u = null;
+        try {
+            u = new Usuario(rs.getInt("dni"),
+                            rs.getString("nombre"),
+                            rs.getString("apellidos"),
+                            rs.getString("email"),
+                            rs.getString("direccion"),
+                            rs.getString("usuario"),
+                            rs.getString("pass"));
+        } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
         }
         return u;
@@ -73,7 +75,7 @@ public class UsuarioDAOJDBC implements UsuarioDAO {
 
     @Override
     public boolean nuevoUsuario(Usuario u) {
-        String SQL_INSERT = "insert into Usuarios (dni, nombre, apellidos, email, direccion, usuario, pass) values(?,?,?,?,?,?,?)";
+        String SQL_INSERT = "insert into Usuarios (dni, nombre, apellidos, email, direccion, usuario) values(?,?,?,?,?,?)";
         Integer insertados = 0;
         try (Connection conn = ds.getConnection();
              PreparedStatement stmn = conn.prepareStatement(SQL_INSERT)) {
@@ -85,9 +87,9 @@ public class UsuarioDAOJDBC implements UsuarioDAO {
             stmn.setString(5, u.getDireccion());
             stmn.setString(6, u.getUsuario());
             insertados = stmn.executeUpdate();
-            
+
             registrar(u);
-            
+
         } catch (SQLException ex) {
             Logger.getLogger("UsuarioDAOJDBC").log(Level.SEVERE, ex.getMessage(), ex);
         }  //Autoclose resources (jdk>7)
@@ -95,49 +97,70 @@ public class UsuarioDAOJDBC implements UsuarioDAO {
     }
 
     @Override
+    public void editar(Usuario u) {
+        String SQL_INSERT = "UPDATE Usuarios SET nombre=?, apellidos=?, email=?, direccion=? WHERE dni=?";
+
+        try (Connection conn = ds.getConnection();
+             PreparedStatement stmn = conn.prepareStatement(SQL_INSERT)) {
+
+            stmn.setString(1, u.getNombre());
+            stmn.setString(2, u.getApellidos());
+            stmn.setString(3, u.getEmail());
+            stmn.setString(4, u.getDireccion());
+            stmn.executeUpdate();
+
+        } catch (SQLException ex) {
+            Logger.getLogger("UsuariosDAOJDBC").log(Level.SEVERE, ex.getMessage(), ex);
+        }  //Autoclose resources (jdk>7)
+
+    }
+
+    @Override
     public Usuario encontrarEmail(String email) {
-        for(Usuario u : listar()) {
-            if(u.getEmail().equals(email))
+        for (Usuario u : listar()) {
+            if (u.getEmail().equals(email)) {
                 return u;
+            }
         }
         return null;
     }
-    
+
     @Override
     public Usuario encontrarDNI(int dni) {
-        for(Usuario u : listar()) {
-            if(u.getDni() == dni)
+        for (Usuario u : listar()) {
+            if (u.getDni() == dni) {
                 return u;
+            }
         }
         return null;
     }
-    
+
     public boolean registrar(Usuario u) {
         String SQL_INSERT = "insert into Users (usuario, clave) values(?,?)";
         Integer insertados = 0;
-        
+
         try (Connection conn = ds.getConnection();
              PreparedStatement stmn = conn.prepareStatement(SQL_INSERT)) {
             stmn.setString(1, u.getUsuario());
             stmn.setString(2, u.getPass());
             insertados = stmn.executeUpdate();
-            
+
         } catch (SQLException ex) {
             Logger.getLogger("UsuarioDAOJDBC").log(Level.SEVERE, ex.getMessage(), ex);
         }  //Autoclose resources (jdk>7)
-        
-         SQL_INSERT = "insert into Roles (usuario, rol) values(?,?)";
+
+        SQL_INSERT = "insert into Roles (usuario, rol) values(?,?)";
 
         try (Connection conn = ds.getConnection();
              PreparedStatement stmn = conn.prepareStatement(SQL_INSERT)) {
             stmn.setString(1, u.getUsuario());
             stmn.setString(2, "USUARIO");
             insertados = stmn.executeUpdate();
-            
+
         } catch (SQLException ex) {
             Logger.getLogger("UsuarioDAOJDBC").log(Level.SEVERE, ex.getMessage(), ex);
         }  //Autoclose resources (jdk>7)
-        
+
         return insertados == 1;
     }
 

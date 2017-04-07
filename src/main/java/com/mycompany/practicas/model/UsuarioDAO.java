@@ -12,5 +12,6 @@ public interface UsuarioDAO {
     boolean nuevoUsuario(Usuario u);
     Usuario encontrarEmail(String email);
     Usuario encontrarDNI(int dni);
+    void editar(Usuario u);
  
 }

@@ -14,12 +14,6 @@
         <!-- Cabecera minimizada -->
         <%@include file="/WEB-INF/jspf/header_min.jspf" %>
         <section class="main-login main-center">
-            <c:if test="${not empty param.Enviar}">
-                <p> Gracias ${param.name} en breves recibira un correo electronico a ${param.email} para confirmar su registro </p>
-                <div class="login-register">
-                    <a href="<c:url value='/animales'/>">Inicio</a>
-                </div>
-            </c:if>
             <c:if test="${empty param.Enviar}">
                 <form class="form-horizontal" method="POST">
 

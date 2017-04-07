@@ -46,6 +46,9 @@ public class RegistroController extends HttpServlet {
         processRequest(request, response);
 
         RequestDispatcher rd;
+        
+        Usuario u = new Usuario();
+        request.setAttribute("usuarios", u);
         rd = request.getRequestDispatcher("/register.jsp");
         rd.forward(request, response);
     }
@@ -68,9 +71,9 @@ public class RegistroController extends HttpServlet {
         Usuario u = new Usuario(dni, nombre, apellidos, email, direccion, usuario, pass);
         if (validar(u, confirm)) {
             usuarios.nuevoUsuario(u);
-            request.setAttribute("usuarios", u);
-            RequestDispatcher rd = request.getRequestDispatcher("usuarios/perfil");
+            response.sendRedirect("registro.jsp");
         } else { //Show form with validation errors
+            request.setAttribute("usuarios", u);
             RequestDispatcher rd = request.getRequestDispatcher("/register.jsp");
             rd.forward(request, response);
         }

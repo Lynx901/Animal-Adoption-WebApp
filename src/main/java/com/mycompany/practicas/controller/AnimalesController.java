@@ -1,8 +1,10 @@
 package com.mycompany.practicas.controller;
 
 import com.mycompany.practicas.Animal;
+import com.mycompany.practicas.Usuario;
 //import com.mycompany.practicas.model.AnimalesDAO;
 import com.mycompany.practicas.model.AnimalesDAOJDBC;
+import com.mycompany.practicas.model.UsuarioDAO;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -31,12 +33,6 @@ public class AnimalesController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8"); //Aceptar caracteres acentuados y ñ
         response.setHeader("Expires", "0"); //Avoid browser caching response
-
-//        srvUrl = request.getContextPath() + request.getServletPath();
-
-//        request.setAttribute("srvUrl", srvUrl);    
-//        request.setAttribute("animales", animales.listar().toArray());
-//     
     }
 
     @Override

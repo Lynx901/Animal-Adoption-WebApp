@@ -116,7 +116,7 @@ public class UsuarioDAOJDBC implements UsuarioDAO {
     }
 
     @Override
-    public Usuario encontrarEmail(String email) {
+    public Usuario encontrarPorEmail(String email) {
         for (Usuario u : listar()) {
             if (u.getEmail().equals(email)) {
                 return u;
@@ -126,9 +126,19 @@ public class UsuarioDAOJDBC implements UsuarioDAO {
     }
 
     @Override
-    public Usuario encontrarDNI(int dni) {
+    public Usuario encontrarPorDNI(int dni) {
         for (Usuario u : listar()) {
             if (u.getDni() == dni) {
+                return u;
+            }
+        }
+        return null;
+    }
+    
+    @Override
+    public Usuario encontrarPorLogin(String user) {
+        for (Usuario u : listar()) {
+            if (u.getUsuario().equals(user)) {
                 return u;
             }
         }

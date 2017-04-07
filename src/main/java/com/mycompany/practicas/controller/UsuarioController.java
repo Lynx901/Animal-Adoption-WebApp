@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/usuarios/*")
-//Authorization rule using annotation (only in Servlets!)
-@ServletSecurity(@HttpConstraint(rolesAllowed={"USUARIOS", "ADMINISTRADORES"}))
 public class UsuarioController extends HttpServlet {
 
     private final String srvViewPath = "/WEB-INF/usuarios";
@@ -34,34 +32,23 @@ public class UsuarioController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8"); //Aceptar caracteres acentuados y ñ
         response.setHeader("Expires", "0"); //Avoid browser caching response
-
-        //Programmatic authentication redirect
-        if (request.authenticate(response) != true) 
-            return;  //force login   
         
-        //Programmatic authorization
-        if (request.isUserInRole("ADMINISTRADORES") == false) 
-            response.sendRedirect("error.jsp"); 
-
+        Usuario u = (Usuario) request.getSession().getAttribute("usuarios");
+        if (u == null) {
+            u = usuarios.encontrarPorLogin(request.getRemoteUser());
+            request.getSession().setAttribute("usuarios", u);   
+        }
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
+
         RequestDispatcher rd;
-            
+
         String action = ((request.getPathInfo() != null) ? request.getPathInfo() : "");
         switch (action) {
-//            case "/registro": {
-//                rd = request.getRequestDispatcher(srvViewPath + "/register.jsp");
-//                break;
-//            }
-            case "/login": {
-                rd = request.getRequestDispatcher(srvViewPath + "/login.jsp");
-                break;
-            }
             case "/perfil": {
                 rd = request.getRequestDispatcher(srvViewPath + "/perfil.jsp");
                 break;
@@ -70,17 +57,13 @@ public class UsuarioController extends HttpServlet {
                 rd = request.getRequestDispatcher(srvViewPath + "/editar.jsp");
                 break;
             }
-            case "/logout": {
-                request.setAttribute("usuarios", null);
-                rd = request.getRequestDispatcher("logout");
-                break;
-            }
             default: {
                 rd = request.getRequestDispatcher("usuario/perfil");
                 break;
             }
         }
         rd.forward(request, response);
+
     }
 
     @Override
@@ -103,7 +86,7 @@ public class UsuarioController extends HttpServlet {
                 String pass = request.getParameter("pass");
                 String confirm = request.getParameter("confirm");
                 /* ---------------- Fin de recoger datos para el alta ------------------- */
-                
+
                 Usuario u = new Usuario(dni, nombre, apellidos, email, direccion, usuario, pass);
                 if (validar(u, confirm)) {
                     usuarios.nuevoUsuario(u);
@@ -116,17 +99,6 @@ public class UsuarioController extends HttpServlet {
                 }
                 break;
             }
-//            case "/login":{
-//                 String email = request.getParameter("email");
-//                 String pass = request.getParameter("pass");
-//                 Usuario u = usuarios.encontrarEmail(email);
-//                 if (u == null){
-//                     RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/login.jsp");
-//                     rd.forward(request, response);
-//                 }
-//                 RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/perfil.jsp");
-//                break;
-//            }
             case "/editar": {
 
                 /* ------- Recogemos todos los datos necesarios para editar --------- */
@@ -139,7 +111,7 @@ public class UsuarioController extends HttpServlet {
                 String pass = request.getParameter("pass");
                 String confirm = request.getParameter("confirm");
                 /* ---------------- Fin de recoger datos para editar ------------------- */
-                
+
                 Usuario u = new Usuario(dni, nombre, apellidos, email, direccion, usuario, pass);
                 if (validar(u, confirm)) {
                     usuarios.editar(u);

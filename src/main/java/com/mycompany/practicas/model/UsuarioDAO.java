@@ -10,8 +10,9 @@ public interface UsuarioDAO {
     
     List<Usuario> listar();
     boolean nuevoUsuario(Usuario u);
-    Usuario encontrarEmail(String email);
-    Usuario encontrarDNI(int dni);
+    Usuario encontrarPorEmail(String email);
+    Usuario encontrarPorDNI(int dni);
+    Usuario encontrarPorLogin(String user);
     void editar(Usuario u);
  
 }

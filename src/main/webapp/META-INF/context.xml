@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/Practicas">
+<Context antiJarLocking="true" path="/Practicas">
     <Resource   auth="Container"
                 driverClassName="org.apache.derby.jdbc.ClientDriver"
                 url="jdbc:derby://localhost:1527/daw"
@@ -9,12 +9,18 @@
                 password="daw"
                 maxActive="8"/>
     
-    <Realm className="org.apache.catalina.realm.DataSourceRealm" 
+    <!--<Realm className="org.apache.catalina.realm.DataSourceRealm" 
            dataSourceName="jdbc/Practicas" 
            localDataSource="true" 
            roleNameCol="rol" 
            userCredCol="clave" 
            userNameCol="usuario" 
            userRoleTable="roles" 
-           userTable="users"/>
+           userTable="users"/>-->
+    
+    <!--Tomcat File Auth Realm-->
+    <Context>
+    <Realm classname="org.apache.catalina.realm.UserDatabaseRealm"
+           resourceName="UserDatabase"/>
+    </Context>
 </Context>

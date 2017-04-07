@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Registro - Animal Adoption</title>
+        <title>Editar - Animal Adoption</title>
         <!-- Enlaces a Bootstrap -->
         <%@include file="/WEB-INF/jspf/bootstrap.jspf" %>
         <!-- Website CSS style -->

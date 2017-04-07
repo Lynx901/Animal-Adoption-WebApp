@@ -16,7 +16,7 @@
         <%@include file="/WEB-INF/jspf/header_min.jspf" %>
         <section class="main-login main-center">
 
-            <form class="form-horizontal" action="<c:url value='/usuarios/perfil.jsp'/>" method="post">
+            <form class="form-horizontal" action="j_security_check" method="post">
 
                 <div class="form-group">
                     <label for="j_username" class="col-sm-4 control-label">Usuario</label>

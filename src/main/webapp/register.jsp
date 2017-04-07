@@ -107,10 +107,10 @@
                         <button type="submit" class="btn btn-primary btn-lg btn-block login-button" name="Enviar" value="Enviar" >Registrarse</button>
                     </div>
                     <div class="login-register">
-                        <a href="<c:url value='/usuarios/login'/>">Iniciar sesión</a>
+                        <a href="<c:url value='/login.jsp'/>">Iniciar sesión</a>
                     </div>
                 </form>
-            </c:if>
+        </c:if>
         </section>
         <!-- Pie de página minimizado -->
         <%@include file="/WEB-INF/jspf/footer_min.jspf" %>

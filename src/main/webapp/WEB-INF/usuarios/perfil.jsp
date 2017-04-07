@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>¿Quiénes Somos? - Animal Adoption</title>
+        <title>Perfil - Animal Adoption</title>
         <!-- Enlaces a Bootstrap -->
         <%@include file="/WEB-INF/jspf/bootstrap.jspf" %>
         <!-- Website CSS style -->
@@ -19,7 +19,7 @@
             <section class="col-md-12 col-sm-12 col-xs-12">
                 <article class="col-md-offset-2 col-md-4 col-sm-6 col-xs-12">
                     <div class="thumbnail zoom">
-                        <img class="img-responsive photo-animal" src="<c:url value='img/${usuarios.dni}.pngusuario'/>" alt="Foto de ${usuarios.nombre}"/>
+                        <img class="img-responsive photo-animal" src="<c:url value='../img/usuarios/${usuarios.dni}.png'/>" alt="Foto de ${usuarios.nombre}"/>
                         <footer class="color">
                             <div class="row">
                                 <div class="col-md-12">
@@ -40,7 +40,7 @@
                         </footer>
                         <nav aria-label="...">
                             <ul class="pager">
-                                <li><a href='<c:url value='/animales/editar'/>'>Editar información del animal</a></li>
+                                <li><a href='<c:url value='/usuarios/editar'/>'>Editar información</a></li>
                             </ul>
                         </nav>
                     </div>

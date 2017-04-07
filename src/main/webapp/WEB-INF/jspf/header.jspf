@@ -18,14 +18,14 @@
                     <li><a href="<c:url value='/faqs.jsp'/>">Preguntas Frecuentes</a></li> 
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <c:if test="${usuarios.nombre ne null}">
+                    <c:if test="${not empty pageContext.request.remoteUser}">
                         <li><a href="<c:url value='/faqs.jsp'/>">Hola ${usuario.nombre}</a></li> 
                         <li><a href="<c:url value='/usuarios/perfil'/>"><span class="glyphicon glyphicon-cog"></span>Ajustes de ${usuario.dni} </a></li>
                         <li><a href="<c:url value='/logout'/>"><span class="glyphicon glyphicon-log-out"></span>Cerrar sesión </a></li>
                     </c:if>
-                    <c:if test="${usuarios.nombre eq null}">
+                    <c:if test="${empty pageContext.request.remoteUser}">
                         <li><a href="<c:url value='/registro'/>"><span class="glyphicon glyphicon-user"></span>Registro</a></li>
-                        <li><a href="<c:url value='/usuarios/login'/>"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
+                        <li><a href="<c:url value='/login.jsp'/>"><span class="glyphicon glyphicon-log-in"></span>Login</a></li>
                     </c:if>
                 </ul>
             </div>

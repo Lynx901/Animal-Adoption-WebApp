@@ -61,6 +61,14 @@ public class AnimalesDAOJDBC implements AnimalesDAO {
     public List<Animal> listar() {
         String SQL_BUSCATODOS = "select * from animales";
         List<Animal> animales = new ArrayList<>();
+        if (ds == null) {
+            try {
+                Context context = new InitialContext(); //Accedemos al contenedor de Servlets
+                ds = (DataSource) context.lookup(connPoolName); //Localizamos el pool
+            } catch (NamingException ex) {
+                Logger.getLogger(AnimalesDAOJDBC.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         try (
                 Connection conn = ds.getConnection(); //Obtenemos conexión del pool de conexiones
                 Statement st = conn.createStatement();

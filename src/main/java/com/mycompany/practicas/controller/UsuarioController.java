@@ -46,24 +46,23 @@ public class UsuarioController extends HttpServlet {
         processRequest(request, response);
 
         RequestDispatcher rd;
-
         String action = ((request.getPathInfo() != null) ? request.getPathInfo() : "");
         switch (action) {
-            case "/perfil": {
-                rd = request.getRequestDispatcher(srvViewPath + "/perfil.jsp");
-                break;
-            }
             case "/editar": {
                 rd = request.getRequestDispatcher(srvViewPath + "/editar.jsp");
                 break;
             }
+            case "/perfil": {
+                rd = request.getRequestDispatcher(srvViewPath + "/perfil.jsp");
+                System.out.println("Aquí va bien");
+                break;
+            }
             default: {
-                rd = request.getRequestDispatcher("usuario/perfil");
+                rd = request.getRequestDispatcher("animales");
                 break;
             }
         }
         rd.forward(request, response);
-
     }
 
     @Override
@@ -125,7 +124,7 @@ public class UsuarioController extends HttpServlet {
                 break;
             }
             default: { // Default POST
-                response.sendRedirect("usuarios/perfil");
+                response.sendRedirect("usuarios");
                 break;
             }
         }

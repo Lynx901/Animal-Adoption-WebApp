@@ -5,6 +5,7 @@ import com.mycompany.practicas.Usuario;
 //import com.mycompany.practicas.model.AnimalesDAO;
 import com.mycompany.practicas.model.AnimalesDAOJDBC;
 import com.mycompany.practicas.model.UsuarioDAO;
+import com.mycompany.practicas.model.UsuarioDAOJDBC;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -19,6 +20,7 @@ public class AnimalesController extends HttpServlet {
 
     private final String srvViewPath = "/WEB-INF/animales";
     private AnimalesDAOJDBC animales;
+    private UsuarioDAOJDBC usuarios;
     private String srvUrl;
     private String imgUrl;
 
@@ -27,12 +29,20 @@ public class AnimalesController extends HttpServlet {
         super.init(servletConfig);
 
         animales = new AnimalesDAOJDBC();
+        usuarios = new UsuarioDAOJDBC();
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8"); //Aceptar caracteres acentuados y ñ
         response.setHeader("Expires", "0"); //Avoid browser caching response
+        
+        Usuario u = (Usuario) request.getSession().getAttribute("usuarios");
+        if (u == null) {
+            u = usuarios.encontrarPorLogin(request.getRemoteUser());
+            request.getSession().setAttribute("usuarios", u);   
+        }
+        
     }
 
     @Override

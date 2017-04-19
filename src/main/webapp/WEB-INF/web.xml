@@ -25,8 +25,13 @@
             <description/>
             <url-pattern>/animales/crear</url-pattern>
         </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>Perfil</web-resource-name>
+            <description/>
+            <url-pattern>/usuarios/perfil</url-pattern>
+        </web-resource-collection>
         <auth-constraint>
-            <description>NuevoAnimal</description>
+            <description/>
             <role-name>USUARIOS</role-name>
             <role-name>ADMINISTRADORES</role-name>
         </auth-constraint>

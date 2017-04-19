@@ -107,6 +107,7 @@ public class UsuarioDAOJDBC implements UsuarioDAO {
             stmn.setString(2, u.getApellidos());
             stmn.setString(3, u.getEmail());
             stmn.setString(4, u.getDireccion());
+            stmn.setInt(5, u.getDni());
             stmn.executeUpdate();
 
         } catch (SQLException ex) {

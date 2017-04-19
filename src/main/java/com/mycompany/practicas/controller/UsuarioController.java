@@ -33,10 +33,10 @@ public class UsuarioController extends HttpServlet {
         request.setCharacterEncoding("UTF-8"); //Aceptar caracteres acentuados y ñ
         response.setHeader("Expires", "0"); //Avoid browser caching response
         
-        Usuario u = (Usuario) request.getSession().getAttribute("usuarios");
+        Usuario u = (Usuario) request.getSession().getAttribute("usuario");
         if (u == null) {
             u = usuarios.encontrarPorLogin(request.getRemoteUser());
-            request.getSession().setAttribute("usuarios", u);   
+            request.getSession().setAttribute("usuario", u);   
         }
     }
 
@@ -54,7 +54,6 @@ public class UsuarioController extends HttpServlet {
             }
             case "/perfil": {
                 rd = request.getRequestDispatcher(srvViewPath + "/perfil.jsp");
-                System.out.println("Aquí va bien");
                 break;
             }
             default: {
@@ -92,7 +91,7 @@ public class UsuarioController extends HttpServlet {
                     //Post-sent-redirect
                     response.sendRedirect("usuarios");
                 } else { //Show form with validation errors
-                    request.setAttribute("usuarios", u);
+                    request.setAttribute("usuario", u);
                     RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/register.jsp");
                     rd.forward(request, response);
                 }
@@ -106,9 +105,9 @@ public class UsuarioController extends HttpServlet {
                 String apellidos = request.getParameter("apellidos");
                 String email = request.getParameter("email");
                 String direccion = request.getParameter("direccion");
-                String usuario = request.getParameter("usuario");
-                String pass = request.getParameter("pass");
-                String confirm = request.getParameter("confirm");
+                String usuario = usuarios.encontrarPorLogin(request.getRemoteUser()).getUsuario();
+                String pass = "";
+                String confirm = "";
                 /* ---------------- Fin de recoger datos para editar ------------------- */
 
                 Usuario u = new Usuario(dni, nombre, apellidos, email, direccion, usuario, pass);
@@ -117,7 +116,7 @@ public class UsuarioController extends HttpServlet {
                     //Post-sent-redirect
                     response.sendRedirect("usuarios");
                 } else { //Show form with validation errors
-                    request.setAttribute("usuarios", u);
+                    request.setAttribute("usuario", u);
                     RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/editar.jsp");
                     rd.forward(request, response);
                 }

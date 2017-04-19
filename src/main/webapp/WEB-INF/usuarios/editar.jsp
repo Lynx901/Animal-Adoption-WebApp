@@ -73,16 +73,6 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label for="usuario" class="col-sm-4 control-label">Usuario</label>
-                        <div class="col-sm-8">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                                <input type="text" value="${usuario.usuario}" class="form-control" name="usuario" id="usuario"  placeholder="Ingrese su nombre de Usuario" required/>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="form-group ">
                         <button type="submit" class="btn btn-primary btn-lg btn-block login-button" name="Enviar" value="Enviar" >Editar datos</button>
                     </div>

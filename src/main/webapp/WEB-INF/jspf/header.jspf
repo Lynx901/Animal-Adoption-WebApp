@@ -19,8 +19,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <c:if test="${not empty pageContext.request.remoteUser}">
-                        <li><a href="<c:url value='/faqs.jsp'/>">Hola ${usuario.nombre}</a></li> 
-                        <li><a href="<c:url value='/perfil.jsp'/>"><span class="glyphicon glyphicon-cog"></span>Ajustes de ${usuario.dni} </a></li>
+                        <li><a href="<c:url value='/usuarios/perfil'/>"><span class="glyphicon glyphicon-cog"></span>Ajustes</a></li>
                         <li><a href="<c:url value='/logout'/>"><span class="glyphicon glyphicon-log-out"></span>Cerrar sesión </a></li>
                     </c:if>
                     <c:if test="${empty pageContext.request.remoteUser}">

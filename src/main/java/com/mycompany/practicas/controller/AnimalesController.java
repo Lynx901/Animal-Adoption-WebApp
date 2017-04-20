@@ -3,7 +3,6 @@ package com.mycompany.practicas.controller;
 import com.mycompany.practicas.Animal;
 //import com.mycompany.practicas.model.AnimalesDAO;
 import com.mycompany.practicas.model.AnimalesDAOJDBC;
-import com.mycompany.practicas.model.UsuarioDAOJDBC;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -53,15 +52,15 @@ public class AnimalesController extends HttpServlet {
             case "/ficha": {
                 String nombre = request.getParameter("id");
                 Animal a = animales.encontrarNombre(nombre);
-                request.setAttribute("animales", a);
-                rd = request.getRequestDispatcher(srvViewPath + "/ficha.jsp?id="+nombre);
+                request.setAttribute("animal", a);
+                rd = request.getRequestDispatcher(srvViewPath + "/ficha.jsp");
                 break;
             }
             case "/editar": {
                 String nombre = request.getParameter("id");
                 Animal a = animales.encontrarNombre(nombre);
-                request.setAttribute("animales", a);
-                rd = request.getRequestDispatcher(srvViewPath + "/editar.jsp?id="+nombre);
+                request.setAttribute("animal", a);
+                rd = request.getRequestDispatcher(srvViewPath + "/editar.jsp");
                 break;
             }
             default: {

@@ -19,14 +19,14 @@
             <%@include file="/WEB-INF/jspf/navigation.jspf" %>
             <section class="col-md-10">
                 <div class="col-md-5 thumbnail">
-                    <img class="img-responsive photo-animal" src="<c:url value='../img/${animales.especie}-placeholder.jpg'/>" alt="Foto del animal"/>
+                    <img class="img-responsive photo-animal" src="<c:url value='../img/${animal.especie}-placeholder.jpg'/>" alt="Foto del animal"/>
                 </div>
                 <aside class="col-md-offset-1 col-md-6 color">
                     <h2>${param.nombre}</h2>
                     <div class="row">
-                        <img class="col-md-2 usr-ph img-circle" src="<c:url value='../img/usuarios/${animales.duenio}.png'/>" alt="Foto del usuario"/>
+                        <img class="col-md-2 usr-ph img-circle" src="<c:url value='../img/usuarios/${animal.duenio}.png'/>" alt="Foto del usuario"/>
                         <div class="col-md-9">
-                            <h4>${animales.nombre}</h4>
+                            <h4>${animal.nombre}</h4>
                             <p>XX Km</p>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                             <p>Raza: </p>
                         </div>
                         <div class="col-sm-6 col-md-offset-1 col-md-3">
-                            <p>${animales.raza} </p>
+                            <p>${animal.raza} </p>
                         </div>
                     </div>
 
@@ -48,7 +48,7 @@
                             <p>Edad: </p>
                         </div>
                         <div class="col-sm-6 col-md-offset-1 col-md-3">
-                            <p>${animales.edad} </p>
+                            <p>${animal.edad} </p>
                         </div>
                     </div>
 
@@ -57,8 +57,8 @@
                             <p>Sexo: </p>
                         </div>
                         <div class="col-sm-6 col-md-offset-1 col-md-3">
-                            <p><c:if test="${animales.sexo}"> Macho </c:if> 
-                                <c:if test="${not animales.sexo}"> Hembra </c:if> 
+                            <p><c:if test="${animal.sexo}"> Macho </c:if> 
+                                <c:if test="${not animal.sexo}"> Hembra </c:if> 
                                 </p>
                             </div>
                         </div>
@@ -68,13 +68,13 @@
                                 <p>Vacunas y Chip: </p>
                             </div>
                             <div class="col-sm-6 col-md-offset-1 col-md-4">
-                                <p><c:if test="${animales.chip}">Tiene chip</c:if> </p>
-                            <p><c:if test="${animales.vacunas}">Tiene las vacunas</c:if> </p>
+                                <p><c:if test="${animal.chip}">Tiene chip</c:if> </p>
+                            <p><c:if test="${animal.vacunas}">Tiene las vacunas</c:if> </p>
                             </div>
                         </div>
                     </aside>
                 </section>
-            <c:if test="${usuario.dni eq animales.duenio}">
+            <c:if test="${usuario.dni eq animal.duenio}">
                 <nav aria-label="...">
                     <ul class="pager">
                         <li><a href='<c:url value='/animales/editar'/>'>Editar información del animal</a></li>

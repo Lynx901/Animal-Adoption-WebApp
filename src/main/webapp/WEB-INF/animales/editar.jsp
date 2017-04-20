@@ -22,13 +22,13 @@
                     <fieldset>
 
                         <!-- Form Name -->
-                        <legend>Editar a ${animales.nombre}</legend>
+                        <legend>Editar a ${animal.nombre}</legend>
 
                         <!-- Text input-->
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="nombre">Nombre</label>  
                             <div class="col-md-6">
-                                <input id="nombre" value="${animales.nombre}" name="nombre" type="text" placeholder="Toby, Garfield, etc." class="form-control input-md" required="">
+                                <input id="nombre" value="${animal.nombre}" name="nombre" type="text" placeholder="Toby, Garfield, etc." class="form-control input-md" required="">
                                 <span class="help-block">Debe ser el nombre real del animal</span>  
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="edad">Edad</label>  
                             <div class="col-md-6">
-                                <input id="edad" value="${animales.edad}" name="edad" type="text" placeholder="3, 4, 5..." class="form-control input-md" required="">
+                                <input id="edad" value="${animal.edad}" name="edad" type="text" placeholder="3, 4, 5..." class="form-control input-md" required="">
                                 <span class="help-block">Debe ser un número mayor que 0</span>  
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="estado">Estado de salud</label>  
                             <div class="col-md-6">
-                                <input id="estado" value="${animales.estado}" name="estado" type="text" placeholder="Perfecto" class="form-control input-md" required="">
+                                <input id="estado" value="${animal.estado}" name="estado" type="text" placeholder="Perfecto" class="form-control input-md" required="">
                             </div>
                         </div>
 
@@ -126,7 +126,7 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="description">¡Cuéntanos algo de él!</label>
                             <div class="col-md-4">                     
-                                <textarea class="form-control col-md-6" id="description" name="description">value="${animales.descripcion}"</textarea>
+                                <textarea class="form-control col-md-6" id="description" name="description">value="${animal.descripcion}"</textarea>
                             </div>
                         </div>
                         <div class="form-group ">

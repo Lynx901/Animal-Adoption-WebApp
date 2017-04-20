@@ -45,6 +45,7 @@
                                 </article>
                             </c:if>
                         </c:forEach>
+                        
                         <c:if test="${param.raza eq null}">
                             <c:forEach var="a" items="${animales}">
                                 <article class="col-md-4 col-sm-6 col-xs-12">

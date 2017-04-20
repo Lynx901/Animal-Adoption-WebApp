@@ -18,6 +18,7 @@
     <error-page>
         <location>/error.jsp</location>
     </error-page>
+    <!-- Comentando temporalmente para la implementación de Spring MVC
     <security-constraint>
         <display-name>Constraint1</display-name>
         <web-resource-collection>
@@ -35,7 +36,7 @@
             <role-name>USUARIOS</role-name>
             <role-name>ADMINISTRADORES</role-name>
         </auth-constraint>
-    </security-constraint>
+    </security-constraint> -->
     <login-config>
         <auth-method>FORM</auth-method>
         <form-login-config>
@@ -43,6 +44,8 @@
             <form-error-page>/login.jsp</form-error-page>
         </form-login-config>
     </login-config>
+    
+    
     <security-role>
         <description/>
         <role-name>USUARIOS</role-name>
@@ -51,4 +54,24 @@
         <description/>
         <role-name>ADMINISTRADORES</role-name>
     </security-role>
+    
+    <!-- Spring Context Listener: i.e. Dependency Injection -->
+    <listener>
+        <listener-class> org.springframeweork.web.context.ContextLoaderListener </listener-class>
+    </listener>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>/WEB-INF/applicationContext.xml</param-value>
+    </context-param>
+    <!-- SpringMVC Dispatcher Servlet auto start and URL assignment -->
+    <servlet>
+        <servlet-name>SpringDispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SpringDispatcher</servlet-name>
+        <url-pattern>/main/*</url-pattern>
+    </servlet-mapping>
+    
 </web-app>

@@ -3,7 +3,10 @@ package com.mycompany.practicas.controller;
 import com.mycompany.practicas.Animal;
 import com.mycompany.practicas.model.AnimalesDAO;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,12 +16,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
-@RequestMapping("/Practicas")
-@SessionAttributes("animales")
+@RequestMapping("/Practicas/animales")
 public class AnimalesSpringController {
+    @Autowired
+    @Qualifier("AnimalesDAOJDBC")
+    private AnimalesDAO animalesdao; 
     
-    @Autowired 
-            AnimalesDAO animalesdao; 
+    public AnimalesSpringController() {
+    }
+    
+    @ModelAttribute
+private void configView(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+    //Common variables for Views
+    model.addAttribute("srvUrl", request.getContextPath()+request.getServletPath()+"/clientes");
+    model.addAttribute("imgUrl", request.getContextPath()+"/images");
+}
     
     /*METODO CREAR GET Y POST*/
     @RequestMapping(value="/crear", method=RequestMethod.GET)

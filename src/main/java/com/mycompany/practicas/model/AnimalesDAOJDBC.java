@@ -1,7 +1,6 @@
 package com.mycompany.practicas.model;
 
 import com.mycompany.practicas.Animal;
-import com.mycompany.practicas.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,7 +20,7 @@ import org.springframework.stereotype.Repository;
  * JDBC DAO implementation
  */
 
-
+@Repository("AnimalesDAOJDBC")
 public class AnimalesDAOJDBC implements AnimalesDAO {
 
     private static final String connPoolName = "java:/comp/env/jdbc/Practicas"; //Tomcat connection pool

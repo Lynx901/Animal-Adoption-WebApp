@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 
 
 /** Generic Interfaz for Usuario DAOs implementations*/
-@Repository
+
 public interface UsuarioDAO {
     
     List<Usuario> listar();

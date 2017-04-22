@@ -3,7 +3,7 @@ package com.mycompany.practicas.model;
 import com.mycompany.practicas.Animal;
 import java.util.List;
 import org.springframework.stereotype.Repository;
-@Repository
+
 public interface AnimalesDAO {
     List<Animal> listar();
     boolean nuevoAnimal(Animal a);

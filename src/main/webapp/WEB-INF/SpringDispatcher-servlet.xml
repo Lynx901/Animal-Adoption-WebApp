@@ -18,4 +18,9 @@
               class="org.springframework.web.servlet.view.InternalResourceViewResolver" 
               p:prefix="/WEB-INF/"
               p:suffix=".jsp" />
+        <!-- bind your messages.properties -->
+        <bean class="org.springframework.context.support.ResourceBundleMessageSource"
+		id="messageSource">
+		<property name="basename" value="messages" />
+        </bean>
 </beans>

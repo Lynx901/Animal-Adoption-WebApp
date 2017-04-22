@@ -10,17 +10,17 @@
                 maxActive="8"/>
     
     <!--<Realm className="org.apache.catalina.realm.DataSourceRealm" 
-           dataSourceName="jdbc/Practicas" 
-           localDataSource="true" 
-           roleNameCol="rol" 
-           userCredCol="clave" 
-           userNameCol="usuario" 
-           userRoleTable="roles" 
-           userTable="users"/>-->
+    dataSourceName="jdbc/Practicas" 
+    localDataSource="true" 
+    roleNameCol="rol" 
+    userCredCol="clave" 
+    userNameCol="usuario" 
+    userRoleTable="roles" 
+    userTable="users"/>-->
     
     <!--Tomcat File Auth Realm-->
-    <Context>
-    <Realm classname="org.apache.catalina.realm.UserDatabaseRealm"
-           resourceName="UserDatabase"/>
-    </Context>
+    <context path="/Practicas">
+        <Realm classname="org.apache.catalina.realm.UserDatabaseRealm"
+               resourceName="UserDatabase"/>
+    </context>
 </Context>

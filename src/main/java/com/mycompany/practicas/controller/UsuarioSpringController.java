@@ -7,8 +7,12 @@ package com.mycompany.practicas.controller;
 
 import com.mycompany.practicas.Usuario;
 import com.mycompany.practicas.model.UsuarioDAO;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,8 +28,18 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @SessionAttributes("usuarios")
 public class UsuarioSpringController {
      @Autowired 
-            UsuarioDAO usuariosdao; 
+     @Qualifier("UsuarioDAOJDBC")
+     private UsuarioDAO usuariosdao; 
      
+     public UsuarioSpringController(){
+     }
+     
+         @ModelAttribute
+private void configView(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+    //Common variables for Views
+    model.addAttribute("srvUrl", request.getContextPath()+request.getServletPath()+"/clientes");
+    model.addAttribute("imgUrl", request.getContextPath()+"/images");
+}
      /*METODO PERFIL GET*/
     @RequestMapping(value="/perfil", method=RequestMethod.GET)
     public String verUsuario() {

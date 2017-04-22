@@ -14,10 +14,12 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+import org.springframework.stereotype.Repository;
 
 /**
  * JDBC DAO implementation
  */
+@Repository("UsuarioDAOJDBC")
 public class UsuarioDAOJDBC implements UsuarioDAO {
 
     private static String connPoolName = "java:/comp/env/jdbc/Practicas"; //Tomcat connection pool

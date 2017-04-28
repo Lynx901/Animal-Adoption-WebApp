@@ -1,7 +1,5 @@
 package com.mycompany.practicas;
 
-import javax.validation.constraints.Size;
-
 
 public class Animal {
     /*ID Autonumerico*/
@@ -9,11 +7,7 @@ public class Animal {
     private int duenio;
 
     private int id;
-    
-    @Size(min=2,max=100, message="La longitud del nombre no es válida")
     private String  nombre;
-    
-    
     private int     edad;
     private boolean sexo;  // True si es macho, false si es hembra
 
@@ -25,9 +19,7 @@ public class Animal {
     private boolean vacunas;
     
     private String descripcion;
-    
-    
-    
+        
     public Animal(){
         duenio = 0;
         

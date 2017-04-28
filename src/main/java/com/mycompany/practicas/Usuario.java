@@ -1,17 +1,11 @@
 package com.mycompany.practicas;
 
 import java.io.Serializable;
-import javax.validation.constraints.Size;
 
 public class Usuario implements Serializable{
     private int    dni;
-    
-    @Size(min=2,max=100, message="La longitud del nombre no es válida")
     private String nombre;
-    
-    @Size(min=2,max=100, message="La longitud del nombre no es válida")
     private String apellidos;
-    
     private String email;
     private String direccion;
     private String usuario;

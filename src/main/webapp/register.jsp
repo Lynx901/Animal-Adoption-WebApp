@@ -34,7 +34,6 @@
                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                                 <input type="text" class="form-control" name="nombre" id="nombre"  placeholder="Ingrese su nombre" required/>
                             </div>
-                            <form:errors cssClass="label label-warning" path="nombre"/> <br>
                         </div>
                     </div>
                     
@@ -45,7 +44,6 @@
                                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
                                 <input type="text" class="form-control" name="apellidos" id="apellidos"  placeholder="Ingrese sus apellidos" required/>
                             </div>
-                            <form:errors cssClass="label label-warning" path="apellidos"/> <br>
                         </div>
                     </div>
                     
@@ -103,7 +101,7 @@
                         <button type="submit" class="btn btn-primary btn-lg btn-block login-button" name="Enviar" value="Enviar" >Registrarse</button>
                     </div>
                     <div class="login-register">
-                        <a href="<c:url value='login.jsp'/>">Iniciar sesión</a>
+                        <a href="<c:url value='/login.jsp'/>">Iniciar sesión</a>
                     </div>
                 </form>
         </c:if>

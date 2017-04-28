@@ -48,6 +48,10 @@ public class UsuarioController extends HttpServlet {
         RequestDispatcher rd;
         String action = ((request.getPathInfo() != null) ? request.getPathInfo() : "");
         switch (action) {
+            case "/registro": {
+                rd = request.getRequestDispatcher(srvViewPath + "/registro.jsp");
+                break;
+            }
             case "/editar": {
                 rd = request.getRequestDispatcher(srvViewPath + "/editar.jsp");
                 break;

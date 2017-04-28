@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,95 +15,109 @@
         <%@include file="/WEB-INF/jspf/header_min.jspf" %>
         <section class="main-login main-center">
             <c:if test="${empty param.Enviar}">
-                <form class="form-horizontal" method="POST">
+                <form:form class="form-horizontal" method="POST" modelAtribute="usuario">
 
                     <div class="form-group">
-                        <label for="dni" class="col-sm-4 control-label">DNI</label>
+                        <form:label path="dni" class="col-sm-4 control-label">DNI</form:label>
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                <input type="text" class="form-control" name="dni" id="dni"  placeholder="Ingrese su DNI" required/>
+                                <form:input class="form-control" path="dni" required/>
+                                <form:errors cssClass="error" path="dni"/><br>
                             </div>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="nombre" class="col-sm-4 control-label">Nombre</label>
+                        <form:label path="nombre" class="col-sm-4 control-label">Nombre</form:label>
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                <input type="text" class="form-control" name="nombre" id="nombre"  placeholder="Ingrese su nombre" required/>
+                                <form:input class="form-control" path="nombre" required/>
+                                <form:errors cssClass="error" path="nombre"/><br>
                             </div>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="apellidos" class="col-sm-4 control-label">Apellidos</label>
+                        <form:label path="apellidos" class="col-sm-4 control-label">Apellidos</form:label>
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                <input type="text" class="form-control" name="apellidos" id="apellidos"  placeholder="Ingrese sus apellidos" required/>
+                                <form:input class="form-control" path="apellidos" required/>
+                                <form:errors cssClass="error" path="apellidos"/><br>
                             </div>
                         </div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="direccion" class="col-sm-4 control-label">Dirección</label>
+                        <form:label path="direccion" class="col-sm-4 control-label">Dirección</form:label>
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                <input type="text" class="form-control" name="direccion" id="direccion"  placeholder="Ingrese dónde vive" required/>
+                                <form:input class="form-control" path="direccion" required/>
+                                <form:errors cssClass="error" path="direccion"/><br>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="email" class="col-sm-4 control-label">Email</label>
+                        <form:label path="email" class="col-sm-4 control-label">Email</form:label>
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                <input type="email" class="form-control" name="email" id="email"  placeholder="Ingrese su Email" required/>
+                                <form:input class="form-control" path="email" required/>
+                                <form:errors cssClass="error" path="email"/><br>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="usuario" class="col-sm-4 control-label">Usuario</label>
+                        <form:label path="usuario" class="col-sm-4 control-label">Usuario</form:label>
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                                <input type="text" class="form-control" name="usuario" id="usuario"  placeholder="Ingrese su nombre de Usuario" required/>
+                                <form:input class="form-control" path="usuario" required/>
+                                <form:errors cssClass="error" path="usuario"/><br>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="pass" class="col-sm-4 control-label">Contraseña</label>
+                        <form:label path="pass" class="col-sm-4 control-label">Contraseña</form:label>
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                <input type="password" class="form-control" name="pass" id="pass"  placeholder="Ingrese su contraseña" required/>
+                                <form:input class="form-control" path="pass" required/>
+                                <form:errors cssClass="error" path="pass"/><br>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="confirm" class="col-sm-4 control-label">Confirmar Contraseña</label>
+                        <form:label path="confirm" class="col-sm-4 control-label">Confirmar Contraseña</form:label>
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                <input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirme su contraseña" required/>
+                                <form:input type="password" class="form-control" path="confirm" required/>
+                                <form:errors cssClass="error" path="pass"/><br>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group ">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block login-button" name="Enviar" value="Enviar" >Registrarse</button>
+                        <input type="submit" class="btn btn-primary btn-lg btn-block login-button" name="Enviar" value="Registrarse" >
                     </div>
                     <div class="login-register">
                         <a href="<c:url value='/login.jsp'/>">Iniciar sesión</a>
                     </div>
-                </form>
+                </form:form>
+        </c:if>
+        <c:if test="${not empty param.Enviar}">
+             <p> Gracias ${param.name} en breves recibira un correo electronico a ${param.email} para confirmar su registro </p>
+                <div class="login-register">
+                    <a href="<c:url value='/animales'/>">Inicio</a>
+                </div>
         </c:if>
         </section>
         <!-- Pie de página minimizado -->

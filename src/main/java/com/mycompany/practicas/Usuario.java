@@ -1,9 +1,11 @@
 package com.mycompany.practicas;
 
 import java.io.Serializable;
+import javax.validation.constraints.Size;
 
 public class Usuario implements Serializable{
     private int    dni;
+    @Size(min=5,max=50)
     private String nombre;
     private String apellidos;
     private String email;

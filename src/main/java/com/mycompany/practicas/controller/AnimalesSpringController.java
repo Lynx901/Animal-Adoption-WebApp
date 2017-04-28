@@ -5,10 +5,12 @@ import com.mycompany.practicas.model.AnimalesDAO;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,11 +44,20 @@ public class AnimalesSpringController {
     @RequestMapping(value = "/crear", method = RequestMethod.POST)
     public String crearAnimal(
             @RequestParam(value = "animales", required = true)
-            @ModelAttribute("nombre") String nombre, int edad, boolean sexo, String especie, String raza,
-            String estado, boolean chip, boolean vacunas, int dnidueno, String descripcion) {
-        Animal animal = new Animal(nombre, edad, sexo, especie, raza, estado, chip, vacunas, dnidueno, descripcion);
-        animalesdao.nuevoAnimal(animal);
-        return "redirect:animales";
+            @ModelAttribute("animal") @Valid Animal a, 
+            BindingResult result, //IMPORTAN: MUST appear after @Valid attribute
+            ModelMap model) {
+        String view;
+        
+        if (!result.hasErrors()) {
+            animalesdao.nuevoAnimal(a);
+            view = "redirect:animales";
+        }else {
+            List<Animal> lanimales = animalesdao.listar();
+            model.addAttribute("animales",lanimales);
+            view="animales/crear";
+        }
+        return view;
     }
 
     /*METODO VISUALIZAR FICHA*/

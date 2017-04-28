@@ -89,7 +89,7 @@ public class AnimalesDAOJDBC implements AnimalesDAO {
         lastId++;
         System.out.println("El último ID asignado fue: " + lastId);
         a.setId(lastId);
-
+   
         String SQL_INSERT = "insert into Animales (nombre, edad, sexo, especie, raza, estado, chip, vacunas, dnidueno, descripcion)"
                             + " values(?,?,?,?,?,?,?,?,?,?)";
         Integer insertados = 0;
@@ -155,5 +155,6 @@ public class AnimalesDAOJDBC implements AnimalesDAO {
         }
         return null;
     }
+    
 
 }

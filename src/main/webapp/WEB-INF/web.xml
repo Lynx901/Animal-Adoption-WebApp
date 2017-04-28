@@ -59,7 +59,7 @@
     <error-page>
         <location>/error.jsp</location>
     </error-page>
-    <!-- Comentando temporalmente para la implementación de Spring MVC
+    
     <security-constraint>
         <display-name>Constraint1</display-name>
         <web-resource-collection>
@@ -77,7 +77,7 @@
             <role-name>USUARIOS</role-name>
             <role-name>ADMINISTRADORES</role-name>
         </auth-constraint>
-    </security-constraint> -->
+    </security-constraint>
     <login-config>
         <auth-method>FORM</auth-method>
         <form-login-config>

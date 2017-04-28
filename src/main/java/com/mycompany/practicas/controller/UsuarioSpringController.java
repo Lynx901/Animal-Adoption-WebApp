@@ -27,51 +27,52 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 @RequestMapping("/Practicas")
 @SessionAttributes("usuarios")
 public class UsuarioSpringController {
-     @Autowired 
-     @Qualifier("UsuarioDAOJDBC")
-     private UsuarioDAO usuariosdao; 
-     
-     public UsuarioSpringController(){
-     }
-     
-         @ModelAttribute
-private void configView(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
-    //Common variables for Views
-    model.addAttribute("srvUrl", request.getContextPath()+request.getServletPath()+"/clientes");
-    model.addAttribute("imgUrl", request.getContextPath()+"/images");
-}
-     /*METODO PERFIL GET*/
-    @RequestMapping(value="/perfil", method=RequestMethod.GET)
+
+    @Autowired
+    @Qualifier("UsuarioDAOJDBC")
+    private UsuarioDAO usuariosdao;
+
+    public UsuarioSpringController() {
+    }
+
+    @ModelAttribute
+    private void configView(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
+        //Common variables for Views
+        model.addAttribute("srvUrl", request.getContextPath() + request.getServletPath() + "/clientes");
+        model.addAttribute("imgUrl", request.getContextPath() + "/images");
+    }
+
+    /*METODO PERFIL GET*/
+    @RequestMapping(value = "/perfil", method = RequestMethod.GET)
     public String verUsuario() {
         return "usuarios/perfil";
     }
-    
+
     /*METODO REGISTRO POST*/
-    @RequestMapping(value="/registro", method=RequestMethod.POST)
+    @RequestMapping(value = "/registro", method = RequestMethod.POST)
     public String registroUsuario(
-                               @RequestParam(value="usuarios", required=true) 
-                              @ModelAttribute("dni")int dni , String nombre, String apellidos, String email, String direccion, 
-                              String usuario, String pass) {
-        Usuario u = new Usuario(dni,nombre,apellidos,email,direccion,usuario,pass); 
+            @RequestParam(value = "usuarios", required = true)
+            @ModelAttribute("dni") int dni, String nombre, String apellidos, String email, String direccion,
+            String usuario, String pass) {
+        Usuario u = new Usuario(dni, nombre, apellidos, email, direccion, usuario, pass);
         usuariosdao.nuevoUsuario(u);
         return "redirect:animales";
     }
-    
-     /*METODO EDITAR GET Y POST*/
-    @RequestMapping(value="/editar", method=RequestMethod.GET)
+
+    /*METODO EDITAR GET Y POST*/
+    @RequestMapping(value = "/editar", method = RequestMethod.GET)
     public String editarUsuario() {
         return "usuarios/editar";
     }
-    
-    @RequestMapping(value="/editar", method=RequestMethod.POST)
+
+    @RequestMapping(value = "/editar", method = RequestMethod.POST)
     public String editarUsuario(
-                               @RequestParam(value="usuarios", required=true) 
-                              @ModelAttribute("dni")int dni , String nombre, String apellidos, String email, String direccion, 
-                              String usuario, String pass) {
-        Usuario u = new Usuario(dni,nombre,apellidos,email,direccion,usuario,pass); 
+            @RequestParam(value = "usuarios", required = true)
+            @ModelAttribute("dni") int dni, String nombre, String apellidos, String email, String direccion,
+            String usuario, String pass) {
+        Usuario u = new Usuario(dni, nombre, apellidos, email, direccion, usuario, pass);
         usuariosdao.editar(u);
         return "redirect:animales";
     }
-    
-    
+
 }

@@ -43,7 +43,7 @@
                     <button type="submit" class="btn btn-primary btn-lg btn-block login-button" name="Enviar" value="Enviar">Iniciar sesión</button>
                 </div>
                 <div class="login-register">
-                    <a href="<c:url value='/registro'/>">Registrarse</a>
+                    <a href="<c:url value='/usuarios/registro'/>">Registrarse</a>
                 </div>
             </form>
 

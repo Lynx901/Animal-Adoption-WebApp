@@ -1,5 +1,9 @@
 package com.mycompany.practicas;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
+
 
 public class Animal {
     /*ID Autonumerico*/
@@ -7,7 +11,10 @@ public class Animal {
     private int duenio;
 
     private int id;
+    @Size(min=5,max=50, message="El tamaño del nombre debe estar entre 5 y 50 caracteres")
     private String  nombre;
+    @Min(value=0, message="Los animales no pueden ser menores de 0 años")
+    @Max(value=100, message="Los animales no pueden tener mas de 100 años")
     private int     edad;
     private boolean sexo;  // True si es macho, false si es hembra
 

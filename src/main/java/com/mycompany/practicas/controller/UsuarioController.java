@@ -96,7 +96,7 @@ public class UsuarioController extends HttpServlet {
                     response.sendRedirect("usuarios");
                 } else { //Show form with validation errors
                     request.setAttribute("usuario", u);
-                    RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/register.jsp");
+                    RequestDispatcher rd = request.getRequestDispatcher(srvViewPath + "/registro.jsp");
                     rd.forward(request, response);
                 }
                 break;

@@ -5,6 +5,7 @@ import com.mycompany.practicas.model.AnimalesDAO;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -42,10 +43,8 @@ public class AnimalesSpringController {
     @RequestMapping(value = "/crear", method = RequestMethod.POST)
     public String crearAnimal(
             @RequestParam(value = "animales", required = true)
-            @ModelAttribute("nombre") String nombre, int edad, boolean sexo, String especie, String raza,
-            String estado, boolean chip, boolean vacunas, int dnidueno, String descripcion) {
-        Animal animal = new Animal(nombre, edad, sexo, especie, raza, estado, chip, vacunas, dnidueno, descripcion);
-        animalesdao.nuevoAnimal(animal);
+            @ModelAttribute("animal") @Valid Animal a) {
+        animalesdao.nuevoAnimal(a);
         return "redirect:animales";
     }
 

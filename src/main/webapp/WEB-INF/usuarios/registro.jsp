@@ -15,14 +15,14 @@
         <%@include file="/WEB-INF/jspf/header_min.jspf" %>
         <section class="main-login main-center">
             <c:if test="${empty param.Enviar}">
-                <form:form class="form-horizontal" method="POST" modelAtribute="usuario">
+                <form:form class="form-horizontal" method="POST" modelAttribute="usuario">
 
                     <div class="form-group">
                         <form:label path="dni" class="col-sm-4 control-label">DNI</form:label>
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                <form:input class="form-control" path="dni" required/>
+                                <form:input class="form-control" path="dni" />
                                 <form:errors cssClass="error" path="dni"/><br>
                             </div>
                         </div>

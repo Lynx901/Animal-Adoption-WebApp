@@ -2,11 +2,10 @@ package com.mycompany.practicas.model;
 
 import com.mycompany.practicas.Animal;
 import java.util.List;
-import org.springframework.stereotype.Repository;
 
 public interface AnimalesDAO {
     List<Animal> listar();
-    boolean nuevoAnimal(Animal a);
+    boolean nuevoAnimal(Animal a, int dnidueno);
     Animal encontrarID(int id);
     Animal encontrarNombre(String nombre);
     void editar(Animal a);

@@ -9,11 +9,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span> 
                 </button>
-                <a class="navbar-brand" href="<c:url value='/animales'/>">Animal Adoption</a>
+                <a class="navbar-brand" href="<c:url value='/inicio/animales/listado'/>">Animal Adoption</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li><a href="<c:url value='/animales'/>">Inicio</a></li>
+                    <li><a href="<c:url value='/inicio/animales/listado'/>">Inicio</a></li>
                     <li><a href="<c:url value='/info.jsp'/>">¿Quienes Somos?</a></li> 
                     <li><a href="<c:url value='/faqs.jsp'/>">Preguntas Frecuentes</a></li> 
                 </ul>

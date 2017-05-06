@@ -1,6 +1,7 @@
 package com.mycompany.practicas.model;
 
 import com.mycompany.practicas.Animal;
+import com.mycompany.practicas.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +20,6 @@ import org.springframework.stereotype.Repository;
 /**
  * JDBC DAO implementation
  */
-
 @Repository("AnimalesDAOJDBC")
 public class AnimalesDAOJDBC implements AnimalesDAO {
 
@@ -85,7 +85,14 @@ public class AnimalesDAOJDBC implements AnimalesDAO {
     }
 
     @Override
-    public boolean nuevoAnimal(Animal a) {
+    public boolean nuevoAnimal(Animal a, int dnidueno) {
+        UsuarioDAOJDBC usuarios = new UsuarioDAOJDBC();
+        Usuario u = usuarios.encontrarPorDNI(dnidueno);
+        System.out.println("El usuario es " + u.getUsuario());
+        System.out.println("Las mascotas son: " + u.getMascotas().toString());
+        System.out.println("El animal se llama " + a.getNombre());
+        u.getMascotas().add(a);
+        System.out.println("Aqui llega");
         lastId++;
         System.out.println("El último ID asignado fue: " + lastId);
         a.setId(lastId);
@@ -104,7 +111,7 @@ public class AnimalesDAOJDBC implements AnimalesDAO {
             stmn.setString(6, a.getEstado());
             stmn.setBoolean(7, a.isChip());
             stmn.setBoolean(8, a.isVacunas());
-            stmn.setInt(9, a.getDuenio());
+            stmn.setInt(9, dnidueno);
             stmn.setString(10, a.getDescripcion());
             insertados = stmn.executeUpdate();
 

@@ -1,5 +1,6 @@
 package com.mycompany.practicas.model;
 
+import com.mycompany.practicas.Animal;
 import com.mycompany.practicas.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -57,6 +58,25 @@ public class UsuarioDAOJDBC implements UsuarioDAO {
         }
         return u;
     }
+    
+    private static Animal animalesMapper(ResultSet rs) throws SQLException {
+        Animal a = null;
+        try {
+            a = new Animal(rs.getString("nombre"),
+                           rs.getInt("edad"),
+                           rs.getBoolean("sexo"),
+                           rs.getString("especie"),
+                           rs.getString("raza"),
+                           rs.getString("estado"),
+                           rs.getBoolean("chip"),
+                           rs.getBoolean("vacunas"),
+                           rs.getInt("dnidueno"),
+                           rs.getString("descripcion"));
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return a;
+    }
 
     @Override
     public List<Usuario> listar() {
@@ -73,6 +93,23 @@ public class UsuarioDAOJDBC implements UsuarioDAO {
             Logger.getLogger(UsuarioDAOJDBC.class.getName()).log(Level.SEVERE, null, ex);
         }
         return usuarios;
+    }
+    
+    @Override
+    public List<Animal> listarMascotas(Usuario u) {
+        String SQL_BUSCATODOS = "Select * from animales where dnidueno=" + u.getDni();
+        List<Animal> mascotas = new ArrayList<>();
+        try (
+                Connection conn = ds.getConnection(); //Obtenemos conexión del pool de conexiones
+                Statement st = conn.createStatement();
+                ResultSet rs = st.executeQuery(SQL_BUSCATODOS);) {
+            while (rs.next()) {
+                mascotas.add(animalesMapper(rs));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAOJDBC.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return mascotas;
     }
 
     @Override

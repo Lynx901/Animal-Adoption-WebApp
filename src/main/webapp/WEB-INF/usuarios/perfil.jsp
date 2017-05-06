@@ -17,34 +17,60 @@
         <main class="row">
             <!--Seccion Principal-->
             <section class="col-md-12 col-sm-12 col-xs-12">
-                <article class="col-md-offset-2 col-md-8 col-sm-8 col-xs-12">
-                    <div class="thumbnail zoom">
+                <div class="row">
+                    <div class="col-md-offset-1 col-md-4 col-sm-6 col-xs-12">
                         <img class="img-responsive photo-animal" src="<c:url value='/img/usuarios/${usuario.dni}.png'/>" alt="Foto de ${usuario.nombre}"/>
-                        <footer class="color">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <h4 class="centered">${usuario.nombre} ${usuario.apellidos}</h4>
-                                    <p class="centered">
-                                        <a href="<c:url value='#'/>">
-                                            <i class="rrss fa fa-facebook fa-3x" aria-hidden="true"></i>
-                                        </a>
-                                        <a href="<c:url value='#'/>">
-                                            <i class="rrss fa fa-twitter fa-3x" aria-hidden="true"></i>
-                                        </a>
-                                        <a href="<c:url value='#'/>">
-                                            <i class="rrss fa fa-linkedin fa-3x" aria-hidden="true"></i>
-                                        </a>
-                                    </p>
-                                </div>
-                            </div>
-                        </footer>
-                        <nav aria-label="...">
-                            <ul class="pager">
-                                <li><a href='<c:url value='/usuarios/editar'/>'>Editar información</a></li>
-                            </ul>
-                        </nav>
                     </div>
-                </article>
+
+                    <div class="col-md-7 color">
+                        <h4 class="centered">${usuario.nombre} ${usuario.apellidos}</h4>
+                        <p class="centered">
+                            <a href="<c:url value='#'/>">
+                                <i class="rrss fa fa-facebook fa-3x" aria-hidden="true"></i>
+                            </a>
+                            <a href="<c:url value='#'/>">
+                                <i class="rrss fa fa-twitter fa-3x" aria-hidden="true"></i>
+                            </a>
+                            <a href="<c:url value='#'/>">
+                                <i class="rrss fa fa-linkedin fa-3x" aria-hidden="true"></i>
+                            </a>
+                        </p>
+
+                        <c:if test="${empty mascotas}">
+                            <p class="centered">NO TIENE NINGUNA MASCOTA</p>
+                        </c:if>
+                        <c:if test="${not empty mascotas}">
+                            <section class="col-md-12 col-sm-12 col-xs-12">
+                                <h4 class="centered">Mascotas disponibles</h4>
+                                <div class="row">
+                                    <c:forEach var="m" items="${mascotas}">
+                                        <c:set var="qry" value="?id=${m.nombre}"/>
+                                        <article class="col-md-4 col-sm-6 col-xs-12">
+                                            <div class="thumbnail zoom">
+                                                <a href="<c:url value='/inicio/animales/ficha${qry}'/>">
+                                                    <img class="img-responsive photo-animal" src="<c:url value='/img/${m.especie}-placeholder.jpg'/>" alt="Foto del animal"/>
+                                                    <footer class="color">
+                                                        <div class="row">
+                                                            <img class="col-md-2 col-sm-1 col-xs-1 usr-ph img-circle" src="<c:url value='/img/usuarios/${m.duenio}.png'/>" alt="Foto de ${m.duenio}"/>
+                                                            <div class="col-md-7">
+                                                                <h4>${m.nombre}</h4>
+                                                                <p>${m.duenio}</p>
+                                                            </div>
+                                                        </div>
+                                                    </footer>
+                                                </a>
+                                            </div>
+                                        </article>
+                                    </c:forEach>
+                                </div>
+
+                            </section>
+                        </c:if>
+
+                        <a class="btn btn-primary btn-centered" href='<c:url value='/inicio/usuarios/editar'/>'>Editar información</a>
+                    </div>
+
+                </div>
             </section>
         </main>
         <!-- Pie de página general -->

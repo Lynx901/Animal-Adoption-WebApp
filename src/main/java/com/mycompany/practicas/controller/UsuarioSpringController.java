@@ -1,8 +1,10 @@
 package com.mycompany.practicas.controller;
 
+import com.mycompany.practicas.Animal;
 import com.mycompany.practicas.Usuario;
 import com.mycompany.practicas.model.UsuarioDAO;
 import java.security.Principal;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -41,7 +43,9 @@ public class UsuarioSpringController {
     public String verUsuario(ModelMap model,
                              Principal principal) {
         Usuario u = usuariosDAO.encontrarPorLogin(principal.getName());
+        List<Animal> m = usuariosDAO.listarMascotas(u);
         model.addAttribute("usuario", u);
+        model.addAttribute("mascotas", m);
         return "usuarios/perfil";
     }
 
@@ -49,7 +53,7 @@ public class UsuarioSpringController {
     
     @RequestMapping(value = "/registro", method = RequestMethod.GET)
     public String registroUsuario(ModelMap model) {
-        model.addAttribute("usuario",new Usuario());
+        model.addAttribute("usuario", new Usuario());
         return "usuarios/registro";
     }
     
@@ -58,7 +62,7 @@ public class UsuarioSpringController {
     public String registroUsuario(
             @ModelAttribute("usuario") @Valid Usuario u,
             BindingResult result, ModelMap model) {
-       String view="redirect:animales"; 
+       String view = "redirect:animales"; 
        
        if (!result.hasErrors()) {
          usuariosDAO.nuevoUsuario(u);

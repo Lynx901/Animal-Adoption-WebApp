@@ -1,6 +1,7 @@
 package com.mycompany.practicas.controller;
 
 import com.mycompany.practicas.Animal;
+import com.mycompany.practicas.Usuario;
 //import com.mycompany.practicas.model.AnimalesDAO;
 import com.mycompany.practicas.model.AnimalesDAOJDBC;
 import java.io.IOException;
@@ -17,13 +18,14 @@ public class AnimalesController extends HttpServlet {
 
     private final String srvViewPath = "/WEB-INF/animales";
     private AnimalesDAOJDBC animales;
+    private Usuario u;
     private String srvUrl;
     private String imgUrl;
 
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
         super.init(servletConfig);
-
+        
         animales = new AnimalesDAOJDBC();
     }
 
@@ -31,6 +33,10 @@ public class AnimalesController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8"); //Aceptar caracteres acentuados y ñ
         response.setHeader("Expires", "0"); //Avoid browser caching response
+        u = (Usuario) request.getSession().getAttribute("usuario");
+        if (u == null) {
+            u = new Usuario();  
+        }
 
     }
 
@@ -103,7 +109,7 @@ public class AnimalesController extends HttpServlet {
 
                 Animal a = new Animal(nombre, edad, sexo, especie, raza, estado, chip, vacunas, dni, description);
                 if (validar(a) && dni != 0) {
-                    animales.nuevoAnimal(a);
+                    animales.nuevoAnimal(a, u.getDni());
                     //Post-sent-redirect
                     response.sendRedirect("animales");
                 } else { //Show form with validation errors

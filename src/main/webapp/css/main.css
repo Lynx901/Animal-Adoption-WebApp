@@ -120,3 +120,9 @@ footer .container {
     padding: 5px;
     width: 100%;
 }
+
+.btn-centered {
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+}

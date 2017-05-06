@@ -1,6 +1,8 @@
 package com.mycompany.practicas;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -17,6 +19,8 @@ public class Usuario implements Serializable{
     private String direccion;
     private String usuario;
     private String pass;
+    
+    private List<Animal> mascotas;
 
     public Usuario () {
         dni         = 0;
@@ -26,6 +30,7 @@ public class Usuario implements Serializable{
         direccion   = "";
         usuario     = "";
         pass        = "";
+        mascotas    = new ArrayList<>();
     }
     
     public Usuario (int _dni, String _nombre, String _apellidos,
@@ -37,6 +42,7 @@ public class Usuario implements Serializable{
         direccion   = _direccion;
         usuario     = _usuario;
         pass        = _pass;
+        mascotas    = new ArrayList<>();
     }
 
     /**
@@ -137,4 +143,10 @@ public class Usuario implements Serializable{
         this.pass = pass;
     }
 
+    /**
+     * @return the mascotas
+     */
+    public List<Animal> getMascotas() {
+        return mascotas;
+    }
 }

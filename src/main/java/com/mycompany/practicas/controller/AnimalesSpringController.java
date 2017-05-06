@@ -1,7 +1,10 @@
 package com.mycompany.practicas.controller;
 
 import com.mycompany.practicas.Animal;
+import com.mycompany.practicas.Usuario;
 import com.mycompany.practicas.model.AnimalesDAO;
+import com.mycompany.practicas.model.UsuarioDAOJDBC;
+import java.security.Principal;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +28,11 @@ public class AnimalesSpringController {
     @Autowired
     @Qualifier("AnimalesDAOJDBC")
     private AnimalesDAO animalesDAO;
+    
+    @Autowired
+    @Qualifier("UsuarioDAOJDBC")
+    private UsuarioDAOJDBC usuariosDAO;
+
 
     public AnimalesSpringController() {
     }
@@ -64,10 +72,12 @@ public class AnimalesSpringController {
     @RequestMapping(value = "/crear", method = RequestMethod.POST)
     public String crearAnimal(@ModelAttribute("animal") @Valid Animal a,
                               BindingResult result,
-                              ModelMap model) {
+                              ModelMap model,
+                              Principal principal) {
         String vista = "redirect:listado";
+        Usuario u = usuariosDAO.encontrarPorLogin(principal.getName());
         if(!result.hasErrors()) {
-            animalesDAO.nuevoAnimal(a);
+            animalesDAO.nuevoAnimal(a, u.getDni());
             model.clear();
         } else {
             vista = "animales/crear";

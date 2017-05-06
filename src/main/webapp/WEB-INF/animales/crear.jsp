@@ -41,7 +41,7 @@
                             <div class="col-md-6">
                                 <form:input path="edad" class="form-control input-md"/>
                                 <span class="help-block">Debe ser un número mayor que 0</span> 
-                                <form:errors cssClass="alert alert-danger" path="edad"/>
+                                
                             </div>
                         </div>
                         

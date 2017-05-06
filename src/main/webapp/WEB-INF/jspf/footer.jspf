@@ -40,7 +40,7 @@
                 </center>
             </div>
         </div>
-        <div class="row">
+        <div class="row abajo">
             <p><center><a href="<c:url value='/contact.jsp'/>">Contacto</a> <p>Copyright &copy; 2017</p></center>
         </div>
     </div>

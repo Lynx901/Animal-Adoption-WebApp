@@ -147,6 +147,7 @@ public class AnimalesDAOJDBC implements AnimalesDAO {
         return null;
     }
 
+    @Override
     public Animal encontrarNombre(String nombre) {
         for (Animal a : listar()) {
             if (nombre.equals(a.getNombre())) {

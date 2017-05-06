@@ -1,0 +1,44 @@
+body { 
+    padding-top: 70px; /* This is to avoid the nav to overlay the page */ 
+    background-color: #d3d3d3;
+} 
+
+div {
+    text-align: center;
+}
+
+.servlet {
+    background-color: #ccccff;
+}
+
+.servlet:hover {
+    background-color: #fff;
+}
+
+.servlet a {
+    color: #000;
+}
+
+.servlet a:hover {
+    text-decoration: none;
+}
+
+.spring {
+    background-color: #66ff66;
+}
+
+.spring:hover {
+    background-color: #eee;
+}
+
+.spring a {
+    color: #000;
+}
+
+.spring a:hover {
+    text-decoration: none;
+}
+
+footer {
+    margin-top: 20px;
+}

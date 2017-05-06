@@ -8,5 +8,6 @@ public interface AnimalesDAO {
     List<Animal> listar();
     boolean nuevoAnimal(Animal a);
     Animal encontrarID(int id);
+    Animal encontrarNombre(String nombre);
     void editar(Animal a);
 }

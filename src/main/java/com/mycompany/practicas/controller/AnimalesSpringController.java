@@ -17,12 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
-@RequestMapping("/Practicas/animales")
+@RequestMapping("/animales")
+@SessionAttributes("animales")
 public class AnimalesSpringController {
 
     @Autowired
     @Qualifier("AnimalesDAOJDBC")
-    private AnimalesDAO animalesdao;
+    private AnimalesDAO animalesDAO;
 
     public AnimalesSpringController() {
     }
@@ -30,34 +31,45 @@ public class AnimalesSpringController {
     @ModelAttribute
     private void configView(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
         //Common variables for Views
-        model.addAttribute("srvUrl", request.getContextPath() + request.getServletPath() + "/clientes");
+        model.addAttribute("srvUrl", request.getContextPath() + request.getServletPath() + "/animales");
         model.addAttribute("imgUrl", request.getContextPath() + "/images");
+    }
+    
+    /* Lista todos los animales de la BBDD */
+    @RequestMapping(value = "/listado", method = RequestMethod.GET)
+    public String listarAnimales(ModelMap model) {
+        List<Animal> listaAnimales = animalesDAO.listar();
+        model.addAttribute("animales", listaAnimales);
+        return "animales/listado";
+    }
+    
+    /* Lleva a la ficha del animal pinchado */
+    @RequestMapping(value = "/ficha", method = RequestMethod.GET)
+    public String verAnimal(ModelMap model,
+                            @RequestParam(value = "id") String id) {
+        Animal a = animalesDAO.encontrarNombre(id);
+        model.addAttribute("animal", a);
+        return "animales/ficha";
     }
 
     /*METODO CREAR GET Y POST*/
     @RequestMapping(value = "/crear", method = RequestMethod.GET)
-    public String crearAnimal() {
-        return "animales/crear";
+    public String formCrear(Animal a) {
+        return "redirect:crear";
     }
 
     @RequestMapping(value = "/crear", method = RequestMethod.POST)
     public String crearAnimal(
             @RequestParam(value = "animales", required = true)
-            @ModelAttribute("animal") @Valid Animal a) {
-        animalesdao.nuevoAnimal(a);
+            @ModelAttribute("animales") @Valid Animal a) {
+        animalesDAO.nuevoAnimal(a);
         return "redirect:animales";
-    }
-
-    /*METODO VISUALIZAR FICHA*/
-    @RequestMapping(value = "/ficha", method = RequestMethod.GET)
-    public String verAnimal() {
-        return "animales/ficha";
     }
 
     /*METODO EDITAR*/
     @RequestMapping(value = "/editar", method = RequestMethod.GET)
     public String editarAnimal() {
-        return "animales/editar";
+        return "redirect:editar";
     }
 
     @RequestMapping(value = "/editar", method = RequestMethod.POST)
@@ -66,16 +78,8 @@ public class AnimalesSpringController {
             @ModelAttribute("nombre") String nombre, int edad, boolean sexo, String especie, String raza,
             String estado, boolean chip, boolean vacunas, int dnidueno, String descripcion) {
         Animal animal = new Animal(nombre, edad, sexo, especie, raza, estado, chip, vacunas, dnidueno, descripcion);
-        animalesdao.editar(animal);
+        animalesDAO.editar(animal);
         return "redirect:animales";
-    }
-
-    /*METODO POR DEFECTO LISTAR ANIMALES*/
-    @RequestMapping(value = "/animales", method = RequestMethod.GET)
-    public String listarAnimales(ModelMap model) {
-        List<Animal> animales = animalesdao.listar();
-        model.addAttribute("animales", animales);
-        return "animales/listado";
     }
 
 }

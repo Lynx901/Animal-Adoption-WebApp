@@ -19,8 +19,7 @@
             <!-- Panel de navegación lateral -->
             <%@include file="/WEB-INF/jspf/navigation.jspf" %>
             <section class="col-md-offset-1 col-sm-offset-1 col-md-7 col-sm-7">
-
-                <form:form method="POST" class="form-horizontal" modelAtribute="animal">
+                <form:form method="POST" class="form-horizontal" modelAttribute="animal">
                     <fieldset>
 
                         <!-- Form Name -->
@@ -51,11 +50,11 @@
                             <form:label class="col-md-4 control-label" path="sexo">Sexo</form:label>
                             <div class="col-md-4"> 
                                 <form:label class="radio-inline" path="sexo-0">
-                                    <form:input path="sexo" type="radio" name="sexo" id="sexo-0" value="true" checked="checked" />
+                                    <form:radiobutton path="sexo" name="sexo" id="sexo-0" value="true" checked="checked"/>
                                     Macho
                                 </form:label> 
                                 <form:label class="radio-inline" path="sexo-1">
-                                    <form:input path="sexo" type="radio" name="sexo" id="sexo-1" value="false" />
+                                    <form:radiobutton path="sexo" name="sexo" id="sexo-1" value="false" checked="checked"/>
                                     Hembra
                                 </form:label>
                             </div>
@@ -92,7 +91,7 @@
                         <div class="form-group">
                             <form:label class="col-md-4 control-label" path="estado">Estado de salud</form:label>  
                             <div class="col-md-6">
-                                <form:input path="estado" id="estado" name="estado" type="text" placeholder="Perfecto" class="form-control input-md" required="">
+                                <form:input path="estado" id="estado" name="estado" type="text" placeholder="Perfecto" class="form-control input-md" required="" />
                                 <form:errors cssClass="error" path="estado"/><br>
                             </div>
                         </div>
@@ -102,11 +101,11 @@
                             <form:label class="col-md-4 control-label" path="chip">¿Tiene chip?</form:label>
                             <div class="col-md-4"> 
                                 <form:label class="radio-inline" path="chip-0">
-                                    <form:input path="chip-0" type="radio" name="chip" id="chip-0" value="true" checked="checked">
+                                    <form:input path="chip-0" type="radio" name="chip" id="chip-0" value="true" checked="checked" />
                                     Sí
                                 </form:label> 
                                 <form:label class="radio-inline" path="chip-1">
-                                    <form:input path="chip-1" type="radio" name="chip" id="chip-1" value="false">
+                                    <form:input path="chip-1" type="radio" name="chip" id="chip-1" value="false" />
                                     No
                                 </form:label>
                             </div>
@@ -114,14 +113,14 @@
 
                         <!-- Multiple Radios (inline) -->
                         <div class="form-group">
-                            <form:label class="col-md-4 control-label" path="vacunas">¿Está vacunado?</label>
+                            <form:label class="col-md-4 control-label" path="vacunas">¿Está vacunado?</form:label>
                             <div class="col-md-4"> 
                                 <form:label class="radio-inline" path="vacunas-0">
-                                    <form:input path="vacunas-0" type="radio" name="vacunas" id="vacunas-0" value="true" checked="checked">
+                                    <form:radiobutton path="vacunas-0" name="vacunas" id="vacunas-0" value="true" checked="checked"/>
                                     Sí
                                 </form:label> 
                                 <form:label class="radio-inline" path="vacunas-1">
-                                    <form:input path="vacunas-1" type="radio" name="vacunas" id="vacunas-1" value="false">
+                                    <form:radiobutton path="vacunas-1" name="vacunas" id="vacunas-1" value="false"/>
                                     No
                                 </form:label>
                             </div>
@@ -130,13 +129,13 @@
                         <!-- Textarea -->
                         <div class="form-group">
                             <form:label class="col-md-4 control-label" path="description">¡Cuéntanos algo de él!</form:label>
-                            <div class="col-md-4">                     
-                                <form:textarea path="description" class="form-control col-md-6" id="description" name="description">Es muy activo, le gusta...</form:textarea>
+                            <div class="col-md-4"> 
+                                <form:textarea path="description" class="form-control col-md-6" id="description" name="description"/>
                                 <form:errors cssClass="error" path="description"/><br>
                             </div>
                         </div>
                         <div class="form-group ">
-                            <input type="submit" class="btn btn-primary btn-lg btn-block login-button" name="enviar" value="Enviar" >Enviar datos</form:button>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block login-button" name="enviar" value="Enviar" >Enviar datos</button>
                         </div>
                     </fieldset>
                 </form:form>

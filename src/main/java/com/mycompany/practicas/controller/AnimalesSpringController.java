@@ -33,7 +33,7 @@ public class AnimalesSpringController {
     private void configView(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
         //Common variables for Views
         model.addAttribute("srvUrl", request.getContextPath() + request.getServletPath() + "/animales");
-        model.addAttribute("imgUrl", request.getContextPath() + "/images");
+        model.addAttribute("imgUrl", request.getContextPath() + "/img");
     }
     
     /* Lista todos los animales de la BBDD */

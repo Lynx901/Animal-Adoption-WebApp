@@ -2,6 +2,7 @@ package com.mycompany.practicas.controller;
 
 import com.mycompany.practicas.Usuario;
 import com.mycompany.practicas.model.UsuarioDAO;
+import java.security.Principal;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -17,13 +18,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
-@RequestMapping("/Practicas")
-@SessionAttributes("usuarios")
+@RequestMapping("/usuarios")
+@SessionAttributes("usuario")
 public class UsuarioSpringController {
 
     @Autowired
     @Qualifier("UsuarioDAOJDBC")
-    private UsuarioDAO usuariosdao;
+    private UsuarioDAO usuariosDAO;
 
     public UsuarioSpringController() {
     }
@@ -31,13 +32,16 @@ public class UsuarioSpringController {
     @ModelAttribute
     private void configView(HttpServletRequest request, HttpServletResponse response, ModelMap model) {
         //Common variables for Views
-        model.addAttribute("srvUrl", request.getContextPath() + request.getServletPath() + "/clientes");
-        model.addAttribute("imgUrl", request.getContextPath() + "/images");
+        model.addAttribute("srvUrl", request.getContextPath() + request.getServletPath() + "/usuarios");
+        model.addAttribute("imgUrl", request.getContextPath() + "/img");
     }
 
-    /*METODO PERFIL GET*/
+    /* GET para mostrar el perfil*/
     @RequestMapping(value = "/perfil", method = RequestMethod.GET)
-    public String verUsuario() {
+    public String verUsuario(ModelMap model,
+                             Principal principal) {
+        Usuario u = usuariosDAO.encontrarPorLogin(principal.getName());
+        model.addAttribute("usuario", u);
         return "usuarios/perfil";
     }
 
@@ -57,7 +61,7 @@ public class UsuarioSpringController {
        String view="redirect:animales"; 
        
        if (!result.hasErrors()) {
-         usuariosdao.nuevoUsuario(u);
+         usuariosDAO.nuevoUsuario(u);
          model.clear();
         }else {
             view="usuarios/registro"; //Show error, and ask for correct data
@@ -77,7 +81,7 @@ public class UsuarioSpringController {
             @ModelAttribute("dni") int dni, String nombre, String apellidos, String email, String direccion,
             String usuario, String pass) {
         Usuario u = new Usuario(dni, nombre, apellidos, email, direccion, usuario, pass);
-        usuariosdao.editar(u);
+        usuariosDAO.editar(u);
         return "redirect:animales";
     }
 

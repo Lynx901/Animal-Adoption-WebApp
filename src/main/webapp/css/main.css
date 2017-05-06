@@ -75,6 +75,7 @@ transform: scale(1.05);
     width: 100%;
     height: 60px;
     background-color: #FC0;
+    margin-top: 20px;
 }
 
 footer .container {

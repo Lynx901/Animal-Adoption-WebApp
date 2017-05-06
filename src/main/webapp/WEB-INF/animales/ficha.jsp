@@ -19,12 +19,12 @@
             <%@include file="/WEB-INF/jspf/navigation.jspf" %>
             <section class="col-md-10">
                 <div class="col-md-5 thumbnail">
-                    <img class="img-responsive photo-animal" src="<c:url value='../img/${animal.especie}-placeholder.jpg'/>" alt="Foto del animal"/>
+                    <img class="img-responsive photo-animal" src="<c:url value='/img/${animal.especie}-placeholder.jpg'/>" alt="Foto del animal"/>
                 </div>
                 <aside class="col-md-offset-1 col-md-6 color">
                     <h2>${param.nombre}</h2>
                     <div class="row">
-                        <img class="col-md-2 usr-ph img-circle" src="<c:url value='../img/usuarios/${animal.duenio}.png'/>" alt="Foto del usuario"/>
+                        <img class="col-md-2 usr-ph img-circle" src="<c:url value='/img/usuarios/${animal.duenio}.png'/>" alt="Foto del usuario"/>
                         <div class="col-md-9">
                             <h4>${animal.nombre}</h4>
                             <p>XX Km</p>

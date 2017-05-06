@@ -30,7 +30,7 @@
                             <c:if test="${a.raza eq param.raza}">
                                 <article class="col-md-4 col-sm-6 col-xs-12">
                                     <div class="thumbnail zoom">
-                                        <a href="<c:url value='/indice/animales/ficha${qry}'/>">
+                                        <a href="<c:url value='/inicio/animales/ficha${qry}'/>">
                                             <img class="img-responsive photo-animal" src="<c:url value='/img/${a.especie}-placeholder.jpg'/>" alt="Foto del animal"/>
                                             <footer class="color">
                                                 <div class="row">
@@ -52,7 +52,7 @@
                                 <c:set var="qry" value="?id=${a.nombre}"/>
                                 <article class="col-md-4 col-sm-6 col-xs-12">
                                     <div class="thumbnail zoom">
-                                        <a href="<c:url value='/indice/animales/ficha${qry}'/>">
+                                        <a href="<c:url value='/inicio/animales/ficha${qry}'/>">
                                             <img class="img-responsive photo-animal" src="<c:url value='/img/${a.especie}-placeholder.jpg'/>" alt="Foto del animal"/>
                                             <footer class="color">
                                                 <div class="row">
@@ -73,7 +73,7 @@
             </c:if>
             <nav aria-label="...">
                 <ul class="pager">
-                    <li><a href='<c:url value='/indice/animales/crear'/>'>Añadir un animal nuevo</a></li>
+                    <li><a href='<c:url value='/inicio/animales/crear'/>'>Añadir un animal nuevo</a></li>
                 </ul>
             </nav>
         </main>

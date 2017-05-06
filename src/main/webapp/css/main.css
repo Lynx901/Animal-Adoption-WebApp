@@ -107,3 +107,16 @@ footer .container {
 .centered {
     text-align: center;
 }
+
+.right-align {
+    text-align: right;
+}
+
+.control-label {
+    padding-top: -7px;
+}
+
+.alert-danger {
+    padding: 5px;
+    width: 100%;
+}

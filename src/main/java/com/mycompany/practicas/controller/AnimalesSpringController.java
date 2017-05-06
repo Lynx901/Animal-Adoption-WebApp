@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -52,18 +53,26 @@ public class AnimalesSpringController {
         return "animales/ficha";
     }
 
-    /*METODO CREAR GET Y POST*/
+    /* GET para crear los animales nuevos */
     @RequestMapping(value = "/crear", method = RequestMethod.GET)
-    public String formCrear(Animal a) {
-        return "redirect:crear";
+    public String crearAnimal(ModelMap model) {
+        model.addAttribute("animal", new Animal());
+        return "animales/crear";
     }
-
+    
+    /* POST para crear el animal introducido */
     @RequestMapping(value = "/crear", method = RequestMethod.POST)
-    public String crearAnimal(
-            @RequestParam(value = "animales", required = true)
-            @ModelAttribute("animales") @Valid Animal a) {
-        animalesDAO.nuevoAnimal(a);
-        return "redirect:animales";
+    public String crearAnimal(@ModelAttribute("animal") @Valid Animal a,
+                              BindingResult result,
+                              ModelMap model) {
+        String vista = "redirect:listado";
+        if(!result.hasErrors()) {
+            animalesDAO.nuevoAnimal(a);
+            model.clear();
+        } else {
+            vista = "animales/crear";
+        }
+        return vista;
     }
 
     /*METODO EDITAR*/

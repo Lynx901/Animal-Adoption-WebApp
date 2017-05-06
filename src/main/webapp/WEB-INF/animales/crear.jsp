@@ -31,7 +31,7 @@
                             <div class="col-md-6">
                                 <form:input path="nombre" class="form-control input-md"/>
                                 <span class="help-block">Debe ser el nombre real del animal</span> 
-                                <form:errors cssClass="error" path="nombre"/><br>
+                                <form:errors cssClass="alert alert-danger" path="nombre"/>
                             </div>
                         </div>
 
@@ -41,22 +41,22 @@
                             <div class="col-md-6">
                                 <form:input path="edad" class="form-control input-md"/>
                                 <span class="help-block">Debe ser un número mayor que 0</span> 
-                                <form:errors cssClass="error" path="edad"/><br>
+                                <form:errors cssClass="alert alert-danger" path="edad"/>
                             </div>
                         </div>
                         
                          <!-- Multiple Radios (inline) -->
                         <div class="form-group">
-                            <form:label class="col-md-4 control-label" path="sexo">Sexo</form:label>
+                            <form:label class="col-md-4 right-align" path="sexo">Sexo</form:label>
                             <div class="col-md-4"> 
-                                <form:label class="radio-inline" path="sexo-0">
-                                    <form:radiobutton path="sexo" name="sexo" id="sexo-0" value="true" checked="checked"/>
-                                    Macho
-                                </form:label> 
-                                <form:label class="radio-inline" path="sexo-1">
-                                    <form:radiobutton path="sexo" name="sexo" id="sexo-1" value="false" checked="checked"/>
-                                    Hembra
-                                </form:label>
+                                <div class="row">
+                                    <div class="col-md-6"> 
+                                        <form:radiobutton path="sexo" value="true"/> Macho
+                                    </div>
+                                    <div class="col-md-6"> 
+                                        <form:radiobutton path="sexo" value="false"/> Hembra
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -92,46 +92,47 @@
                             <form:label class="col-md-4 control-label" path="estado">Estado de salud</form:label>  
                             <div class="col-md-6">
                                 <form:input path="estado" id="estado" name="estado" type="text" placeholder="Perfecto" class="form-control input-md" required="" />
-                                <form:errors cssClass="error" path="estado"/><br>
+                                <span class="help-block">Describe en qué estado se encuentra el animal</span> 
+                                <form:errors cssClass="alert alert-danger" path="estado"/>
                             </div>
                         </div>
 
                         <!-- Multiple Radios (inline) -->
                         <div class="form-group">
-                            <form:label class="col-md-4 control-label" path="chip">¿Tiene chip?</form:label>
+                            <form:label class="col-md-4 right-align" path="chip">¿Tiene chip?</form:label>
                             <div class="col-md-4"> 
-                                <form:label class="radio-inline" path="chip-0">
-                                    <form:input path="chip-0" type="radio" name="chip" id="chip-0" value="true" checked="checked" />
-                                    Sí
-                                </form:label> 
-                                <form:label class="radio-inline" path="chip-1">
-                                    <form:input path="chip-1" type="radio" name="chip" id="chip-1" value="false" />
-                                    No
-                                </form:label>
+                                <div class="row">
+                                    <div class="col-md-4"> 
+                                        <form:radiobutton path="chip" value="true"/> Sí
+                                    </div>
+                                    <div class="col-md-4"> 
+                                        <form:radiobutton path="chip" value="false"/> No
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Multiple Radios (inline) -->
                         <div class="form-group">
-                            <form:label class="col-md-4 control-label" path="vacunas">¿Está vacunado?</form:label>
+                            <form:label class="col-md-4 right-align" path="vacunas">¿Está vacunado?</form:label>
                             <div class="col-md-4"> 
-                                <form:label class="radio-inline" path="vacunas-0">
-                                    <form:radiobutton path="vacunas-0" name="vacunas" id="vacunas-0" value="true" checked="checked"/>
-                                    Sí
-                                </form:label> 
-                                <form:label class="radio-inline" path="vacunas-1">
-                                    <form:radiobutton path="vacunas-1" name="vacunas" id="vacunas-1" value="false"/>
-                                    No
-                                </form:label>
+                                <div class="row">
+                                    <div class="col-md-4"> 
+                                        <form:radiobutton path="vacunas" value="true"/> Sí
+                                    </div>
+                                    <div class="col-md-4"> 
+                                        <form:radiobutton path="vacunas" value="false"/> No
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                         <!-- Textarea -->
                         <div class="form-group">
-                            <form:label class="col-md-4 control-label" path="description">¡Cuéntanos algo de él!</form:label>
+                            <form:label class="col-md-4  right-align" path="descripcion">¡Cuéntanos algo de él!</form:label>
                             <div class="col-md-4"> 
-                                <form:textarea path="description" class="form-control col-md-6" id="description" name="description"/>
-                                <form:errors cssClass="error" path="description"/><br>
+                                <form:textarea path="descripcion" rows="5" cols="30" />
+                                <form:errors cssClass="alert alert-danger" path="descripcion"/><br>
                             </div>
                         </div>
                         <div class="form-group ">

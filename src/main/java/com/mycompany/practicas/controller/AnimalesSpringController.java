@@ -85,20 +85,28 @@ public class AnimalesSpringController {
         return vista;
     }
 
-    /*METODO EDITAR*/
+    /* GET para editar un animal */
     @RequestMapping(value = "/editar", method = RequestMethod.GET)
-    public String editarAnimal() {
-        return "redirect:editar";
+    public String editarAnimal(@RequestParam(value="nombre", defaultValue=" ") String nombre,
+                               ModelMap model) {
+        model.addAttribute("cliente", animalesDAO.encontrarNombre(nombre));
+        return "animales/editar";
     }
-
+    
+    /* POST para editar un animal */
     @RequestMapping(value = "/editar", method = RequestMethod.POST)
-    public String editarAnimal(
-            @RequestParam(value = "animales", required = true)
-            @ModelAttribute("nombre") String nombre, int edad, boolean sexo, String especie, String raza,
-            String estado, boolean chip, boolean vacunas, int dnidueno, String descripcion) {
-        Animal animal = new Animal(nombre, edad, sexo, especie, raza, estado, chip, vacunas, dnidueno, descripcion);
-        animalesDAO.editar(animal);
-        return "redirect:animales";
+    public String editarAnimal(@ModelAttribute("animal") @Valid Animal a,
+                              BindingResult result,
+                              ModelMap model) {
+        String vista = "redirect:ficha/";
+        if(!result.hasErrors()) {
+            animalesDAO.editar(a);
+            model.clear();
+            vista = vista + a.getNombre();
+        } else {
+            vista = "animales/editar";
+        }
+        return vista;
     }
 
 }

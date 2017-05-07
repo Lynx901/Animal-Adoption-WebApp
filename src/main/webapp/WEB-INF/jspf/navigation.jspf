@@ -1,6 +1,6 @@
 <%-- Barra Lateral Comun --%>
 <aside class="col-md-2 col-sm-2 hidden-xs sidebar">
-    <img src="<c:url value='/img/logo.png'/>" class="logo img-circle center-block" alt="Logo">
+    <a href="<c:url value='/inicio/animales/listado'/>"><img src="<c:url value='/img/logo.png'/>" class="logo img-circle center-block" alt="Logo"></a>
     <br>
     <ul class="raza">
         <li><strong>GATOS</strong></li>

@@ -121,8 +121,18 @@ footer .container {
     width: 100%;
 }
 
-.btn-centered {
+.btn-centered-total {
     margin: auto;
     width: 100%;
     padding: 10px;
+}
+
+.btn-centered {
+    margin: auto;
+    width: 49%;
+    padding: 10px;
+}
+
+.btn-xs {
+    margin-top: 25%;
 }

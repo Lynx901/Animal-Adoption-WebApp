@@ -76,13 +76,13 @@
                             <form:label class="col-md-4 control-label" path="raza">Raza</form:label>
                             <div class="col-md-6">
                                 <form:select path="raza" id="raza" name="raza" class="form-control">
-                                    <form:option value="siamés">Siamés</form:option>
-                                    <form:option value="persa">Persa</form:option>
-                                    <form:option value="bengala">Bengala</form:option>
-                                    <form:option value="mestizo">Mestizo</form:option>
-                                    <form:option value="husky">Husky</form:option>
-                                    <form:option value="labrador">Labrador</form:option>
-                                    <form:option value="pastorAlemán">Pastor Alemán</form:option>
+                                    <form:option value="Siamés">Siamés</form:option>
+                                    <form:option value="Persa">Persa</form:option>
+                                    <form:option value="Bengala">Bengala</form:option>
+                                    <form:option value="Mestizo">Mestizo</form:option>
+                                    <form:option value="Husky">Husky</form:option>
+                                    <form:option value="Labrador">Labrador</form:option>
+                                    <form:option value="Pastor Alemán">Pastor Alemán</form:option>
                                 </form:select>
                             </div>
                         </div>

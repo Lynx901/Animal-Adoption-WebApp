@@ -88,13 +88,8 @@ public class AnimalesDAOJDBC implements AnimalesDAO {
     public boolean nuevoAnimal(Animal a, int dnidueno) {
         UsuarioDAOJDBC usuarios = new UsuarioDAOJDBC();
         Usuario u = usuarios.encontrarPorDNI(dnidueno);
-        System.out.println("El usuario es " + u.getUsuario());
-        System.out.println("Las mascotas son: " + u.getMascotas().toString());
-        System.out.println("El animal se llama " + a.getNombre());
         u.getMascotas().add(a);
-        System.out.println("Aqui llega");
         lastId++;
-        System.out.println("El último ID asignado fue: " + lastId);
         a.setId(lastId);
 
         String SQL_INSERT = "insert into Animales (nombre, edad, sexo, especie, raza, estado, chip, vacunas, dnidueno, descripcion)"

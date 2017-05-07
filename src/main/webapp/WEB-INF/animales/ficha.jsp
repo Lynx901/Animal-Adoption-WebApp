@@ -71,16 +71,15 @@
                                 <p><c:if test="${animal.chip}">Tiene chip</c:if> </p>
                             <p><c:if test="${animal.vacunas}">Tiene las vacunas</c:if> </p>
                             </div>
-                        </div>
+                        </div>                    
                     </aside>
-                </section>
-            <c:if test="${usuario.dni eq animal.duenio}">
-                <nav aria-label="...">
-                    <ul class="pager">
-                        <li><a href='<c:url value='/animales/editar'/>'>Editar información del animal</a></li>
-                    </ul>
-                </nav>
-            </c:if>
+                    <aside class="col-md-offset-1 col-md-6 color">
+                    <c:if test="${usuario.dni eq animal.duenio}">
+                        <a class="btn btn-primary btn-centered" href='<c:url value='/inicio/animales/editar?nombre=${animal.nombre}'/>'>Editar</a>
+                        <a class="btn btn-danger btn-centered" href='<c:url value='/inicio/animales/borrar?nombre=${animal.nombre}'/>'>Eliminar</a> 
+                    </c:if>
+                </aside>
+            </section>
         </main>
         <!-- Pie de página general -->
         <%@include file="/WEB-INF/jspf/footer.jspf" %>

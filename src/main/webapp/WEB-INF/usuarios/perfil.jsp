@@ -67,7 +67,7 @@
                             </section>
                         </c:if>
 
-                        <a class="btn btn-primary btn-centered" href='<c:url value='/inicio/usuarios/editar'/>'>Editar información</a>
+                        <a class="btn btn-primary btn-centered-total" href='<c:url value='/inicio/usuarios/editar'/>'>Editar información</a>
                     </div>
 
                 </div>

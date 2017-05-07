@@ -135,4 +135,9 @@ footer .container {
 
 .btn-xs {
     margin-top: 25%;
+    width: 65px;
+}
+
+h5 {
+    color: #666666;
 }

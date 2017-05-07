@@ -8,5 +8,5 @@ public interface AnimalesDAO {
     boolean nuevoAnimal(Animal a, int dnidueno);
     Animal encontrarID(int id);
     Animal encontrarNombre(String nombre);
-    void editar(Animal a);
+    boolean editar(Animal a);
 }

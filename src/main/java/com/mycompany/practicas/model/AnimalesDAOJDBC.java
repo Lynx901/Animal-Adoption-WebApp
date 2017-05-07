@@ -117,8 +117,11 @@ public class AnimalesDAOJDBC implements AnimalesDAO {
     }
 
     @Override
-    public void editar(Animal a) {
-        String SQL_INSERT = "UPDATE Animales SET nombre=?, edad=?, sexo=?, especie=?, raza=?, estado=?, chip=?, vacunas=?, descripcion=? WHERE id=?";
+    public boolean editar(Animal a) {
+        String SQL_INSERT = "UPDATE Animales "
+                          + "SET nombre=?, edad=?, sexo=?, especie=?, raza=?, estado=?, chip=?, vacunas=?, descripcion=? "
+                          + "WHERE nombre=?";
+        boolean result = false;
 
         try (Connection conn = ds.getConnection();
              PreparedStatement stmn = conn.prepareStatement(SQL_INSERT)) {
@@ -131,12 +134,14 @@ public class AnimalesDAOJDBC implements AnimalesDAO {
             stmn.setString(6, a.getEstado());
             stmn.setBoolean(7, a.isChip());
             stmn.setBoolean(8, a.isVacunas());
-            stmn.setString(10, a.getDescripcion());
+            stmn.setString(9, a.getDescripcion());
+            stmn.setString(10, a.getNombre());
             stmn.executeUpdate();
-
+            result = (stmn.executeUpdate() == 1);
         } catch (SQLException ex) {
             Logger.getLogger("AnimalesDAOJDBC").log(Level.SEVERE, ex.getMessage(), ex);
         }  //Autoclose resources (jdk>7)
+        return result;
     }
 
     @Override

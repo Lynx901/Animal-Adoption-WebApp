@@ -19,7 +19,7 @@
             <h1> Selecciona el método de acceso a la aplicación web </h1>
             <br>
             <section class="col-md-offset-1 col-sm-offset-1 col-md-5 col-sm-5 servlet zoom">
-                <a href="<c:url value='/animales'/>"><h2>Servlet</h2></a>
+                <a href="<c:url value='/animales'/>"><h2>Servlet (en construcción)</h2></a>
             </section>
             <section class="col-md-5 col-sm-5 spring zoom">
                 <a href="<c:url value='/inicio/animales/listado'/>"><h2>Spring MVC</h2></a>

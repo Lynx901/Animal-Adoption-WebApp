@@ -52,9 +52,9 @@
                                                     <footer class="color">
                                                         <div class="row">
                                                             <img class="col-md-2 col-sm-1 col-xs-1 usr-ph img-circle" src="<c:url value='/img/usuarios/${m.duenio}.png'/>" alt="Foto de ${m.duenio}"/>
-                                                            <div class="col-md-7">
+                                                            <div class="col-md-8">
                                                                 <h4>${m.nombre}</h4>
-                                                                <p>${m.duenio}</p>
+                                                                <h5>${m.raza}, ${m.edad} años</h5>
                                                             </div>
                                                         </div>
                                                     </footer>

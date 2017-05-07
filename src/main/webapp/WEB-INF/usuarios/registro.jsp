@@ -33,7 +33,7 @@
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                <form:input class="form-control" path="nombre" required/>
+                                <form:input class="form-control" path="nombre"/>
                                 <form:errors cssClass="error" path="nombre"/><br>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                <form:input class="form-control" path="apellidos" required/>
+                                <form:input class="form-control" path="apellidos"/>
                                 <form:errors cssClass="error" path="apellidos"/><br>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                <form:input class="form-control" path="direccion" required/>
+                                <form:input class="form-control" path="direccion"/>
                                 <form:errors cssClass="error" path="direccion"/><br>
                             </div>
                         </div>
@@ -66,7 +66,7 @@
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                <form:input class="form-control" path="email" required/>
+                                <form:input class="form-control" path="email"/>
                                 <form:errors cssClass="error" path="email"/><br>
                             </div>
                         </div>
@@ -77,7 +77,7 @@
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                                <form:input class="form-control" path="usuario" required/>
+                                <form:input class="form-control" path="usuario"/>
                                 <form:errors cssClass="error" path="usuario"/><br>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                <form:input class="form-control" path="pass" required/>
+                                <form:input class="form-control" path="pass"/>
                                 <form:errors cssClass="error" path="pass"/><br>
                             </div>
                         </div>
@@ -99,7 +99,7 @@
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                <form:input type="password" class="form-control" path="confirm" required/>
+                                <form:input type="password" class="form-control" path="confirm"/>
                                 <form:errors cssClass="error" path="pass"/><br>
                             </div>
                         </div>

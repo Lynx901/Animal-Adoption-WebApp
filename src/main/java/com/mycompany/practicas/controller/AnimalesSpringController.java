@@ -87,9 +87,11 @@ public class AnimalesSpringController {
 
     /* GET para editar un animal */
     @RequestMapping(value = "/editar", method = RequestMethod.GET)
-    public String editarAnimal(@RequestParam(value="nombre", defaultValue=" ") String nombre,
+    public String editarAnimal(@ModelAttribute("animal") Animal a,
+                               @RequestParam(value="nombre") String nombre,
                                ModelMap model) {
-        model.addAttribute("cliente", animalesDAO.encontrarNombre(nombre));
+        a = animalesDAO.encontrarNombre(nombre);
+        model.addAttribute("animal", a);
         return "animales/editar";
     }
     
@@ -98,11 +100,12 @@ public class AnimalesSpringController {
     public String editarAnimal(@ModelAttribute("animal") @Valid Animal a,
                               BindingResult result,
                               ModelMap model) {
-        String vista = "redirect:ficha/";
+        String vista = "redirect:ficha";
         if(!result.hasErrors()) {
-            animalesDAO.editar(a);
+            if(animalesDAO.editar(a))
+                System.out.println("Guardado correctamente");
             model.clear();
-            vista = vista + a.getNombre();
+            vista = vista + "?id=" + a.getNombre();
         } else {
             vista = "animales/editar";
         }

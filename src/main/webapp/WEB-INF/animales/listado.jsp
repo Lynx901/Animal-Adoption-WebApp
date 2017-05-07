@@ -49,11 +49,6 @@
                                             </div>
                                         </footer>
                                     </div>
-                                    <nav aria-label="...">
-                                        <ul class="pager">
-                                            <li><a href='<c:url value='/inicio/animales/crear'/>'>Añadir un animal nuevo</a></li>
-                                        </ul>
-                                    </nav>
                                 </article>
                             </c:if>
                         </c:forEach>
@@ -82,10 +77,16 @@
                                             </div>
                                         </footer>
                                     </div>
+
                                 </article>
                             </c:forEach>
                         </c:if>
                     </div>
+                    <nav aria-label="...">
+                        <ul class="pager">
+                            <li><a href='<c:url value='/inicio/animales/crear'/>'>Añadir un animal nuevo</a></li>
+                        </ul>
+                    </nav>
                 </section>
             </c:if>
         </main>

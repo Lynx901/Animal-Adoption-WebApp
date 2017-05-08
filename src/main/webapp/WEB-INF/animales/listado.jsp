@@ -42,8 +42,8 @@
                                                 </div>
                                                 <div class="col-md-2 col-sm-1 col-xs-1">
                                                     <c:if test="${usuario.dni eq a.duenio}">
-                                                        <a class="btn btn-primary btn-xs" href='<c:url value='/inicio/animales/editar?id=${a.id}'/>'>Editar</a>
-                                                        <a class="btn btn-danger btn-xs" href='<c:url value='/inicio/animales/borrar?id=${a.id}'/>'>Eliminar</a> 
+                                                        <a class="btn btn-primary btn-xs" href='<c:url value='/inicio/animales/editar?id=${a.id}'/>'><span class="glyphicon glyphicon-pencil"></span></a>
+                                                        <a class="btn btn-danger btn-xs" href='<c:url value='/inicio/animales/borrar?id=${a.id}'/>'><span class="glyphicon glyphicon-trash"></span></a> 
                                                     </c:if>
                                                 </div>
                                             </div>
@@ -70,8 +70,8 @@
                                                 </div>
                                                 <div class="col-md-2 col-sm-1 col-xs-1">
                                                     <c:if test="${usuario.dni eq a.duenio}">
-                                                        <a class="btn btn-primary btn-xs" href='<c:url value='/inicio/animales/editar?id=${a.id}'/>'>Editar</a>
-                                                        <a class="btn btn-danger btn-xs" href='<c:url value='/inicio/animales/borrar?id=${a.id}'/>'>Eliminar</a> 
+                                                        <a class="btn btn-primary btn-xs" href='<c:url value='/inicio/animales/editar?id=${a.id}'/>'><span class="glyphicon glyphicon-pencil"></span></a>
+                                                        <a class="btn btn-danger btn-xs" href='<c:url value='/inicio/animales/borrar?id=${a.id}'/>'><span class="glyphicon glyphicon-trash"></span></a> 
                                                     </c:if>
                                                 </div>
                                             </div>

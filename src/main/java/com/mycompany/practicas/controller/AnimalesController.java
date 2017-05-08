@@ -107,7 +107,7 @@ public class AnimalesController extends HttpServlet {
                     dni = (int) request.getSession().getAttribute("dni"); 
                 /* ---------------- Fin de recoger datos para el alta ------------------- */ 
 
-                Animal a = new Animal(nombre, edad, sexo, especie, raza, estado, chip, vacunas, dni, description);
+                Animal a = new Animal(0, nombre, edad, sexo, especie, raza, estado, chip, vacunas, dni, description);
                 if (validar(a) && dni != 0) {
                     animales.nuevoAnimal(a, u.getDni());
                     //Post-sent-redirect
@@ -134,7 +134,7 @@ public class AnimalesController extends HttpServlet {
                 boolean vacunas = Boolean.valueOf(request.getParameter("vacunas"));
                 
                 String description = request.getParameter("description");
-                
+                                
                 int dni = 77360609;
                 if(request.getSession().getAttribute("dni") != null)
                     dni = (int) request.getSession().getAttribute("dni"); 

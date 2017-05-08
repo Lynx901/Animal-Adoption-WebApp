@@ -62,7 +62,8 @@ public class UsuarioDAOJDBC implements UsuarioDAO {
     private static Animal animalesMapper(ResultSet rs) throws SQLException {
         Animal a = null;
         try {
-            a = new Animal(rs.getString("nombre"),
+            a = new Animal(rs.getInt("id"),
+                           rs.getString("nombre"),
                            rs.getInt("edad"),
                            rs.getBoolean("sexo"),
                            rs.getString("especie"),

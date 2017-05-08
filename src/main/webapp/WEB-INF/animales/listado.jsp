@@ -26,7 +26,7 @@
 
                     <div class="row">
                         <c:forEach var="a" items="${animales}">
-                            <c:set var="qry" value="?id=${a.nombre}"/>
+                            <c:set var="qry" value="?id=${a.id}"/>
                             <c:if test="${a.raza eq param.raza}">
                                 <article class="col-md-4 col-sm-6 col-xs-12">
                                     <div class="thumbnail zoom">
@@ -42,8 +42,8 @@
                                                 </div>
                                                 <div class="col-md-2 col-sm-1 col-xs-1">
                                                     <c:if test="${usuario.dni eq a.duenio}">
-                                                        <a class="btn btn-primary btn-xs" href='<c:url value='/inicio/animales/editar?nombre=${a.nombre}'/>'>Editar</a>
-                                                        <a class="btn btn-danger btn-xs" href='<c:url value='/inicio/animales/borrar?nombre=${a.nombre}'/>'>Eliminar</a> 
+                                                        <a class="btn btn-primary btn-xs" href='<c:url value='/inicio/animales/editar?id=${a.id}'/>'>Editar</a>
+                                                        <a class="btn btn-danger btn-xs" href='<c:url value='/inicio/animales/borrar?id=${a.id}'/>'>Eliminar</a> 
                                                     </c:if>
                                                 </div>
                                             </div>
@@ -55,7 +55,7 @@
 
                         <c:if test="${param.raza eq null}">
                             <c:forEach var="a" items="${animales}">
-                                <c:set var="qry" value="?id=${a.nombre}"/>
+                                <c:set var="qry" value="?id=${a.id}"/>
                                 <article class="col-md-4 col-sm-6 col-xs-12">
                                     <div class="thumbnail zoom">
                                         <a href="<c:url value='/inicio/animales/ficha${qry}'/>">
@@ -70,8 +70,8 @@
                                                 </div>
                                                 <div class="col-md-2 col-sm-1 col-xs-1">
                                                     <c:if test="${usuario.dni eq a.duenio}">
-                                                        <a class="btn btn-primary btn-xs" href='<c:url value='/inicio/animales/editar?nombre=${a.nombre}'/>'>Editar</a>
-                                                        <a class="btn btn-danger btn-xs" href='<c:url value='/inicio/animales/borrar?nombre=${a.nombre}'/>'>Eliminar</a> 
+                                                        <a class="btn btn-primary btn-xs" href='<c:url value='/inicio/animales/editar?id=${a.id}'/>'>Editar</a>
+                                                        <a class="btn btn-danger btn-xs" href='<c:url value='/inicio/animales/borrar?id=${a.id}'/>'>Eliminar</a> 
                                                     </c:if>
                                                 </div>
                                             </div>

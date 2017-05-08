@@ -44,7 +44,7 @@
                                 <h4 class="centered">Mascotas disponibles</h4>
                                 <div class="row">
                                     <c:forEach var="m" items="${mascotas}">
-                                        <c:set var="qry" value="?id=${m.nombre}"/>
+                                        <c:set var="qry" value="?id=${m.id}"/>
                                         <article class="col-md-4 col-sm-6 col-xs-12">
                                             <div class="thumbnail zoom">
                                                 <a href="<c:url value='/inicio/animales/ficha${qry}'/>">

@@ -75,8 +75,8 @@
                     </aside>
                     <aside class="col-md-offset-1 col-md-6 color">
                     <c:if test="${usuario.dni eq animal.duenio}">
-                        <a class="btn btn-primary btn-centered" href='<c:url value='/inicio/animales/editar?nombre=${animal.nombre}'/>'>Editar</a>
-                        <a class="btn btn-danger btn-centered" href='<c:url value='/inicio/animales/borrar?nombre=${animal.nombre}'/>'>Eliminar</a> 
+                        <a class="btn btn-primary btn-centered" href='<c:url value='/inicio/animales/editar?id=${animal.id}'/>'>Editar</a>
+                        <a class="btn btn-danger btn-centered" href='<c:url value='/inicio/animales/borrar?id=${animal.id}'/>'>Eliminar</a> 
                     </c:if>
                 </aside>
             </section>

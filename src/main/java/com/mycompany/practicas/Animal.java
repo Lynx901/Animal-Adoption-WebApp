@@ -6,8 +6,6 @@ import javax.validation.constraints.Size;
 
 
 public class Animal {
-    /*ID Autonumerico*/
-    public int idauto=0;
     private int duenio;
 
     private int id;
@@ -33,7 +31,7 @@ public class Animal {
     public Animal(){
         duenio = 0;
         
-        id       = idauto;
+        id       = 0;
         nombre   = "";
         edad     = 0;
         sexo     = true;
@@ -46,11 +44,9 @@ public class Animal {
         vacunas  = false;
         
         descripcion = "";
-        idauto++;
     }
-
+    
     public Animal(String _nombre, int _edad, boolean _sexo , String _especie, String _raza, String _estado, boolean _chip, boolean _vacunas, int _dni, String _descripcion) {
-        id=idauto;
         duenio = _dni;
         nombre  = _nombre;
         edad    = _edad;
@@ -64,7 +60,23 @@ public class Animal {
         vacunas = _vacunas;
 
         descripcion = _descripcion;
-        idauto++;
+    }
+
+    public Animal(int _id, String _nombre, int _edad, boolean _sexo , String _especie, String _raza, String _estado, boolean _chip, boolean _vacunas, int _dni, String _descripcion) {
+        id = _id;
+        duenio = _dni;
+        nombre  = _nombre;
+        edad    = _edad;
+        sexo    = _sexo;
+        
+        especie = _especie;
+        raza    = _raza;
+        estado  = _estado;
+        
+        chip    = _chip;
+        vacunas = _vacunas;
+
+        descripcion = _descripcion;
     }
 
     /**

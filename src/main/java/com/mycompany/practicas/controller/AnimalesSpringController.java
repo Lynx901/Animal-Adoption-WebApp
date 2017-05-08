@@ -55,8 +55,8 @@ public class AnimalesSpringController {
     /* Lleva a la ficha del animal pinchado */
     @RequestMapping(value = "/ficha", method = RequestMethod.GET)
     public String verAnimal(ModelMap model,
-                            @RequestParam(value = "id") String id) {
-        Animal a = animalesDAO.encontrarNombre(id);
+                            @RequestParam(value = "id") int id) {
+        Animal a = animalesDAO.encontrarID(id);
         model.addAttribute("animal", a);
         return "animales/ficha";
     }
@@ -88,9 +88,9 @@ public class AnimalesSpringController {
     /* GET para editar un animal */
     @RequestMapping(value = "/editar", method = RequestMethod.GET)
     public String editarAnimal(@ModelAttribute("animal") Animal a,
-                               @RequestParam(value="nombre") String nombre,
+                               @RequestParam(value="id") int id,
                                ModelMap model) {
-        a = animalesDAO.encontrarNombre(nombre);
+        a = animalesDAO.encontrarID(id);
         model.addAttribute("animal", a);
         return "animales/editar";
     }
@@ -105,7 +105,7 @@ public class AnimalesSpringController {
             if(animalesDAO.editar(a))
                 System.out.println("Guardado correctamente");
             model.clear();
-            vista = vista + "?id=" + a.getNombre();
+            vista = vista + "?id=" + a.getId();
         } else {
             vista = "animales/editar";
         }

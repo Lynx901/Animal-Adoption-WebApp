@@ -75,28 +75,26 @@ public class UsuarioSpringController {
         return vista;
     }
 
-    /*METODO REGISTRO GET Y POST*/
-    
+    /* GET para registrar un usuario */
     @RequestMapping(value = "/registro", method = RequestMethod.GET)
     public String registroUsuario(ModelMap model) {
         model.addAttribute("usuario", new Usuario());
         return "usuarios/registro";
     }
     
-    
+    /* POST para registrar un usuario */
     @RequestMapping(value = "/registro", method = RequestMethod.POST)
-    public String registroUsuario(
-            @ModelAttribute("usuario") @Valid Usuario u,
-            BindingResult result, ModelMap model) {
-       String view = "redirect:animales"; 
-       
+    public String registroUsuario(@ModelAttribute("usuario") @Valid Usuario u,
+                                  BindingResult result, 
+                                  ModelMap model) {
+       String vista = "redirect:perfil"; 
        if (!result.hasErrors()) {
          usuariosDAO.nuevoUsuario(u);
          model.clear();
         }else {
-            view="usuarios/registro"; //Show error, and ask for correct data
+            vista = "usuarios/registro";
         }
-        return view;
+        return vista;
     }
 
 }

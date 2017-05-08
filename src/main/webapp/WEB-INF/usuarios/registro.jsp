@@ -1,4 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
@@ -89,17 +91,6 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                                 <form:input class="form-control" path="pass"/>
-                                <form:errors cssClass="error" path="pass"/><br>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <form:label path="confirm" class="col-sm-4 control-label">Confirmar Contraseña</form:label>
-                        <div class="col-sm-8">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                <form:input type="password" class="form-control" path="confirm"/>
                                 <form:errors cssClass="error" path="pass"/><br>
                             </div>
                         </div>

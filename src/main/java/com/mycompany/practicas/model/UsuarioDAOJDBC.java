@@ -58,7 +58,7 @@ public class UsuarioDAOJDBC implements UsuarioDAO {
         }
         return u;
     }
-    
+
     private static Animal animalesMapper(ResultSet rs) throws SQLException {
         Animal a = null;
         try {
@@ -95,7 +95,7 @@ public class UsuarioDAOJDBC implements UsuarioDAO {
         }
         return usuarios;
     }
-    
+
     @Override
     public List<Animal> listarMascotas(Usuario u) {
         String SQL_BUSCATODOS = "Select * from animales where dnidueno=" + u.getDni();
@@ -140,7 +140,7 @@ public class UsuarioDAOJDBC implements UsuarioDAO {
     public boolean editar(Usuario u) {
         String SQL_INSERT = "UPDATE Usuarios SET nombre=?, apellidos=?, email=?, direccion=? WHERE dni=?";
         boolean result = false;
-        
+
         try (Connection conn = ds.getConnection();
              PreparedStatement stmn = conn.prepareStatement(SQL_INSERT)) {
 
@@ -160,32 +160,59 @@ public class UsuarioDAOJDBC implements UsuarioDAO {
 
     @Override
     public Usuario encontrarPorEmail(String email) {
-        for (Usuario u : listar()) {
-            if (u.getEmail().equals(email)) {
-                return u;
+        String SQL_BUSCA = "SELECT * FROM Usuarios where email=?";
+
+        Usuario u = null;
+        try (Connection conn = ds.getConnection();
+             PreparedStatement stmn = conn.prepareStatement(SQL_BUSCA)) {
+            
+            stmn.setString(1, email);
+            try (ResultSet rs = stmn.executeQuery()) {
+                rs.next();
+                u = usuarioMapper(rs);
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAOJDBC.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
         }
-        return null;
+        return u;
     }
 
     @Override
     public Usuario encontrarPorDNI(int dni) {
-        for (Usuario u : listar()) {
-            if (u.getDni() == dni) {
-                return u;
+        String SQL_BUSCA = "SELECT * FROM Usuarios where dni=?";
+
+        Usuario u = null;
+        try (Connection conn = ds.getConnection();
+             PreparedStatement stmn = conn.prepareStatement(SQL_BUSCA)) {
+            
+            stmn.setInt(1, dni);
+            try (ResultSet rs = stmn.executeQuery()) {
+                rs.next();
+                u = usuarioMapper(rs);
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAOJDBC.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
         }
-        return null;
+        return u;
     }
-    
+
     @Override
     public Usuario encontrarPorLogin(String user) {
-        for (Usuario u : listar()) {
-            if (u.getUsuario().equals(user)) {
-                return u;
+        String SQL_BUSCA = "SELECT * FROM Usuarios where usuario=?";
+
+        Usuario u = null;
+        try (Connection conn = ds.getConnection();
+             PreparedStatement stmn = conn.prepareStatement(SQL_BUSCA)) {
+            
+            stmn.setString(1, user);
+            try (ResultSet rs = stmn.executeQuery()) {
+                rs.next();
+                u = usuarioMapper(rs);
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAOJDBC.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
         }
-        return null;
+        return u;
     }
 
     public boolean registrar(Usuario u) {

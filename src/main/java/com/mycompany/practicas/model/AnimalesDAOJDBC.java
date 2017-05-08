@@ -165,22 +165,40 @@ public class AnimalesDAOJDBC implements AnimalesDAO {
 
     @Override
     public Animal encontrarID(int id) {
-        for (Animal a : listar()) {
-            if (a.getId() == id) {
-                return a;
+        String SQL_BUSCA = "SELECT * FROM Animales where id=?";
+
+        Animal a = null;
+        try (Connection conn = ds.getConnection();
+             PreparedStatement stmn = conn.prepareStatement(SQL_BUSCA)) {
+            
+            stmn.setInt(1, id);
+            try (ResultSet rs = stmn.executeQuery()) {
+                rs.next();
+                a = animalesMapper(rs);
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAOJDBC.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
         }
-        return null;
+        return a;
     }
 
     @Override
     public Animal encontrarNombre(String nombre) {
-        for (Animal a : listar()) {
-            if (nombre.equals(a.getNombre())) {
-                return a;
+        String SQL_BUSCA = "SELECT * FROM Animales where nombre=?";
+
+        Animal a = null;
+        try (Connection conn = ds.getConnection();
+             PreparedStatement stmn = conn.prepareStatement(SQL_BUSCA)) {
+            
+            stmn.setString(1, nombre);
+            try (ResultSet rs = stmn.executeQuery()) {
+                rs.next();
+                a = animalesMapper(rs);
             }
+        } catch (SQLException ex) {
+            Logger.getLogger(UsuarioDAOJDBC.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
         }
-        return null;
+        return a;
     }
 
 }

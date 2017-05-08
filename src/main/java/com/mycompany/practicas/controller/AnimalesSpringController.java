@@ -46,10 +46,14 @@ public class AnimalesSpringController {
     
     /* Lista todos los animales de la BBDD */
     @RequestMapping(value = "/listado", method = RequestMethod.GET)
-    public String listarAnimales(ModelMap model) {
+    public String listarAnimales(@RequestParam(value="raza", defaultValue="") String raza,
+                                 ModelMap model) {
         List<Animal> listaAnimales = animalesDAO.listar();
         model.addAttribute("animales", listaAnimales);
-        return "animales/listado";
+        String vista = "animales/listado";
+        if(!raza.isEmpty())
+            vista = vista + "?raza=" + raza;
+        return vista;
     }
     
     /* Lleva a la ficha del animal pinchado */
@@ -111,5 +115,14 @@ public class AnimalesSpringController {
         }
         return vista;
     }
+    
+    /* GET para borrar un animal */
+    @RequestMapping(value = "/borrar", method=RequestMethod.GET)
+    public String borra(@RequestParam(value="id", defaultValue="0")Integer id, 
+                        ModelMap model) {
+        animalesDAO.borrar(id);
+        model.clear();
+        return "redirect:listado";
+}
 
 }

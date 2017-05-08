@@ -39,7 +39,7 @@
                             <p>Raza: </p>
                         </div>
                         <div class="col-sm-6 col-md-offset-1 col-md-3">
-                            <p>${animal.raza} </p>
+                            <p>${animal.raza} (<a href="<c:url value='/inicio/animales?raza=${animal.raza}'/>">+</a>)</p>
                         </div>
                     </div>
 
@@ -48,7 +48,16 @@
                             <p>Edad: </p>
                         </div>
                         <div class="col-sm-6 col-md-offset-1 col-md-3">
-                            <p>${animal.edad} </p>
+                            <p>${animal.edad} años</p>
+                        </div>
+                    </div>
+                        
+                    <div class="row">
+                        <div class="col-sm-6 col-md-offset-3 col-md-3">
+                            <p>Estado de salud: </p>
+                        </div>
+                        <div class="col-sm-6 col-md-offset-1 col-md-3">
+                            <p>${animal.estado} </p>
                         </div>
                     </div>
 
@@ -59,19 +68,22 @@
                         <div class="col-sm-6 col-md-offset-1 col-md-3">
                             <p><c:if test="${animal.sexo}"> Macho </c:if> 
                                 <c:if test="${not animal.sexo}"> Hembra </c:if> 
-                                </p>
-                            </div>
+                            </p>
                         </div>
+                    </div>
 
-                        <div class="row">
-                            <div class="col-sm-6 col-md-offset-3 col-md-3">
-                                <p>Vacunas y Chip: </p>
-                            </div>
-                            <div class="col-sm-6 col-md-offset-1 col-md-4">
-                                <p><c:if test="${animal.chip}">Tiene chip</c:if> </p>
-                            <p><c:if test="${animal.vacunas}">Tiene las vacunas</c:if> </p>
-                            </div>
-                        </div>                    
+                    <div class="row">
+                        <div class="col-sm-6 col-md-offset-3 col-md-3">
+                            <p>Vacunas y Chip: </p>
+                        </div>
+                        <div class="col-sm-6 col-md-offset-1 col-md-4">
+                            <p><c:if test="${animal.chip}">Tiene chip</c:if> </p>
+                        <p><c:if test="${animal.vacunas}">Tiene las vacunas</c:if> </p>
+                        </div>
+                    </div> 
+                    
+                        <p>${animal.descripcion}</p>
+                            
                     </aside>
                     <aside class="col-md-offset-1 col-md-6 color">
                     <c:if test="${usuario.dni eq animal.duenio}">

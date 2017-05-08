@@ -94,23 +94,22 @@ public class AnimalesDAOJDBC implements AnimalesDAO {
         lastId++;
         a.setId(lastId);
 
-        String SQL_INSERT = "insert into Animales (id, nombre, edad, sexo, especie, raza, estado, chip, vacunas, dnidueno, descripcion)"
-                            + " values(?,?,?,?,?,?,?,?,?,?,?)";
+        String SQL_INSERT = "insert into Animales (nombre, edad, sexo, especie, raza, estado, chip, vacunas, dnidueno, descripcion)"
+                            + " values(?,?,?,?,?,?,?,?,?,?)";
         Integer insertados = 0;
         try (Connection conn = ds.getConnection();
              PreparedStatement stmn = conn.prepareStatement(SQL_INSERT)) {
 
-            stmn.setInt(1, a.getId());
-            stmn.setString(2, a.getNombre());
-            stmn.setInt(3, a.getEdad());
-            stmn.setBoolean(4, a.isSexo());
-            stmn.setString(5, a.getEspecie());
-            stmn.setString(6, a.getRaza());
-            stmn.setString(7, a.getEstado());
-            stmn.setBoolean(8, a.isChip());
-            stmn.setBoolean(9, a.isVacunas());
-            stmn.setInt(10, dnidueno);
-            stmn.setString(11, a.getDescripcion());
+            stmn.setString(1, a.getNombre());
+            stmn.setInt(2, a.getEdad());
+            stmn.setBoolean(3, a.isSexo());
+            stmn.setString(4, a.getEspecie());
+            stmn.setString(5, a.getRaza());
+            stmn.setString(6, a.getEstado());
+            stmn.setBoolean(7, a.isChip());
+            stmn.setBoolean(8, a.isVacunas());
+            stmn.setInt(9, dnidueno);
+            stmn.setString(10, a.getDescripcion());
             insertados = stmn.executeUpdate();
 
         } catch (SQLException ex) {
@@ -141,9 +140,26 @@ public class AnimalesDAOJDBC implements AnimalesDAO {
             stmn.setInt(10, a.getId());
             stmn.executeUpdate();
             result = (stmn.executeUpdate() == 1);
+            
         } catch (SQLException ex) {
             Logger.getLogger("AnimalesDAOJDBC").log(Level.SEVERE, ex.getMessage(), ex);
         }  //Autoclose resources (jdk>7)
+        return result;
+    }
+    
+    @Override
+    public boolean borrar(int id) {
+        String SQL_BORRAR = "DELETE FROM Animales WHERE id=?";
+        boolean result=false;
+        try (Connection conn=ds.getConnection();
+            PreparedStatement stmn=conn.prepareStatement(SQL_BORRAR)){
+            
+            stmn.setInt(1, id);
+            result=(stmn.executeUpdate() == 1);
+            
+        } catch (Exception ex) {
+            Logger.getLogger(AnimalesDAOJDBC.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+        }         
         return result;
     }
 

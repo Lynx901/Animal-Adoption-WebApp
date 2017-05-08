@@ -48,6 +48,32 @@ public class UsuarioSpringController {
         model.addAttribute("mascotas", m);
         return "usuarios/perfil";
     }
+    
+    /* GET para editar el usuario */
+    @RequestMapping(value = "/editar", method = RequestMethod.GET)
+    public String editarUsuario(@ModelAttribute("usuario") Usuario u,
+                                ModelMap model,
+                                Principal principal) {
+        u = usuariosDAO.encontrarPorLogin(principal.getName());
+        model.addAttribute("usuario", u);
+        return "usuarios/editar";
+    }
+
+    /* POST para editar un usuario */
+    @RequestMapping(value = "/editar", method = RequestMethod.POST)
+    public String editarUsuario(@ModelAttribute("usuario") @Valid Usuario u,
+                                BindingResult result,
+                                ModelMap model) {
+        String vista = "redirect:perfil";
+        if(!result.hasErrors()) {
+            if(usuariosDAO.editar(u))
+                System.out.println("Guardado correctamente");
+            model.clear();
+        } else {
+            vista = "usuarios/editar";
+        }
+        return vista;
+    }
 
     /*METODO REGISTRO GET Y POST*/
     
@@ -71,22 +97,6 @@ public class UsuarioSpringController {
             view="usuarios/registro"; //Show error, and ask for correct data
         }
         return view;
-    }
-
-    /*METODO EDITAR GET Y POST*/
-    @RequestMapping(value = "/editar", method = RequestMethod.GET)
-    public String editarUsuario() {
-        return "usuarios/editar";
-    }
-
-    @RequestMapping(value = "/editar", method = RequestMethod.POST)
-    public String editarUsuario(
-            @RequestParam(value = "usuarios", required = true)
-            @ModelAttribute("dni") int dni, String nombre, String apellidos, String email, String direccion,
-            String usuario, String pass) {
-        Usuario u = new Usuario(dni, nombre, apellidos, email, direccion, usuario, pass);
-        usuariosDAO.editar(u);
-        return "redirect:animales";
     }
 
 }

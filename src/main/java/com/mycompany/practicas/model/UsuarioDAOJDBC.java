@@ -137,9 +137,10 @@ public class UsuarioDAOJDBC implements UsuarioDAO {
     }
 
     @Override
-    public void editar(Usuario u) {
+    public boolean editar(Usuario u) {
         String SQL_INSERT = "UPDATE Usuarios SET nombre=?, apellidos=?, email=?, direccion=? WHERE dni=?";
-
+        boolean result = false;
+        
         try (Connection conn = ds.getConnection();
              PreparedStatement stmn = conn.prepareStatement(SQL_INSERT)) {
 
@@ -149,11 +150,12 @@ public class UsuarioDAOJDBC implements UsuarioDAO {
             stmn.setString(4, u.getDireccion());
             stmn.setInt(5, u.getDni());
             stmn.executeUpdate();
+            result = (stmn.executeUpdate() == 1);
 
         } catch (SQLException ex) {
             Logger.getLogger("UsuariosDAOJDBC").log(Level.SEVERE, ex.getMessage(), ex);
         }  //Autoclose resources (jdk>7)
-
+        return result;
     }
 
     @Override

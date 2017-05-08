@@ -86,7 +86,7 @@ footer .container {
 .map{
     overflow:hidden;
     position:relative;
-    height:200px;
+    height:150px;
 }
 .map iframe{
     left:0;

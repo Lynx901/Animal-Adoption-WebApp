@@ -9,4 +9,5 @@ public interface AnimalesDAO {
     Animal encontrarID(int id);
     Animal encontrarNombre(String nombre);
     boolean editar(Animal a);
+    boolean borrar(int id);
 }

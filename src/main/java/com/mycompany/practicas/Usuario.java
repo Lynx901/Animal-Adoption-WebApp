@@ -8,10 +8,11 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class Usuario implements Serializable{
-    @Pattern(regexp="\\d{7,8}(-?[a-zA-Z])?", message="El dni debe tener el siguiente formato 00000000A")
     private int    dni;
-    @Size(min=5,max=50, message="El nombre debe estar entre 5 y 50 caracteres")
+    
+    @Size(min=2,max=50, message="El nombre debe estar entre 5 y 50 caracteres")
     private String nombre;
+    
     @NotEmpty(message="El campo apellidos no puede estar vacio")
     private String apellidos;
     

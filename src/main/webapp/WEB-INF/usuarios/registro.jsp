@@ -11,20 +11,22 @@
         <%@include file="/WEB-INF/jspf/bootstrap.jspf" %>
         <!-- Website CSS style -->
         <link rel="stylesheet" href="<c:url value='/css/register.css'/>">
+        <!--Inclusión de fichero para validar formulario por javascript-->
+        <script type="text/javascript" lang="javascript" src="<c:url value='/js/validacion.js'/>" ></script>
     </head>
     <body>
         <!-- Cabecera minimizada -->
         <%@include file="/WEB-INF/jspf/header_min.jspf" %>
         <section class="main-login main-center">
             <c:if test="${empty param.Enviar}">
-                <form:form class="form-horizontal" method="POST" modelAttribute="usuario">
+                <form:form class="form-horizontal" method="POST" modelAttribute="usuario" name="registroUsuarios" validate="true">
 
                     <div class="form-group">
                         <form:label path="dni" class="col-sm-4 control-label">DNI</form:label>
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                <form:input class="form-control" path="dni" />
+                                <form:input class="form-control" path="dni" name="dni" id="dni"/>
                                 <form:errors cssClass="error" path="dni"/><br>
                             </div>
                         </div>
@@ -35,7 +37,7 @@
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                <form:input class="form-control" path="nombre"/>
+                                <form:input class="form-control" path="nombre" name="nombre" id="nombre"/>
                                 <form:errors cssClass="error" path="nombre"/><br>
                             </div>
                         </div>
@@ -46,7 +48,7 @@
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                <form:input class="form-control" path="apellidos"/>
+                                <form:input class="form-control" path="apellidos" name="apellidos" id="apellidos"/>
                                 <form:errors cssClass="error" path="apellidos"/><br>
                             </div>
                         </div>
@@ -57,7 +59,7 @@
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                <form:input class="form-control" path="direccion"/>
+                                <form:input class="form-control" path="direccion" name="direccion" id="direccion"/>
                                 <form:errors cssClass="error" path="direccion"/><br>
                             </div>
                         </div>
@@ -68,7 +70,7 @@
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                <form:input class="form-control" path="email"/>
+                                <form:input class="form-control" path="email" name="email" id="email"/>
                                 <form:errors cssClass="error" path="email"/><br>
                             </div>
                         </div>
@@ -79,7 +81,7 @@
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                                <form:input class="form-control" path="usuario"/>
+                                <form:input class="form-control" path="usuario" name="usuario" id="usuario"/>
                                 <form:errors cssClass="error" path="usuario"/><br>
                             </div>
                         </div>
@@ -90,14 +92,14 @@
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                <form:input class="form-control" path="pass"/>
+                                <form:input class="form-control" path="pass" name="contrasena" id="contrasena"/>
                                 <form:errors cssClass="error" path="pass"/><br>
                             </div>
                         </div>
                     </div>
-
                     <div class="form-group ">
-                        <input type="submit" class="btn btn-primary btn-lg btn-block login-button" name="Enviar" value="Registrarse" >
+                        <input type="submit" class="btn btn-primary btn-lg btn-block login-button" name="Enviar" value="Registrarse" onclick = "return valida_envia()">
+                        <div id="mensaje"></div>
                     </div>
                     <div class="login-register">
                         <a href="<c:url value='/login.jsp'/>">Iniciar sesión</a>
@@ -113,5 +115,6 @@
         </section>
         <!-- Pie de página minimizado -->
         <%@include file="/WEB-INF/jspf/footer_min.jspf" %>
+        
     </body>
 </html>

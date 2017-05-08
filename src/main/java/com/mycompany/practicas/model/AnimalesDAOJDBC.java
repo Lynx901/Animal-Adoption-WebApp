@@ -25,10 +25,8 @@ public class AnimalesDAOJDBC implements AnimalesDAO {
 
     private static final String connPoolName = "java:/comp/env/jdbc/Practicas"; //Tomcat connection pool
     private DataSource ds = null;
-    private Integer lastId;
 
     public AnimalesDAOJDBC() {
-        lastId = 0;
         if (ds == null) {
             try {
                 Context context = new InitialContext(); //Accedemos al contenedor de Servlets
@@ -90,26 +88,26 @@ public class AnimalesDAOJDBC implements AnimalesDAO {
         UsuarioDAOJDBC usuarios = new UsuarioDAOJDBC();
         Usuario u = usuarios.encontrarPorDNI(dnidueno);
         u.getMascotas().add(a);
-        
-        lastId++;
-        a.setId(lastId);
 
-        String SQL_INSERT = "insert into Animales (nombre, edad, sexo, especie, raza, estado, chip, vacunas, dnidueno, descripcion)"
-                            + " values(?,?,?,?,?,?,?,?,?,?)";
-        Integer insertados = 0;
+        a.setId(listar().size()+1);
+
+        String SQL_INSERT = "INSERT INTO Animales (id, nombre, edad, sexo, especie, raza, estado, chip, vacunas, dnidueno, descripcion)"
+                          + " VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+        int insertados = 0;
         try (Connection conn = ds.getConnection();
              PreparedStatement stmn = conn.prepareStatement(SQL_INSERT)) {
 
-            stmn.setString(1, a.getNombre());
-            stmn.setInt(2, a.getEdad());
-            stmn.setBoolean(3, a.isSexo());
-            stmn.setString(4, a.getEspecie());
-            stmn.setString(5, a.getRaza());
-            stmn.setString(6, a.getEstado());
-            stmn.setBoolean(7, a.isChip());
-            stmn.setBoolean(8, a.isVacunas());
-            stmn.setInt(9, dnidueno);
-            stmn.setString(10, a.getDescripcion());
+            stmn.setInt(1, a.getId());
+            stmn.setString(2, a.getNombre());
+            stmn.setInt(3, a.getEdad());
+            stmn.setBoolean(4, a.isSexo());
+            stmn.setString(5, a.getEspecie());
+            stmn.setString(6, a.getRaza());
+            stmn.setString(7, a.getEstado());
+            stmn.setBoolean(8, a.isChip());
+            stmn.setBoolean(9, a.isVacunas());
+            stmn.setInt(10, dnidueno);
+            stmn.setString(11, a.getDescripcion());
             insertados = stmn.executeUpdate();
 
         } catch (SQLException ex) {
@@ -120,13 +118,13 @@ public class AnimalesDAOJDBC implements AnimalesDAO {
 
     @Override
     public boolean editar(Animal a) {
-        String SQL_INSERT = "UPDATE Animales "
-                          + "SET nombre=?, edad=?, sexo=?, especie=?, raza=?, estado=?, chip=?, vacunas=?, descripcion=? "
-                          + "WHERE id=?";
+        String SQL_EDIT = "UPDATE Animales "
+                        + "SET nombre=?, edad=?, sexo=?, especie=?, raza=?, estado=?, chip=?, vacunas=?, descripcion=? "
+                        + "WHERE id=?";
         boolean result = false;
 
         try (Connection conn = ds.getConnection();
-             PreparedStatement stmn = conn.prepareStatement(SQL_INSERT)) {
+             PreparedStatement stmn = conn.prepareStatement(SQL_EDIT)) {
 
             stmn.setString(1, a.getNombre());
             stmn.setInt(2, a.getEdad());

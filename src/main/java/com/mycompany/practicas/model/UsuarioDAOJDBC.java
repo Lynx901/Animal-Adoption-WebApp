@@ -115,7 +115,8 @@ public class UsuarioDAOJDBC implements UsuarioDAO {
 
     @Override
     public boolean nuevoUsuario(Usuario u) {
-        String SQL_INSERT = "insert into Usuarios (dni, nombre, apellidos, email, direccion, usuario) values(?,?,?,?,?,?)";
+        String SQL_INSERT = "insert into Usuarios (dni, nombre, apellidos, email, direccion, usuario) "
+                          + "values(?,?,?,?,?,?)";
         Integer insertados = 0;
         try (Connection conn = ds.getConnection();
              PreparedStatement stmn = conn.prepareStatement(SQL_INSERT)) {

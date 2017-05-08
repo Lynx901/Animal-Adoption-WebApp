@@ -48,7 +48,12 @@
                                         <article class="col-md-4 col-sm-6 col-xs-12">
                                             <div class="thumbnail zoom">
                                                 <a href="<c:url value='/inicio/animales/ficha${qry}'/>">
-                                                    <img class="img-responsive photo-animal" src="<c:url value='/img/${m.especie}-placeholder.jpg'/>" alt="Foto del animal"/>
+                                                    <c:catch var="e">
+                                                        <img class="img-responsive photo-animal" src="<c:url value='/img/animales/${m.id}.png'/>" alt="Foto del animal"/>
+                                                    </c:catch>
+                                                    <c:if test="${!empty e}">
+                                                        <img class="img-responsive photo-animal" src="<c:url value='/img/${a.raza}-placeholder.jpg'/>" alt="Foto del animal"/>
+                                                    </c:if>                                                    
                                                     <footer class="color">
                                                         <div class="row">
                                                             <img class="col-md-2 col-sm-1 col-xs-1 usr-ph img-circle" src="<c:url value='/img/usuarios/${m.duenio}.png'/>" alt="Foto de ${m.duenio}"/>

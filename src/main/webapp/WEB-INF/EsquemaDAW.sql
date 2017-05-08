@@ -24,7 +24,7 @@ create table Roles (
 );
 
 CREATE TABLE Animales (
-    id          INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+    id          INTEGER NOT NULL PRIMARY KEY,
     nombre      VARCHAR(25) NOT NULL,
     edad        INTEGER,
     sexo        BOOLEAN,
@@ -51,9 +51,9 @@ insert into Roles values ('dml',        'ADMINISTRADORES');
 insert into Roles values ('jfaf',       'ADMINISTRADORES');
 insert into Roles values ('af',      'USUARIOS');
 
-insert into Animales (nombre, edad, sexo, especie, raza, estado, chip, vacunas, descripcion, dnidueno)
-values ('Bolita de nieve',   5, true,    'perro',    'Mestizo',          'Perfecto', true,   true,   'Gracioso y divertido', 77360609);
-insert into Animales (nombre, edad, sexo, especie, raza, estado, chip, vacunas, descripcion, dnidueno)
-values ('Esperanza',         3, false,   'gato',     'Siamés',           'Enfermo',  true,   false,  'Muy elegante',         23000579);
-insert into Animales (nombre, edad, sexo, especie, raza, estado, chip, vacunas, descripcion, dnidueno)
-values ('Colgantitos',       1, true,    'perro',    'Pastor Alemán',    'Atlético', false,  true,   'Mucha energía',        57923023);
+insert into Animales (id, nombre, edad, sexo, especie, raza, estado, chip, vacunas, descripcion, dnidueno)
+values (1, 'Bolita de nieve',   5, true,    'perro',    'Mestizo',          'Perfecto', true,   true,   'Gracioso y divertido', 77360609);
+insert into Animales (id, nombre, edad, sexo, especie, raza, estado, chip, vacunas, descripcion, dnidueno)
+values (2, 'Esperanza',         3, false,   'gato',     'Siamés',           'Enfermo',  true,   false,  'Muy elegante',         23000579);
+insert into Animales (id, nombre, edad, sexo, especie, raza, estado, chip, vacunas, descripcion, dnidueno)
+values (3, 'Colgantitos',       1, true,    'perro',    'Pastor Alemán',    'Atlético', false,  true,   'Mucha energía',        57923023);

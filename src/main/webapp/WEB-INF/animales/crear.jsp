@@ -19,11 +19,20 @@
             <!-- Panel de navegación lateral -->
             <%@include file="/WEB-INF/jspf/navigation.jspf" %>
             <section class="col-md-offset-1 col-sm-offset-1 col-md-7 col-sm-7">
-                <form:form method="POST" class="form-horizontal" modelAttribute="animal">
+                <form:form method="POST" class="form-horizontal" modelAttribute="animal" enctype="multipart/form-data">
                     <fieldset>
 
                         <!-- Form Name -->
                         <legend>Dar de alta a un animal</legend>
+                        
+                        <!-- File upload-->
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Sube una foto de tu mascota</label> 
+                            <div class="col-md-6">
+                                <form:input path="multipartFile" type="file" />
+                                <form:errors path="multipartFile"/><br/>
+                            </div>
+                        </div>
 
                         <!-- Text input-->
                         <div class="form-group">

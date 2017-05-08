@@ -31,7 +31,12 @@
                                 <article class="col-md-4 col-sm-6 col-xs-12">
                                     <div class="thumbnail zoom">
                                         <a href="<c:url value='/inicio/animales/ficha${qry}'/>">
-                                            <img class="img-responsive photo-animal" src="<c:url value='/img/${a.especie}-placeholder.jpg'/>" alt="Foto del animal"/>
+                                            <c:catch var="e">
+                                                <img class="img-responsive photo-animal" src="<c:url value='/img/animales/${a.id}.png'/>" alt="Foto del animal"/>
+                                            </c:catch>
+                                            <c:if test="${!empty e}">
+                                                <img class="img-responsive photo-animal" src="<c:url value='/img/${a.raza}-placeholder.jpg'/>" alt="Foto del animal"/>
+                                            </c:if>
                                         </a>
                                         <footer class="color">
                                             <div class="row">
@@ -44,7 +49,7 @@
                                                     <c:if test="${usuario.dni eq a.duenio}">
                                                         <a class="btn btn-primary btn-xs" href='<c:url value='/inicio/animales/editar?id=${a.id}'/>'><span class="glyphicon glyphicon-pencil"></span></a>
                                                         <a class="btn btn-danger btn-xs" href='<c:url value='/inicio/animales/borrar?id=${a.id}'/>'><span class="glyphicon glyphicon-trash"></span></a> 
-                                                    </c:if>
+                                                        </c:if>
                                                 </div>
                                             </div>
                                         </footer>
@@ -59,7 +64,12 @@
                                 <article class="col-md-4 col-sm-6 col-xs-12">
                                     <div class="thumbnail zoom">
                                         <a href="<c:url value='/inicio/animales/ficha${qry}'/>">
-                                            <img class="img-responsive photo-animal" src="<c:url value='/img/${a.especie}-placeholder.jpg'/>" alt="Foto del animal"/>
+                                            <c:catch var="e">
+                                                <img class="img-responsive photo-animal" src="<c:url value='/img/animales/${a.id}.png'/>" alt="Foto del animal"/>
+                                            </c:catch>
+                                            <c:if test="${!empty e}">
+                                                <img class="img-responsive photo-animal" src="<c:url value='/img/${a.raza}-placeholder.jpg'/>" alt="Foto del animal"/>
+                                            </c:if>                                        
                                         </a>
                                         <footer class="color">
                                             <div class="row">
@@ -72,7 +82,7 @@
                                                     <c:if test="${usuario.dni eq a.duenio}">
                                                         <a class="btn btn-primary btn-xs" href='<c:url value='/inicio/animales/editar?id=${a.id}'/>'><span class="glyphicon glyphicon-pencil"></span></a>
                                                         <a class="btn btn-danger btn-xs" href='<c:url value='/inicio/animales/borrar?id=${a.id}'/>'><span class="glyphicon glyphicon-trash"></span></a> 
-                                                    </c:if>
+                                                        </c:if>
                                                 </div>
                                             </div>
                                         </footer>

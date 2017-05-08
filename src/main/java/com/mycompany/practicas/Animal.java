@@ -1,8 +1,13 @@
 package com.mycompany.practicas;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.springframework.web.multipart.MultipartFile;
 
 
 public class Animal {
@@ -10,7 +15,7 @@ public class Animal {
 
     private int id;
     
-    @Size(min=5,max=50, message="El tamaño del nombre debe estar entre 5 y 50 caracteres")
+    @Size(min=2,max=50, message="El tamaño del nombre debe estar entre 5 y 50 caracteres")
     private String  nombre;
     
     @Min(value=0, message="Los animales no pueden ser menores de 0 años")
@@ -21,13 +26,19 @@ public class Animal {
 
     private String  especie;
     private String  raza;
+    
+    @NotNull(message="Pon algo como \"genial\", \"pachucho\", \"sano\"...")
     private String  estado;
     
     private boolean chip;
     private boolean vacunas;
     
+    @NotNull(message="Tienes que decir algo de tu mascota")
     private String descripcion;
-        
+    
+    @NotNull(message="Debes subir una foto")
+    private MultipartFile multipartFile;
+
     public Animal(){
         duenio = 0;
         
@@ -77,6 +88,20 @@ public class Animal {
         vacunas = _vacunas;
 
         descripcion = _descripcion;
+    }
+    
+    /**
+     * @return the multipartFile
+     */
+    public MultipartFile getMultipartFile() {
+        return multipartFile;
+    }
+
+    /**
+     * @param multipartFile the multipartFile to set
+     */
+    public void setMultipartFile(MultipartFile multipartFile) {
+        this.multipartFile = multipartFile;
     }
 
     /**

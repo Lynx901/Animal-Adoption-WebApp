@@ -1,6 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,7 +21,12 @@
             <%@include file="/WEB-INF/jspf/navigation.jspf" %>
             <section class="col-md-10">
                 <div class="col-md-5 thumbnail">
-                    <img class="img-responsive photo-animal" src="<c:url value='/img/${animal.especie}-placeholder.jpg'/>" alt="Foto del animal"/>
+                    <c:catch var="e">
+                        <img class="img-responsive photo-animal" src="<c:url value='/img/animales/${animal.id}.png'/>" alt="Foto del animal"/>
+                    </c:catch>
+                    <c:if test="${!empty e}">
+                        <img class="img-responsive photo-animal" src="<c:url value='/img/${animal.raza}-placeholder.jpg'/>" alt="Foto del animal"/>
+                    </c:if>                
                 </div>
                 <aside class="col-md-offset-1 col-md-6 color">
                     <h2>${param.nombre}</h2>
@@ -51,7 +58,7 @@
                             <p>${animal.edad} años</p>
                         </div>
                     </div>
-                        
+
                     <div class="row">
                         <div class="col-sm-6 col-md-offset-3 col-md-3">
                             <p>Estado de salud: </p>
@@ -68,31 +75,32 @@
                         <div class="col-sm-6 col-md-offset-1 col-md-3">
                             <p><c:if test="${animal.sexo}"> Macho </c:if> 
                                 <c:if test="${not animal.sexo}"> Hembra </c:if> 
-                            </p>
+                                </p>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col-sm-6 col-md-offset-3 col-md-3">
-                            <p>Vacunas y Chip: </p>
-                        </div>
-                        <div class="col-sm-6 col-md-offset-1 col-md-4">
-                            <p><c:if test="${animal.chip}">Tiene chip</c:if> </p>
-                        <p><c:if test="${animal.vacunas}">Tiene las vacunas</c:if> </p>
-                        </div>
-                    </div> 
-                    
+                        <div class="row">
+                            <div class="col-sm-6 col-md-offset-3 col-md-3">
+                                <p>Vacunas y Chip: </p>
+                            </div>
+                            <div class="col-sm-6 col-md-offset-1 col-md-4">
+                                <p><c:if test="${animal.chip}">Tiene chip</c:if> </p>
+                            <p><c:if test="${animal.vacunas}">Tiene las vacunas</c:if> </p>
+                            </div>
+                        </div> 
+
                         <p>${animal.descripcion}</p>
-                            
-                    </aside>
-                    <aside class="col-md-offset-1 col-md-6 color">
-                    <c:if test="${usuario.dni eq animal.duenio}">
-                        <a class="btn btn-primary btn-centered" href='<c:url value='/inicio/animales/editar?id=${animal.id}'/>'>Editar</a>
-                        <a class="btn btn-danger btn-centered" href='<c:url value='/inicio/animales/borrar?id=${animal.id}'/>'>Eliminar</a> 
-                    </c:if>
+
                 </aside>
             </section>
         </main>
+        <aside class="row botones">
+
+            <c:if test="${usuario.dni eq animal.duenio}">
+                <a class="btn btn-primary btn-centered" href='<c:url value='/inicio/animales/editar?id=${animal.id}'/>'>Editar</a>
+                <a class="btn btn-danger btn-centered" href='<c:url value='/inicio/animales/borrar?id=${animal.id}'/>'>Eliminar</a> 
+            </c:if>
+        </aside>
         <!-- Pie de página general -->
         <%@include file="/WEB-INF/jspf/footer.jspf" %>
     </body>

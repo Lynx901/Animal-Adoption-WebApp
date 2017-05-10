@@ -19,7 +19,7 @@
             <!-- Panel de navegación lateral -->
             <%@include file="/WEB-INF/jspf/navigation.jspf" %>
             <section class="col-md-offset-1 col-sm-offset-1 col-md-7 col-sm-7">
-                <form:form method="POST" class="form-horizontal" modelAttribute="animal" enctype="multipart/form-data">
+                <form:form id='formAnimales' method="POST" class="form-horizontal" modelAttribute="animal" enctype="multipart/form-data">
                     <fieldset>
 
                         <!-- Form Name -->
@@ -29,7 +29,10 @@
                         <div class="form-group">
                             <label class="col-md-4 control-label">Sube una foto de tu mascota</label> 
                             <div class="col-md-6">
-                                <form:input path="multipartFile" type="file" />
+                                <form:input name="multipartFile" path="multipartFile" type="file" />
+                                <p id="errMultipartFile" class="text-danger" hidden >
+                                    Debes subir una foto.
+                                </p>
                                 <form:errors path="multipartFile"/><br/>
                             </div>
                         </div>
@@ -38,8 +41,11 @@
                         <div class="form-group">
                             <form:label class="col-md-4 control-label" path="nombre">Nombre</form:label>  
                             <div class="col-md-6">
-                                <form:input path="nombre" class="form-control input-md"/>
+                                <form:input name="nombre" path="nombre" class="form-control input-md"/>
                                 <span class="help-block">Debe ser el nombre real del animal</span> 
+                                <p id="errNombre" class="text-danger" hidden >
+                                    El nombre debe tener al menos 2 letras.
+                                </p>
                                 <form:errors cssClass="alert alert-danger" path="nombre"/>
                             </div>
                         </div>
@@ -48,7 +54,10 @@
                         <div class="form-group">
                             <form:label class="col-md-4 control-label" path="edad">Edad</form:label>  
                             <div class="col-md-6">
-                                <form:input path="edad" class="form-control input-md"/>
+                                <form:input name="edad" path="edad" class="form-control input-md"/>
+                                <p id="errEdad" class="text-danger" hidden >
+                                    La edad debe ser mayor de 0 y menor de 100
+                                </p>
                                 <span class="help-block">Debe ser un número mayor que 0</span> 
                                 
                             </div>
@@ -102,6 +111,9 @@
                             <div class="col-md-6">
                                 <form:input path="estado" id="estado" name="estado" type="text" placeholder="Perfecto" class="form-control input-md" required="" />
                                 <span class="help-block">Describe en qué estado se encuentra el animal</span> 
+                                <p id="errEstado" class="text-danger" hidden >
+                                    El estado no puede estar vacío, Pon algo como "genial", "pachucho", "sano"...
+                                </p>
                                 <form:errors cssClass="alert alert-danger" path="estado"/>
                             </div>
                         </div>
@@ -140,7 +152,10 @@
                         <div class="form-group">
                             <form:label class="col-md-4  right-align" path="descripcion">¡Cuéntanos algo de él!</form:label>
                             <div class="col-md-4"> 
-                                <form:textarea path="descripcion" rows="5" cols="30" />
+                                <form:textarea name="descripcion" path="descripcion" rows="5" cols="30" />
+                                <p id="errDescripcion" class="text-danger" hidden >
+                                    Tienes que decirnos algo sobre tu mascota.
+                                </p>
                                 <form:errors cssClass="alert alert-danger" path="descripcion"/><br>
                             </div>
                         </div>
@@ -154,6 +169,7 @@
         </main>
         <!-- Pie de página general -->
         <%@include file="/WEB-INF/jspf/footer.jspf" %>
+        <script src="<c:url value='/js/animalesController.js'/>"></script>
     </body>
 </html>
 

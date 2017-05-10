@@ -15,7 +15,7 @@ public class Animal {
 
     private int id;
     
-    @Size(min=2,max=50, message="El tamaño del nombre debe estar entre 5 y 50 caracteres")
+    @Size(min=2,max=50, message="El tamaño del nombre debe estar entre 2 y 50 caracteres")
     private String  nombre;
     
     @Min(value=0, message="Los animales no pueden ser menores de 0 años")

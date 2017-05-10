@@ -23,11 +23,12 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                                 <form:input class="form-control" path="dni" name="dni" id="dni"/>
-                                <p id="errDNI" class="text-danger" hidden >
-                                    El DNI debe ser de la forma 12345678 (sin letra).
-                                </p>
-                                <form:errors cssClass="error" path="dni"/><br>
+
+                            <form:errors cssClass="error" path="dni"/><br>
                         </div>
+                        <p id="errDNI" class="text-danger" hidden >
+                            El DNI debe ser de la forma 12345678 (sin letra).
+                        </p>
                     </div>
                 </div>
 
@@ -37,25 +38,25 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                                 <form:input class="form-control" path="nombre" name="nombre" id="nombre"/>
-                                <p id="errNombre" class="text-danger" hidden >
-                                    El nombre tiene que tener más de 2 letras.
-                                </p>
                                 <form:errors cssClass="error" path="nombre"/><br>
                         </div>
+                        <p id="errNombre" class="text-danger" hidden >
+                            El nombre tiene que tener más de 2 letras.
+                        </p>
                     </div>
                 </div>
-
                 <div class="form-group">
                     <form:label path="apellidos" class="col-sm-4 control-label">Apellidos</form:label>
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
                                 <form:input class="form-control" path="apellidos" name="apellidos" id="apellidos"/>
-                                <p id="errApellidos" class="text-danger" hidden >
-                                    Al menos pon un apellido (con algunas letras).
-                                </p>
-                                <form:errors cssClass="error" path="apellidos"/><br>
+
+                            <form:errors cssClass="error" path="apellidos"/><br>
                         </div>
+                        <p id="errApellidos" class="text-danger" hidden >
+                            Al menos pon un apellido (con algunas letras).
+                        </p>
                     </div>
                 </div>
 
@@ -65,11 +66,12 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
                                 <form:input class="form-control" path="direccion" name="direccion" id="direccion"/>
-                                <p id="errDireccion" class="text-danger" hidden >
-                                    Debe ser una dirección válida.
-                                </p>
-                                <form:errors cssClass="error" path="direccion"/><br>
+
+                            <form:errors cssClass="error" path="direccion"/><br>
                         </div>
+                        <p id="errDireccion" class="text-danger" hidden >
+                            Debe ser una dirección válida.
+                        </p>
                     </div>
                 </div>
 
@@ -79,11 +81,11 @@
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
                                 <form:input class="form-control" path="email" name="email" id="email"/>
-                                <p id="errEmail" class="text-danger" hidden >
-                                    Debe ser un email válido.
-                                </p>
                                 <form:errors cssClass="error" path="email"/><br>
                         </div>
+                        <p id="errEmail" class="text-danger" hidden >
+                            Debe ser un email válido.
+                        </p>
                     </div>
                 </div>
 

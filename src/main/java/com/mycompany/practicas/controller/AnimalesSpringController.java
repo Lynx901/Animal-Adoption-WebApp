@@ -100,7 +100,7 @@ public class AnimalesSpringController {
              String newNombre = (a.getId() + ".png");
              multipart.transferTo(new File(path, newNombre));
         } catch (IOException | IllegalStateException | NullPointerException e) {
-             vista = "animales/editar";
+             vista = "animales/crear";
         }
         
         return vista;

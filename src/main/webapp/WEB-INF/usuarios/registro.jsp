@@ -18,103 +18,95 @@
         <!-- Cabecera minimizada -->
         <%@include file="/WEB-INF/jspf/header_min.jspf" %>
         <section class="main-login main-center">
-            <c:if test="${empty param.Enviar}">
-                <form:form class="form-horizontal" method="POST" modelAttribute="usuario" name="registroUsuarios" validate="true">
+            <form:form class="form-horizontal" method="POST" modelAttribute="usuario" name="registroUsuarios" validate="true">
 
-                    <div class="form-group">
-                        <form:label path="dni" class="col-sm-4 control-label">DNI</form:label>
+                <div class="form-group">
+                    <form:label path="dni" class="col-sm-4 control-label">DNI</form:label>
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                                 <form:input class="form-control" path="dni" name="dni" id="dni"/>
                                 <form:errors cssClass="error" path="dni"/><br>
-                            </div>
                         </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <form:label path="nombre" class="col-sm-4 control-label">Nombre</form:label>
+                </div>
+
+                <div class="form-group">
+                    <form:label path="nombre" class="col-sm-4 control-label">Nombre</form:label>
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
                                 <form:input class="form-control" path="nombre" name="nombre" id="nombre"/>
                                 <form:errors cssClass="error" path="nombre"/><br>
-                            </div>
                         </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <form:label path="apellidos" class="col-sm-4 control-label">Apellidos</form:label>
+                </div>
+
+                <div class="form-group">
+                    <form:label path="apellidos" class="col-sm-4 control-label">Apellidos</form:label>
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
                                 <form:input class="form-control" path="apellidos" name="apellidos" id="apellidos"/>
                                 <form:errors cssClass="error" path="apellidos"/><br>
-                            </div>
                         </div>
                     </div>
-                    
-                    <div class="form-group">
-                        <form:label path="direccion" class="col-sm-4 control-label">Dirección</form:label>
+                </div>
+
+                <div class="form-group">
+                    <form:label path="direccion" class="col-sm-4 control-label">Dirección</form:label>
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
                                 <form:input class="form-control" path="direccion" name="direccion" id="direccion"/>
                                 <form:errors cssClass="error" path="direccion"/><br>
-                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <form:label path="email" class="col-sm-4 control-label">Email</form:label>
+                <div class="form-group">
+                    <form:label path="email" class="col-sm-4 control-label">Email</form:label>
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
                                 <form:input class="form-control" path="email" name="email" id="email"/>
                                 <form:errors cssClass="error" path="email"/><br>
-                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <form:label path="usuario" class="col-sm-4 control-label">Usuario</form:label>
+                <div class="form-group">
+                    <form:label path="usuario" class="col-sm-4 control-label">Usuario</form:label>
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
                                 <form:input class="form-control" path="usuario" name="usuario" id="usuario"/>
                                 <form:errors cssClass="error" path="usuario"/><br>
-                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <form:label path="pass" class="col-sm-4 control-label">Contraseña</form:label>
+                <div class="form-group">
+                    <form:label path="pass" class="col-sm-4 control-label">Contraseña</form:label>
                         <div class="col-sm-8">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                <form:input class="form-control" path="pass" name="contrasena" id="contrasena"/>
+                                <form:input type="password" class="form-control" path="pass" name="contrasena" id="contrasena"/>
                                 <form:errors cssClass="error" path="pass"/><br>
-                            </div>
                         </div>
                     </div>
-                    <div class="form-group ">
-                        <input type="submit" class="btn btn-primary btn-lg btn-block login-button" name="Enviar" value="Registrarse" onclick = "return valida_envia()">
-                        <div id="mensaje"></div>
-                    </div>
-                    <div class="login-register">
-                        <a href="<c:url value='/login.jsp'/>">Iniciar sesión</a>
-                    </div>
-                </form:form>
-        </c:if>
-        <c:if test="${not empty param.Enviar}">
-             <p> Gracias ${param.name} en breves recibira un correo electronico a ${param.email} para confirmar su registro </p>
-                <div class="login-register">
-                    <a href="<c:url value='/animales'/>">Inicio</a>
                 </div>
-        </c:if>
+                <div class="form-group ">
+                    <input type="submit" class="btn btn-primary btn-lg btn-block login-button" name="Enviar" value="Registrarse" onclick = "return valida_envia()">
+                    <div id="mensaje"></div>
+                </div>
+                <div class="login-register">
+                    <a href="<c:url value='/inicio/usuarios/perfil'/>">Iniciar sesión</a>
+                </div>
+            </form:form>
         </section>
         <!-- Pie de página minimizado -->
         <%@include file="/WEB-INF/jspf/footer_min.jspf" %>
-        
+
     </body>
 </html>

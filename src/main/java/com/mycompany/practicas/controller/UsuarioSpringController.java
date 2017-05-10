@@ -16,7 +16,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
@@ -87,11 +86,13 @@ public class UsuarioSpringController {
     public String registroUsuario(@ModelAttribute("usuario") @Valid Usuario u,
                                   BindingResult result, 
                                   ModelMap model) {
-       String vista = "redirect:perfil"; 
-       if (!result.hasErrors()) {
-         usuariosDAO.nuevoUsuario(u);
-         model.clear();
+        String vista = "redirect:perfil"; 
+        if (!result.hasErrors()) {
+            System.out.println("Se ha creado un nuevo usuario");
+            usuariosDAO.nuevoUsuario(u);
+            model.clear();
         }else {
+            System.out.println("Se ha creado un nuevo usuario");
             vista = "usuarios/registro";
         }
         return vista;

@@ -23,7 +23,6 @@
             </c:if>
             <c:if test="${not empty animales}">
                 <section class="col-md-10 col-sm-10 col-xs-12">
-
                     <div class="row">
                         <c:forEach var="a" items="${animales}">
                             <c:set var="qry" value="?id=${a.id}"/>

@@ -56,9 +56,6 @@ public class AnimalesSpringController {
         List<Animal> listaAnimales = animalesDAO.listar();
         model.addAttribute("animales", listaAnimales);
         String vista = "animales/listado";
-        if (!raza.isEmpty()) {
-            vista = vista + "?raza=" + raza;
-        }
         return vista;
     }
 

@@ -24,39 +24,7 @@
             <c:if test="${not empty animales}">
                 <section class="col-md-10 col-sm-10 col-xs-12">
                     <div class="row">
-                        <c:forEach var="a" items="${animales}">
-                            <c:set var="qry" value="?id=${a.id}"/>
-                            <c:if test="${a.raza eq param.raza}">
-                                <article class="col-md-4 col-sm-6 col-xs-12">
-                                    <div class="thumbnail zoom">
-                                        <a href="<c:url value='/inicio/animales/ficha${qry}'/>">
-                                            <c:catch var="e">
-                                                <img class="img-responsive photo-animal" src="<c:url value='/img/animales/${a.id}.png'/>" alt="Foto del animal"/>
-                                            </c:catch>
-                                            <c:if test="${!empty e}">
-                                                <img class="img-responsive photo-animal" src="<c:url value='/img/${a.raza}-placeholder.jpg'/>" alt="Foto del animal"/>
-                                            </c:if>
-                                        </a>
-                                        <footer class="color">
-                                            <div class="row">
-                                                <img class="col-md-2 col-sm-1 col-xs-1 usr-ph img-circle" src="<c:url value='/img/usuarios/${a.duenio}.png'/>" alt="Foto de ${a.duenio}"/>
-                                                <div class="col-md-7 col-sm-8 col-xs-8">
-                                                    <h4>${a.nombre}</h4>
-                                                    <h5>${a.raza}, ${a.edad} años</h5>
-                                                </div>
-                                                <div class="col-md-2 col-sm-1 col-xs-1">
-                                                    <c:if test="${usuario.dni eq a.duenio}">
-                                                        <a class="btn btn-primary btn-xs" href='<c:url value='/inicio/animales/editar?id=${a.id}'/>'><span class="glyphicon glyphicon-pencil"></span></a>
-                                                        <a class="btn btn-danger btn-xs" href='<c:url value='/inicio/animales/borrar?id=${a.id}'/>'><span class="glyphicon glyphicon-trash"></span></a> 
-                                                        </c:if>
-                                                </div>
-                                            </div>
-                                        </footer>
-                                    </div>
-                                </article>
-                            </c:if>
-                        </c:forEach>
-
+                        
                         <c:if test="${param.raza eq null}">
                             <c:forEach var="a" items="${animales}">
                                 <c:set var="qry" value="?id=${a.id}"/>
@@ -90,6 +58,40 @@
                                 </article>
                             </c:forEach>
                         </c:if>
+                        
+                        <c:forEach var="a" items="${animales}">
+                            <c:set var="qry" value="?id=${a.id}"/>
+                            <c:if test="${a.raza eq param.raza}">
+                                <article class="col-md-4 col-sm-6 col-xs-12">
+                                    <div class="thumbnail zoom">
+                                        <a href="<c:url value='/inicio/animales/ficha${qry}'/>">
+                                            <c:catch var="e">
+                                                <img class="img-responsive photo-animal" src="<c:url value='/img/animales/${a.id}.png'/>" alt="Foto del animal"/>
+                                            </c:catch>
+                                            <c:if test="${!empty e}">
+                                                <img class="img-responsive photo-animal" src="<c:url value='/img/${a.raza}-placeholder.jpg'/>" alt="Foto del animal"/>
+                                            </c:if>
+                                        </a>
+                                        <footer class="color">
+                                            <div class="row">
+                                                <img class="col-md-2 col-sm-1 col-xs-1 usr-ph img-circle" src="<c:url value='/img/usuarios/${a.duenio}.png'/>" alt="Foto de ${a.duenio}"/>
+                                                <div class="col-md-7 col-sm-8 col-xs-8">
+                                                    <h4>${a.nombre}</h4>
+                                                    <h5>${a.raza}, ${a.edad} años</h5>
+                                                </div>
+                                                <div class="col-md-2 col-sm-1 col-xs-1">
+                                                    <c:if test="${usuario.dni eq a.duenio}">
+                                                        <a class="btn btn-primary btn-xs" href='<c:url value='/inicio/animales/editar?id=${a.id}'/>'><span class="glyphicon glyphicon-pencil"></span></a>
+                                                        <a class="btn btn-danger btn-xs" href='<c:url value='/inicio/animales/borrar?id=${a.id}'/>'><span class="glyphicon glyphicon-trash"></span></a> 
+                                                        </c:if>
+                                                </div>
+                                            </div>
+                                        </footer>
+                                    </div>
+                                </article>
+                            </c:if>
+                        </c:forEach>
+                        
                     </div>
                     <nav aria-label="...">
                         <ul class="pager">

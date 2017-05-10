@@ -20,56 +20,22 @@ var animalesCtrl = {
         this.model = model;
 
         var self = this;
-        
+                
         $(this.config.frmEdit).submit(function (event) {
-            event.preventDefault();
-            event.preventDefault(); //Avoid default form submit
-            self.formSubmit();
+            if (self.validarDatos(event) === false) {
+                event.preventDefault();  //stop submit 
+            } else {
+                alert("Enhorabuena, tu mascota se ha subido correctamente");
+            }
         });
-         
-        if(self.validarDatos(event) === false) {
-            event.preventDefault();
-        }
-    },
-    
-    formSubmit: function() {
-        var animal = this.model.animal;
-        var self;
-        animal = {};
         
-        animal.nombre = $('[name=nombre').val();
-        animal.edad = $('[name=edad').val();
-        animal.estado = $('[name=estado').val();
-        animal.descripcion = $('[name=descripcion').val();
-        
-        $(this.config.errMsgs).empty();
-        
-        //Form Client-side validation
-        if (this.validarDatos(animal)) {
-            self = this;
-            var RESTMethod = 'POST';
-            var RESTUrl = this.config.srvUrl;
-            
-            $.ajax({
-                url: RESTUrl,                
-                type: RESTMethod,
-                dataType: 'json',                //expected data type
-                contentType: 'application/JSON',
-                data: JSON.stringify(animal)               
-                })
-                .done(function (json) {
-                    console.log(json);
-                })
-                .fail(function (jqxhr) {
-                    console.log(jqxhr);
-                });
-        }
-
     },
    
-    validarDatos: function (animal) {
+    validarDatos: function () {
         //Form Client-side validation
         //Shows validation errors next to form fields
+        animal = this.formSubmit();
+        
         var result = true;
         
         if(animal.nombre.length < 2 || animal.nombre.length > 50) {
@@ -99,8 +65,21 @@ var animalesCtrl = {
         } else {
             $('#errDescripcion').hide();
         }
-
+        
         return result;
+    },
+        
+    formSubmit: function() {
+        var animal = this.model.animal;
+        animal = {};
+        
+        animal.nombre = $('[name=nombre').val();
+        animal.edad = $('[name=edad').val();
+        animal.estado = $('[name=estado').val();
+        animal.descripcion = $('[name=descripcion').val();
+        
+        $(this.config.errMsgs).empty();
+        return animal;
     }
 }; //End animalesCtrl
 

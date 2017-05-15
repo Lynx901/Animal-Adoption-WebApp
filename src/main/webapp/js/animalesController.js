@@ -38,6 +38,13 @@ var animalesCtrl = {
         
         var result = true;
         
+        if(animal.multipartFile.length === 0) {
+            $('#errMultipartFile').show();
+            result = false;
+        } else {
+            $('#errMultipartFile').hide();
+        }
+        
         if(animal.nombre.length < 2 || animal.nombre.length > 50) {
             $('#errNombre').show();
             result = false;
@@ -45,7 +52,7 @@ var animalesCtrl = {
             $('#errNombre').hide();
         }
         
-        if(animal.edad < 0 || animal.edad > 100) {
+        if(animal.edad <= 0 || animal.edad > 100) {
             $('#errEdad').show();
             result = false;
         } else {
@@ -77,6 +84,7 @@ var animalesCtrl = {
         animal.edad = $('[name=edad').val();
         animal.estado = $('[name=estado').val();
         animal.descripcion = $('[name=descripcion').val();
+        animal.multipartFile = $('[name=multipartFile').val();
         
         $(this.config.errMsgs).empty();
         return animal;

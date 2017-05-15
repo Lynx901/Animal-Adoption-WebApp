@@ -46,7 +46,7 @@
                             <p>Raza: </p>
                         </div>
                         <div class="col-sm-6 col-md-offset-1 col-md-3">
-                            <p>${animal.raza} (<a href="<c:url value='/inicio/animales?raza=${animal.raza}'/>">+</a>)</p>
+                            <p>${animal.raza} (<a href="<c:url value='/inicio/animales/listado?raza=${animal.raza}'/>">+</a>)</p>
                         </div>
                     </div>
 
@@ -98,7 +98,7 @@
 
             <c:if test="${usuario.dni eq animal.duenio}">
                 <a class="btn btn-primary btn-centered" href='<c:url value='/inicio/animales/editar?id=${animal.id}'/>'>Editar</a>
-                <a class="btn btn-danger btn-centered" href='<c:url value='/inicio/animales/borrar?id=${animal.id}'/>'>Eliminar</a> 
+                <a class="btn btn-danger btn-centered" onclick="alert('Se ha eliminado correctamente')" href='<c:url value='/inicio/animales/borrar?id=${animal.id}'/>'>Eliminar</a> 
             </c:if>
         </aside>
         <!-- Pie de página general -->
